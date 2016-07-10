@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">FileChooserDemo</string>
+    <string name="show_dialog">Show Dialog</string>
+</resources>
