@@ -4,41 +4,22 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF">
+    android:background="#FAFAFA">
 
     <include
         layout="@layout/dialog_header"
-        android:id="@+id/include" />
+        android:id="@+id/header" />
 
     <include
         layout="@layout/dialog_file_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/fileList"
-        android:layout_above="@+id/linearLayout"
+        android:layout_above="@+id/footer"
         android:dividerHeight="1dp"
-        android:layout_below="@+id/include" />
+        android:layout_below="@+id/header" />
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_alignParentBottom="true"
-        android:id="@+id/linearLayout">
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="Cancel"
-            android:layout_weight="1"
-            android:id="@+id/cancel" />
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Select"
-            android:id="@+id/select" />
-    </LinearLayout>
+    <include
+        layout="@layout/dialog_footer"
+        android:id="@+id/footer" />
 </RelativeLayout>

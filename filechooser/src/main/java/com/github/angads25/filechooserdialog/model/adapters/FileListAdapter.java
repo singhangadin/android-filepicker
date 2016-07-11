@@ -99,11 +99,15 @@ public class FileListAdapter extends BaseAdapter{
         SimpleDateFormat sdate = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
         SimpleDateFormat stime = new SimpleDateFormat("hh:mm aa", Locale.getDefault());
         Date date = new Date(item.getTime());
-        holder.type.setText("Last edited: " + sdate.format(date) + ", " + stime.format(date));
+        if(i==0&&item.getFilename().startsWith("...")) {
+            holder.type.setText("Parent Directory");
+        }
+        else {
+            holder.type.setText("Last edited: " + sdate.format(date) + ", " + stime.format(date));
+        }
         if(holder.fmark.getVisibility()==View.VISIBLE) {
             if(i==0&&item.getFilename().startsWith("..."))
             {   holder.fmark.setVisibility(View.INVISIBLE);
-                holder.type.setText("Parent Directory");
             }
             if (MarkedItemList.hasItem(item.getLocation())) {
                 holder.fmark.setChecked(true);

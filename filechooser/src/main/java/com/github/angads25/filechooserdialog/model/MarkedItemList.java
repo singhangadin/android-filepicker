@@ -26,10 +26,6 @@ import java.util.Set;
 public class MarkedItemList {
     private static HashMap<String,FileListItem> ourInstance = new HashMap<>();
 
-//    public static HashMap<String, FileListItem> getSelectedItems() {
-//        return ourInstance;
-//    }
-
     public static void addSelectedItem(FileListItem item)
     {   ourInstance.put(item.getLocation(),item);
     }

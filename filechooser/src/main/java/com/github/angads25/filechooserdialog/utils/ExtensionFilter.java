@@ -57,4 +57,8 @@ public class ExtensionFilter implements FileFilter {
         }
         return false;
     }
+
+    public void setProperties(DialogProperties properties) {
+        this.properties = properties;
+    }
 }

@@ -68,6 +68,17 @@ public class FileListItem implements Comparable<FileListItem>
 
     @Override
     public int compareTo(FileListItem fileListItem) {
-        return filename.toLowerCase().compareTo(fileListItem.getFilename().toLowerCase());
+        if(fileListItem.isDirectory()&&isDirectory())
+        {   return filename.toLowerCase().compareTo(fileListItem.getFilename().toLowerCase());
+        }
+        else if(!fileListItem.isDirectory()&&!isDirectory())
+        {   return filename.toLowerCase().compareTo(fileListItem.getFilename().toLowerCase());
+        }
+        else if(fileListItem.isDirectory()&&!isDirectory())
+        {   return 1;
+        }
+        else
+        {   return -1;
+        }
     }
 }

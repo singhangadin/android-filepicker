@@ -14,23 +14,28 @@
  * limitations under the License.
  */
 
-package com.github.angads25.filechooserdialog.model;
-
-import java.io.File;
+package com.github.angads25.filechooserdemo;
 
 /**<p>
  * Created by Angad Singh on 11-07-2016.
  * </p>
  */
-public class DialogProperties {
-    public int selection_mode,selection_type;
-    public File offset;
-    public String[] extensions;
+public class ListItem
+{   private String name,path;
 
-    public DialogProperties() {
-        selection_mode=DialogConfigs.SINGLE_MODE;
-        selection_type=DialogConfigs.FILE_SELECT;
-        offset=new File(DialogConfigs.ROOT_MOUNT_DIR);
-        extensions=null;
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
     }
 }
