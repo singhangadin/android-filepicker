@@ -45,12 +45,10 @@
             android:textSize="12sp"/>
     </LinearLayout>
 
-    <ImageButton
+    <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_action_info"
         android:layout_gravity="center_vertical"
-        android:background="@null"
         android:layout_margin="8dp"
-        android:id="@+id/file_info" />
+        android:id="@+id/file_mark" />
 </LinearLayout>
