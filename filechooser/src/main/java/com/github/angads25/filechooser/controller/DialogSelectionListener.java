@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.github.angads25.filechooserdialog.controller;
+package com.github.angads25.filechooser.controller;
 
 import java.io.File;
 

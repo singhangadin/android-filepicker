@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-package com.github.angads25.filechooserdialog.utils;
+package com.github.angads25.filechooser.utils;
 
-import com.github.angads25.filechooserdialog.model.DialogConfigs;
-import com.github.angads25.filechooserdialog.model.DialogProperties;
+import com.github.angads25.filechooser.model.DialogConfigs;
+import com.github.angads25.filechooser.model.DialogProperties;
 
 import java.io.File;
 import java.io.FileFilter;

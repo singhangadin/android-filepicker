@@ -14,12 +14,23 @@
  * limitations under the License.
  */
 
-package com.github.angads25.filechooserdialog.controller;
+package com.github.angads25.filechooser.model;
+
+import java.io.File;
 
 /**<p>
  * Created by Angad Singh on 11-07-2016.
  * </p>
  */
-public interface NotifyItemChecked {
-    void notifyCheckBoxIsClicked();
+public class DialogProperties {
+    public int selection_mode,selection_type;
+    public File offset;
+    public String[] extensions;
+
+    public DialogProperties() {
+        selection_mode=DialogConfigs.SINGLE_MODE;
+        selection_type=DialogConfigs.FILE_SELECT;
+        offset=new File(DialogConfigs.ROOT_MOUNT_DIR);
+        extensions=null;
+    }
 }

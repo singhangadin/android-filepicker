@@ -14,10 +14,13 @@
  * limitations under the License.
  */
 
-package com.github.angads25.filechooserdialog.view;
+package com.github.angads25.filechooser.view;
 
+import android.Manifest;
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -28,16 +31,16 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.github.angads25.filechooserdialog.R;
-import com.github.angads25.filechooserdialog.controller.DialogSelectionListener;
-import com.github.angads25.filechooserdialog.controller.NotifyItemChecked;
-import com.github.angads25.filechooserdialog.model.DialogConfigs;
-import com.github.angads25.filechooserdialog.model.DialogProperties;
-import com.github.angads25.filechooserdialog.model.FileListItem;
-import com.github.angads25.filechooserdialog.model.MarkedItemList;
-import com.github.angads25.filechooserdialog.model.adapters.FileListAdapter;
-import com.github.angads25.filechooserdialog.utils.ExtensionFilter;
-import com.github.angads25.filechooserdialog.utils.Utility;
+import com.github.angads25.filechooser.R;
+import com.github.angads25.filechooser.controller.DialogSelectionListener;
+import com.github.angads25.filechooser.controller.NotifyItemChecked;
+import com.github.angads25.filechooser.model.DialogConfigs;
+import com.github.angads25.filechooser.model.DialogProperties;
+import com.github.angads25.filechooser.model.FileListItem;
+import com.github.angads25.filechooser.model.MarkedItemList;
+import com.github.angads25.filechooser.model.adapters.FileListAdapter;
+import com.github.angads25.filechooser.utils.ExtensionFilter;
+import com.github.angads25.filechooser.utils.Utility;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -57,6 +60,8 @@ public class FileChooserDialog extends Dialog implements AdapterView.OnItemClick
     private ExtensionFilter filter;
     private FileListAdapter mFileListAdapter;
     private Button select;
+
+    public static final int EXTERNAL_READ_PERMISSION_GRANT=112;
 
     public FileChooserDialog(Context context,DialogProperties properties)
     {   super(context);
@@ -136,13 +141,10 @@ public class FileChooserDialog extends Dialog implements AdapterView.OnItemClick
     protected void onStart() {
         super.onStart();
         select.setText(context.getResources().getString(R.string.choose_button_label));
-        if(!Utility.checkWritePermissions(context))
-        {   Toast.makeText(context,"Failed to access files, Do you have Permissions?", Toast.LENGTH_SHORT).show();
-        }
-        else
+        if(Utility.checkReadPermissions(context))
         {   File currLoc;
             if(properties.offset.exists()&&properties.offset.isDirectory())
-            {   currLoc=properties.offset;
+            {   currLoc=new File(properties.offset.getAbsolutePath());
             }
             else
             {   currLoc=new File(DialogConfigs.ROOT_MOUNT_DIR);
@@ -166,22 +168,24 @@ public class FileChooserDialog extends Dialog implements AdapterView.OnItemClick
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        {   FileListItem fitem=internalList.get(i);
-            if(fitem.isDirectory()&&new File(fitem.getLocation()).exists())
-            {   File currLoc = new File(fitem.getLocation());
-                dname.setText(currLoc.getName());
-                dir_path.setText(currLoc.getAbsolutePath());
-                internalList.clear();
-                FileListItem parent = new FileListItem();
-                parent.setFilename("...");
-                parent.setDirectory(true);
-                parent.setLocation(currLoc.getParentFile().getAbsolutePath());
-                parent.setTime(currLoc.lastModified());
-                if(!currLoc.getName().equals(properties.offset.getName())) {
-                    internalList.add(parent);
+        {   if(internalList.size()>i) {
+                FileListItem fitem = internalList.get(i);
+                if (fitem.isDirectory() && new File(fitem.getLocation()).exists()) {
+                    File currLoc = new File(fitem.getLocation());
+                    dname.setText(currLoc.getName());
+                    dir_path.setText(currLoc.getAbsolutePath());
+                    internalList.clear();
+                    FileListItem parent = new FileListItem();
+                    parent.setFilename("...");
+                    parent.setDirectory(true);
+                    parent.setLocation(currLoc.getParentFile().getAbsolutePath());
+                    parent.setTime(currLoc.lastModified());
+                    if (!currLoc.getName().equals(properties.offset.getName())) {
+                        internalList.add(parent);
+                    }
+                    internalList = Utility.prepareFileListEntries(internalList, currLoc, filter);
+                    mFileListAdapter.notifyDataSetChanged();
                 }
-                internalList=Utility.prepareFileListEntries(internalList,currLoc,filter);
-                mFileListAdapter.notifyDataSetChanged();
             }
         }
     }
@@ -201,8 +205,16 @@ public class FileChooserDialog extends Dialog implements AdapterView.OnItemClick
 
     @Override
     public void show() {
-        super.show();
-        Log.e("TAG","Dialog Shown");
+        if(!Utility.checkReadPermissions(context))
+        {   if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                Toast.makeText(context,"Application needs you permission to access SD Card",Toast.LENGTH_LONG).show();
+                ((Activity)context).requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, EXTERNAL_READ_PERMISSION_GRANT);
+            }
+        }
+        else
+        {   super.show();
+            Log.e("TAG","Dialog Shown");
+        }
     }
 
     @Override

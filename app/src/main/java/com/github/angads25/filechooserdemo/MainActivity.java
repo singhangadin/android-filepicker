@@ -16,12 +16,8 @@
 
 package com.github.angads25.filechooserdemo;
 
-import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -29,12 +25,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RadioGroup;
-import android.widget.Toast;
 
-import com.github.angads25.filechooserdialog.controller.DialogSelectionListener;
-import com.github.angads25.filechooserdialog.model.DialogConfigs;
-import com.github.angads25.filechooserdialog.model.DialogProperties;
-import com.github.angads25.filechooserdialog.view.FileChooserDialog;
+import com.github.angads25.filechooser.controller.DialogSelectionListener;
+import com.github.angads25.filechooser.model.DialogConfigs;
+import com.github.angads25.filechooser.model.DialogProperties;
+import com.github.angads25.filechooser.view.FileChooserDialog;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -44,19 +39,11 @@ public class MainActivity extends AppCompatActivity
     private ArrayList<ListItem> listItem;
     private FileListAdapter mFileListAdapter;
     private ListView listView;
-    private static final int REQUEST_READ_STORAGE = 112;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {   super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        boolean hasPermission = false;
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
-            hasPermission = (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED);
-            if (!hasPermission)
-            {   ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_READ_STORAGE);
-            }
-        }
         listItem=new ArrayList<>();
         listView = (ListView) findViewById(R.id.listView);
         mFileListAdapter=new FileListAdapter(listItem,MainActivity.this);
@@ -156,19 +143,6 @@ public class MainActivity extends AppCompatActivity
         });
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        switch (requestCode)
-        {   case REQUEST_READ_STORAGE: {
-            if (grantResults.length <= 0 || grantResults[0] != PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(getBaseContext(), "The app was not allowed to write to your storage. Hence, it cannot function properly. Please consider granting it this permission", Toast.LENGTH_LONG).show();
-            }
-        }
-        }
-
-    }
-
     private int countCommas(String fextension) {
         int count=0;
         for(char ch:fextension.toCharArray())
@@ -177,5 +151,21 @@ public class MainActivity extends AppCompatActivity
             }
         }
         return count;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case FileChooserDialog.EXTERNAL_READ_PERMISSION_GRANT: {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    if(dialog!=null)
+                    {   dialog.show();
+                    }
+                }
+                else {
+                }
+                return;
+            }
+        }
     }
 }

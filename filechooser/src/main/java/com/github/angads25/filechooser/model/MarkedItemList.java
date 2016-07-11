@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.github.angads25.filechooserdialog.model;
+package com.github.angads25.filechooser.model;
 
 import java.util.HashMap;
 import java.util.Set;

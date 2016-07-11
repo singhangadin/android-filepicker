@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.github.angads25.filechooserdialog.model.adapters;
+package com.github.angads25.filechooser.model.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -25,12 +25,12 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.github.angads25.filechooserdialog.R;
-import com.github.angads25.filechooserdialog.controller.NotifyItemChecked;
-import com.github.angads25.filechooserdialog.model.DialogConfigs;
-import com.github.angads25.filechooserdialog.model.DialogProperties;
-import com.github.angads25.filechooserdialog.model.FileListItem;
-import com.github.angads25.filechooserdialog.model.MarkedItemList;
+import com.github.angads25.filechooser.R;
+import com.github.angads25.filechooser.controller.NotifyItemChecked;
+import com.github.angads25.filechooser.model.DialogConfigs;
+import com.github.angads25.filechooser.model.DialogProperties;
+import com.github.angads25.filechooser.model.FileListItem;
+import com.github.angads25.filechooser.model.MarkedItemList;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

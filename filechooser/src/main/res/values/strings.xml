@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">FileChooserDialog</string>
+    <string name="app_name">FileChooser</string>
     <string name="choose_button_label">Select</string>
     <string name="cancel_button_label">Cancel</string>
 </resources>

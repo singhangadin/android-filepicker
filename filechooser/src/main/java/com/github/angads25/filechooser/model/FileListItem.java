@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.github.angads25.filechooserdialog.model;
+package com.github.angads25.filechooser.model;
 
 /**<p>
  * Created by Angad Singh on 09-07-2016.
