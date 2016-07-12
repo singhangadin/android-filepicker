@@ -30,7 +30,7 @@ public class DialogProperties {
     public DialogProperties() {
         selection_mode=DialogConfigs.SINGLE_MODE;
         selection_type=DialogConfigs.FILE_SELECT;
-        offset=new File(DialogConfigs.ROOT_MOUNT_DIR);
+        offset=new File(DialogConfigs.DEFAULT_DIR);
         extensions=null;
     }
 }

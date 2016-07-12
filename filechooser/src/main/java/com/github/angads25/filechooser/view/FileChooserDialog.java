@@ -22,7 +22,6 @@ import android.app.Dialog;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
@@ -63,6 +62,14 @@ public class FileChooserDialog extends Dialog implements AdapterView.OnItemClick
 
     public static final int EXTERNAL_READ_PERMISSION_GRANT=112;
 
+    public FileChooserDialog(Context context)
+    {   super(context);
+        this.context=context;
+        properties=new DialogProperties();
+        filter=new ExtensionFilter(properties);
+        internalList=new ArrayList<>();
+    }
+
     public FileChooserDialog(Context context,DialogProperties properties)
     {   super(context);
         this.context=context;
@@ -93,7 +100,7 @@ public class FileChooserDialog extends Dialog implements AdapterView.OnItemClick
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.dialog_main);
         listView=(ListView)findViewById(R.id.fileList);
-        select = (Button) findViewById(R.id.select);
+        select=(Button) findViewById(R.id.select);
         dname=(TextView)findViewById(R.id.dname);
         dir_path=(TextView)findViewById(R.id.dir_path);
         Button cancel = (Button) findViewById(R.id.cancel);
@@ -134,20 +141,19 @@ public class FileChooserDialog extends Dialog implements AdapterView.OnItemClick
             }
         });
         listView.setAdapter(mFileListAdapter);
-        Log.e("TAG","Dialog Created");
     }
 
     @Override
     protected void onStart() {
         super.onStart();
         select.setText(context.getResources().getString(R.string.choose_button_label));
-        if(Utility.checkReadPermissions(context))
+        if(Utility.checkStorageAccessPermissions(context))
         {   File currLoc;
             if(properties.offset.exists()&&properties.offset.isDirectory())
             {   currLoc=new File(properties.offset.getAbsolutePath());
             }
             else
-            {   currLoc=new File(DialogConfigs.ROOT_MOUNT_DIR);
+            {   currLoc=new File(DialogConfigs.DEFAULT_DIR);
                 Toast.makeText(context,"File/Directory not found. Showing default location",Toast.LENGTH_SHORT).show();
             }
             dname.setText(currLoc.getName());
@@ -157,34 +163,37 @@ public class FileChooserDialog extends Dialog implements AdapterView.OnItemClick
             mFileListAdapter.notifyDataSetChanged();
             listView.setOnItemClickListener(this);
         }
-        Log.e("TAG","Dialog Started");
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        Log.e("TAG","Dialog Stopped");
     }
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         {   if(internalList.size()>i) {
                 FileListItem fitem = internalList.get(i);
-                if (fitem.isDirectory() && new File(fitem.getLocation()).exists()) {
-                    File currLoc = new File(fitem.getLocation());
-                    dname.setText(currLoc.getName());
-                    dir_path.setText(currLoc.getAbsolutePath());
-                    internalList.clear();
-                    FileListItem parent = new FileListItem();
-                    parent.setFilename("...");
-                    parent.setDirectory(true);
-                    parent.setLocation(currLoc.getParentFile().getAbsolutePath());
-                    parent.setTime(currLoc.lastModified());
-                    if (!currLoc.getName().equals(properties.offset.getName())) {
-                        internalList.add(parent);
+                if (fitem.isDirectory()) {
+                    if(new File(fitem.getLocation()).canRead()) {
+                        File currLoc = new File(fitem.getLocation());
+                        dname.setText(currLoc.getName());
+                        dir_path.setText(currLoc.getAbsolutePath());
+                        internalList.clear();
+                        if (!currLoc.getName().equals(properties.offset.getName())) {
+                            FileListItem parent = new FileListItem();
+                            parent.setFilename("...");
+                            parent.setDirectory(true);
+                            parent.setLocation(currLoc.getParentFile().getAbsolutePath());
+                            parent.setTime(currLoc.lastModified());
+                            internalList.add(parent);
+                        }
+                        internalList = Utility.prepareFileListEntries(internalList, currLoc, filter);
+                        mFileListAdapter.notifyDataSetChanged();
                     }
-                    internalList = Utility.prepareFileListEntries(internalList, currLoc, filter);
-                    mFileListAdapter.notifyDataSetChanged();
+                    else
+                    {   Toast.makeText(context,"Directory cannot be accessed",Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         }
@@ -205,7 +214,7 @@ public class FileChooserDialog extends Dialog implements AdapterView.OnItemClick
 
     @Override
     public void show() {
-        if(!Utility.checkReadPermissions(context))
+        if(!Utility.checkStorageAccessPermissions(context))
         {   if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 Toast.makeText(context,"Application needs you permission to access SD Card",Toast.LENGTH_LONG).show();
                 ((Activity)context).requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, EXTERNAL_READ_PERMISSION_GRANT);
@@ -213,7 +222,6 @@ public class FileChooserDialog extends Dialog implements AdapterView.OnItemClick
         }
         else
         {   super.show();
-            Log.e("TAG","Dialog Shown");
         }
     }
 
@@ -222,26 +230,24 @@ public class FileChooserDialog extends Dialog implements AdapterView.OnItemClick
         String currentDirName=dname.getText().toString();
         if(internalList.size()>0) {
             FileListItem fitem = internalList.get(0);
-            if (fitem.isDirectory()&&new File(fitem.getLocation()).exists()) {
-                File currLoc = new File(fitem.getLocation());
-                if (currentDirName.equals(properties.offset.getName())) {
-                    super.onBackPressed();
-                }
-                else {
-                    dname.setText(currLoc.getName());
-                    dir_path.setText(currLoc.getAbsolutePath());
-                    internalList.clear();
+            File currLoc = new File(fitem.getLocation());
+            if (currentDirName.equals(properties.offset.getName())) {
+                super.onBackPressed();
+            }
+            else {
+                dname.setText(currLoc.getName());
+                dir_path.setText(currLoc.getAbsolutePath());
+                internalList.clear();
+                if (!currLoc.getName().equals(properties.offset.getName())) {
                     FileListItem parent = new FileListItem();
                     parent.setFilename("...");
                     parent.setDirectory(true);
                     parent.setLocation(currLoc.getParentFile().getAbsolutePath());
                     parent.setTime(currLoc.lastModified());
-                    if (!currLoc.getName().equals("mnt")) {
-                        internalList.add(parent);
-                    }
-                    internalList = Utility.prepareFileListEntries(internalList, currLoc, filter);
-                    mFileListAdapter.notifyDataSetChanged();
+                    internalList.add(parent);
                 }
+                internalList = Utility.prepareFileListEntries(internalList, currLoc, filter);
+                mFileListAdapter.notifyDataSetChanged();
             }
         }
         else
@@ -252,13 +258,11 @@ public class FileChooserDialog extends Dialog implements AdapterView.OnItemClick
     @Override
     public void hide() {
         super.hide();
-        Log.e("TAG","Dialog Hid");
     }
 
     @Override
     public void cancel() {
         super.cancel();
-        Log.e("TAG","Dialog Cancelled");
     }
 
     @Override
@@ -266,6 +270,5 @@ public class FileChooserDialog extends Dialog implements AdapterView.OnItemClick
         MarkedItemList.clearSelectionList();
         internalList.clear();
         super.dismiss();
-        Log.e("TAG","Dialog Dismissed");
     }
 }

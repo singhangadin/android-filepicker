@@ -30,7 +30,7 @@ import java.util.Collections;
  * </p>
  */
 public class Utility {
-    public static boolean checkReadPermissions(Context context)
+    public static boolean checkStorageAccessPermissions(Context context)
     {   if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
             String permission = "android.permission.READ_EXTERNAL_STORAGE";
             int res = context.checkCallingOrSelfPermission(permission);
@@ -44,16 +44,7 @@ public class Utility {
     public static ArrayList<FileListItem> prepareFileListEntries(ArrayList<FileListItem> internalList,File inter,ExtensionFilter filter)
     {   try {
             for (File name : inter.listFiles(filter)) {
-                if (inter.getName().equals("mnt")) {
-                    if (name.getName().toLowerCase().contains("sdcard")) {
-                        FileListItem item = new FileListItem();
-                        item.setFilename(name.getName());
-                        item.setDirectory(name.isDirectory());
-                        item.setLocation(name.getAbsolutePath());
-                        item.setTime(name.lastModified());
-                        internalList.add(item);
-                    }
-                } else {
+                if (name.canRead()) {
                     FileListItem item = new FileListItem();
                     item.setFilename(name.getName());
                     item.setDirectory(name.isDirectory());

@@ -25,6 +25,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.github.angads25.filechooser.controller.DialogSelectionListener;
 import com.github.angads25.filechooser.model.DialogConfigs;
@@ -116,7 +117,7 @@ public class MainActivity extends AppCompatActivity
                 {   properties.offset=new File(foffset);
                 }
                 else
-                {   properties.offset=new File(DialogConfigs.ROOT_MOUNT_DIR);
+                {   properties.offset=new File(DialogConfigs.DEFAULT_DIR);
                 }
                 dialog.setProperties(properties);
             }
@@ -163,6 +164,7 @@ public class MainActivity extends AppCompatActivity
                     }
                 }
                 else {
+                    Toast.makeText(MainActivity.this,"Permission is Required for getting list of files",Toast.LENGTH_SHORT).show();
                 }
                 return;
             }
