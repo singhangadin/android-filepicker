@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.github.angads25.filechooserdemo.MainActivity">
+    tools:context="com.github.angads25.filepickerdemo.MainActivity">
 
     <ListView
         android:layout_width="wrap_content"
@@ -108,7 +108,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:text="Offset"
+                android:text="Root Directory"
                 android:textStyle="bold" />
 
             <EditText
@@ -116,7 +116,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:hint="eg. /mnt/sdcard or leave empty"
-                android:id="@+id/offset" />
+                android:id="@+id/root" />
         </LinearLayout>
     </ScrollView>
 
