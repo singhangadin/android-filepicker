@@ -1,6 +1,7 @@
 # FilePicker
 Android Library to select files/directories from Device Storage.
 
+
 ### Features
 
 * Easy to Implement.
@@ -28,6 +29,7 @@ Android Library to select files/directories from Device Storage.
 
 3) Sync project, clean and build. You can use the ``FilePicker`` library as part of your project now.
 
+
 ### Usage
 1. Start by creating an instance of `DialogProperties`. 
 
@@ -38,11 +40,11 @@ Android Library to select files/directories from Device Storage.
     Now 'DialogProperties' has certain parameters. 
 
 |Parameter|Type|Function|
-|---|---|---
-|`selection_mode`|int|Selection Mode defines whether a single of multiple Files/Directories have to be selected.
-|`selection_type`|int|Selection Type defines whether a File/Directory or both of these has to be selected.
-|`root`|File|The Parent/Root Directory. List of Files are populated from here. Can be set to any readable directory.
-|`extensions`|String[]|An Array of String containing extensions, Files with only that will be shown. Others will be ignored.
+|---|---|---|
+|`selection_mode`|int|Selection Mode defines whether a single of multiple Files/Directories have to be selected.|
+|`selection_type`|int|Selection Type defines whether a File/Directory or both of these has to be selected.|
+|`root`|File|The Parent/Root Directory. List of Files are populated from here. Can be set to any readable directory.|
+|`extensions`|String[]|An Array of String containing extensions, Files with only that will be shown. Others will be ignored.|
 
 2. Assign values to each Dialog Property using `DialogConfig` class.
     
@@ -52,7 +54,7 @@ Android Library to select files/directories from Device Storage.
         root=new File(DialogConfigs.DEFAULT_DIR);
         extensions=null;
     ```
-    Read more about `DialogConfigs` and other options [here](https://github.com/Angads25/android-filepicker/blob/master/filepicker/src/main/java/com/github/angads25/filepicker/model/DialogConfigs.java).
+    ### Read more about `DialogConfigs` and other options [here](https://github.com/Angads25/android-filepicker/blob/master/filepicker/src/main/java/com/github/angads25/filepicker/model/DialogConfigs.java).
     
 3. Next create an instance of `FilePickerDialog`, and pass `Context` and `DialogProperties` references as parameters.
 
@@ -98,7 +100,7 @@ Marshmallow and further requests for the permission during runtime. I would reco
             }
         }
     ```
-    
+
 
 ### Screenshots
 ![Screenshot 1](https://raw.githubusercontent.com/Angads25/android-filepicker/master/screenshot1.png)
