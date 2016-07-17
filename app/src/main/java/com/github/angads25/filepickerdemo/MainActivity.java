@@ -183,8 +183,8 @@ public class MainActivity extends AppCompatActivity
         switch (requestCode) {
             case FilePickerDialog.EXTERNAL_READ_PERMISSION_GRANT: {
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    if(dialog!=null)
-                    {   //Show dialog if the read permission has been granted.
+                    if(dialog!=null) {
+                        //Show dialog if the read permission has been granted.
                         dialog.show();
                     }
                 }
