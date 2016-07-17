@@ -49,10 +49,10 @@ Android Library to select files/directories from Device Storage.
 2. Assign values to each Dialog Property using `DialogConfig` class.
     
     ```java
-        properties.selection_mode=DialogConfigs.SINGLE_MODE;
-        properties.selection_type=DialogConfigs.FILE_SELECT;
-        properties.root=new File(DialogConfigs.DEFAULT_DIR);
-        properties.extensions=null;
+        selection_mode=DialogConfigs.SINGLE_MODE;
+        selection_type=DialogConfigs.FILE_SELECT;
+        root=new File(DialogConfigs.DEFAULT_DIR);
+        extensions=null;
     ```
     ### Read more about `DialogConfigs` and other options [here](https://github.com/Angads25/android-filepicker/blob/master/filepicker/src/main/java/com/github/angads25/filepicker/model/DialogConfigs.java).
     
@@ -80,7 +80,7 @@ Android Library to select files/directories from Device Storage.
 ##### Best Practice
 Marshmallow and further requests for the permission during runtime. I would recommend to override `onRequestPermissionsResult` of Activity/AppCompatActivity class and show the dialog only if permissions have been granted.
     
-    ```java
+```java
         //Add this method to show Dialog when the required permission has been granted to the app.
         @Override
         public void onRequestPermissionsResult(int requestCode,@NonNull String permissions[],@NonNull int[] grantResults) {
@@ -99,7 +99,7 @@ Marshmallow and further requests for the permission during runtime. I would reco
                 }
             }
         }
-    ```
+```
 
 
 ### Screenshots
