@@ -69,16 +69,22 @@ public class FileListItem implements Comparable<FileListItem>
     @Override
     public int compareTo(FileListItem fileListItem) {
         if(fileListItem.isDirectory()&&isDirectory())
-        {   return filename.toLowerCase().compareTo(fileListItem.getFilename().toLowerCase());
+        {   //If the comparison is between two directories, return the directory with
+            //alphabetic order first.
+            return filename.toLowerCase().compareTo(fileListItem.getFilename().toLowerCase());
         }
         else if(!fileListItem.isDirectory()&&!isDirectory())
-        {   return filename.toLowerCase().compareTo(fileListItem.getFilename().toLowerCase());
+        {   //If the comparison is not between two directories, return the file with
+            //alphabetic order first.
+            return filename.toLowerCase().compareTo(fileListItem.getFilename().toLowerCase());
         }
         else if(fileListItem.isDirectory()&&!isDirectory())
-        {   return 1;
+        {   //If the comparison is between a directory and a file, return the directory.
+            return 1;
         }
         else
-        {   return -1;
+        {   //Same as above but order of occurence is different.
+            return -1;
         }
     }
 }
