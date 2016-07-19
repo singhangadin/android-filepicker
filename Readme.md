@@ -36,10 +36,10 @@ Android Library to select files/directories from Device Storage.
 2. Assign values to each Dialog Property using `DialogConfig` class.
     
     ```java
-        selection_mode=DialogConfigs.SINGLE_MODE;
-        selection_type=DialogConfigs.FILE_SELECT;
-        root=new File(DialogConfigs.DEFAULT_DIR);
-        extensions=null;
+        properties.selection_mode=DialogConfigs.SINGLE_MODE;
+        properties.selection_type=DialogConfigs.FILE_SELECT;
+        properties.root=new File(DialogConfigs.DEFAULT_DIR);
+        properties.extensions=null;
     ```
     ### Read more about `DialogConfigs` and other options [here](https://github.com/Angads25/android-filepicker/blob/master/filepicker/src/main/java/com/github/angads25/filepicker/model/DialogConfigs.java).
     
