@@ -12,23 +12,10 @@ Android Library to select files/directories from Device Storage.
 
 ### Installation
 
-1) Paste following stub into the ``app/build.gradle`` ,
+* Library is also Available in MavenCentral, So just put this in your app dependencies:
 ```gradle
-    repositories {
-        maven {
-            url 'https://dl.bintray.com/angads25/maven/'
-        }
-    }
+    compile 'com.github.angads25:filepicker:1.0.2'
 ```
-2) In ``app/build.gradle`` add the FilePicker library as a dependency:
-```
-    dependencies {
-        compile 'com.github.angads25:filepicker:1.0.0'
-    }
-```
-
-3) Sync project, clean and build. You can use the ``FilePicker`` library as part of your project now.
-
 
 ### Usage
 1. Start by creating an instance of `DialogProperties`. 
@@ -77,7 +64,7 @@ Android Library to select files/directories from Device Storage.
 
     That's It. You are good to go further.
     
-##### Best Practice
+##### NOTE:
 Marshmallow and further requests for the permission during runtime. I would recommend to override `onRequestPermissionsResult` of Activity/AppCompatActivity class and show the dialog only if permissions have been granted.
     
 ```java

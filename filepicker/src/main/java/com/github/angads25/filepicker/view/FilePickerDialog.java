@@ -95,7 +95,10 @@ public class FilePickerDialog extends Dialog implements AdapterView.OnItemClickL
                  *  from MarkedItemList singleton.
                  */
                 String paths[]=MarkedItemList.getSelectedPaths();
-                callbacks.onSelectedFilePaths(paths);
+                //NullPointerException fixed in v1.0.2
+                if(callbacks!=null) {
+                    callbacks.onSelectedFilePaths(paths);
+                }
                 dismiss();
             }
         });
