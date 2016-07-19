@@ -5,7 +5,7 @@ Android Library to select files/directories from Device Storage.
 [![API](https://img.shields.io/badge/API-9%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=9) <a href="http://www.methodscount.com/?lib=com.github.angads25%3Afilepicker%3A1.0.2"><img src="https://img.shields.io/badge/Size-28 KB-e91e63.svg"/></a>
 
 ### Where to Find:
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.angads25/filepicker/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.angads25/filepicker) [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-FilePicker-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/3950)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.angads25/filepicker/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.angads25/filepicker) [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-FilePicker-blue.svg?style=flat)](http://android-arsenal.com/details/1/3950)
 
 ### Features
 
