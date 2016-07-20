@@ -5,7 +5,7 @@ Android Library to select files/directories from Device Storage.
 [![API](https://img.shields.io/badge/API-9%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=9) <a href="http://www.methodscount.com/?lib=com.github.angads25%3Afilepicker%3A1.0.2"><img src="https://img.shields.io/badge/Size-28 KB-e91e63.svg"/></a>
 
 ### Where to Find:
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.angads25/filepicker/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.angads25/filepicker) [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-FilePicker-blue.svg?style=flat)](http://android-arsenal.com/details/1/3950)
+[ ![Download](https://api.bintray.com/packages/angads25/maven/filepicker/images/download.svg) ](https://bintray.com/angads25/maven/filepicker/_latestVersion) [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.angads25/filepicker/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.angads25/filepicker) [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-FilePicker-blue.svg?style=flat)](http://android-arsenal.com/details/1/3950)
 
 ### Features
 
@@ -46,7 +46,7 @@ Android Library to select files/directories from Device Storage.
         properties.root=new File(DialogConfigs.DEFAULT_DIR);
         properties.extensions=null;
     ```
-    ### Read more about `DialogConfigs` and other options [here](https://github.com/Angads25/android-filepicker/blob/master/filepicker/src/main/java/com/github/angads25/filepicker/model/DialogConfigs.java).
+    ### Read more about `DialogConfigs` and other options from [here](https://github.com/Angads25/android-filepicker/blob/master/filepicker/src/main/java/com/github/angads25/filepicker/model/DialogConfigs.java).
     
 3. Next create an instance of `FilePickerDialog`, and pass `Context` and `DialogProperties` references as parameters.
 
@@ -69,7 +69,7 @@ Android Library to select files/directories from Device Storage.
 
     That's It. You are good to go further.
     
-##### NOTE:
+### NOTE:
 Marshmallow and further requests for the permission during runtime. I would recommend to override `onRequestPermissionsResult` of Activity/AppCompatActivity class and show the dialog only if permissions have been granted.
     
 ```java
