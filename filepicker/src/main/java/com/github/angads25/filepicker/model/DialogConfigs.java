@@ -24,6 +24,8 @@ package com.github.angads25.filepicker.model;
 /*  Helper class for setting properties of Dialog.
  */
 public abstract class DialogConfigs {
+    /*  SELECTION_MODES*/
+
     /*  SINGLE_MODE specifies that a single File/Directory has to be selected
      *  from the list of Files/Directories. It is the default Selection Mode.
      */
@@ -33,6 +35,8 @@ public abstract class DialogConfigs {
      *  from the list of Files/Directories.
      */
     public static final int MULTI_MODE=1;
+
+    /*  SELECTION_TYPES*/
 
     /*  FILE_SELECT specifies that from list of Files/Directories a File has to
      *  be selected.
@@ -48,6 +52,8 @@ public abstract class DialogConfigs {
      *  can be selected.
      */
     public static final int FILE_AND_DIR_SELECT=2;
+
+    /*  PARENT_DIRECTORY*/
     public static final String DIRECTORY_SEPERATOR="/";
     public static final String STORAGE_DIR="sdcard";
 

@@ -1,6 +1,9 @@
 # FilePicker
 Android Library to select files/directories from Device Storage.
 
+### Developed by
+[Angad Singh](https://www.github.com/angads25) ([@angads25](https://www.twitter.com/angads25))
+
 ### Benchmark:
 [![API](https://img.shields.io/badge/API-9%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=9) <a href="http://www.methodscount.com/?lib=com.github.angads25%3Afilepicker%3A1.0.2"><img src="https://img.shields.io/badge/Size-28 KB-e91e63.svg"/></a>
 
@@ -70,7 +73,7 @@ Android Library to select files/directories from Device Storage.
     That's It. You are good to go further.
     
 ### NOTE:
-Marshmallow and further requests for the permission during runtime. I would recommend to override `onRequestPermissionsResult` of Activity/AppCompatActivity class and show the dialog only if permissions have been granted.
+Marshmallow and further requests for the permission on runtime. You should override `onRequestPermissionsResult` of Activity/AppCompatActivity class and show the dialog only if permissions have been granted.
     
 ```java
         //Add this method to show Dialog when the required permission has been granted to the app.
@@ -102,3 +105,18 @@ Marshmallow and further requests for the permission during runtime. I would reco
 ![Screenshot 3](https://raw.githubusercontent.com/Angads25/android-filepicker/master/screenshot3.png)
 
 ![Screenshot 4](https://raw.githubusercontent.com/Angads25/android-filepicker/master/screenshot4.png)
+
+### License
+    Copyright (C) 2016 Angad Singh
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
