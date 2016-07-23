@@ -1,0 +1,9 @@
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <com.github.angads25.filepicker.view.FilePickerPreference
+        android:key="directories"
+        android:title="Pick a Directory"
+        android:summary="Just a Summary"
+        android:defaultValue="/sdfsdf*/sdfjsdfh*"/>
+</PreferenceScreen>
