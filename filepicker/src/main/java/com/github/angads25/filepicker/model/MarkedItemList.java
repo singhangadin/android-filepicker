@@ -47,15 +47,9 @@ public class MarkedItemList {
     {   ourInstance.clear();
     }
 
-    public static FileListItem[] addSingleFile(FileListItem item)
-    {   FileListItem[] oldfiles=new FileListItem[ourInstance.size()];
-        int i=0;
-        for(String key:ourInstance.keySet())
-        {   oldfiles[i]=ourInstance.get(key);
-        }
-        ourInstance.clear();
+    public static void addSingleFile(FileListItem item)
+    {   ourInstance.clear();
         ourInstance.put(item.getLocation(),item);
-        return oldfiles;
     }
 
     public static String[] getSelectedPaths()

@@ -139,6 +139,10 @@ public class MainActivity extends AppCompatActivity
                     properties.root=new File(DialogConfigs.DEFAULT_DIR);
                 }
 
+                //Setting Alternative Directory, in case root is not accessible.This will be
+                //used.
+
+                properties.error_dir=new File("/mnt");
                 //Set new properties of dialog.
                 dialog.setProperties(properties);
             }

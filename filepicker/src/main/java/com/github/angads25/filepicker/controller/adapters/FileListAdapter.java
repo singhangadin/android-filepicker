@@ -20,6 +20,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.ImageView;
@@ -71,11 +73,24 @@ public class FileListAdapter extends BaseAdapter{
 
     @Override
     public View getView(final int i, View view, ViewGroup viewGroup) {
+        final ViewHolder holder;
         if (view == null) {
             view = LayoutInflater.from(context).inflate(R.layout.dialog_file_list_item, viewGroup, false);
+            holder = new ViewHolder(view);
+            view.setTag(holder);
         }
-        final ViewHolder holder = new ViewHolder(view);
+        else
+        {   holder = (ViewHolder)view.getTag();
+        }
         final FileListItem item = listItem.get(i);
+        if (MarkedItemList.hasItem(item.getLocation())) {
+            Animation animation = AnimationUtils.loadAnimation(context,R.anim.left_in);
+            view.setAnimation(animation);
+        }
+        else {
+            Animation animation = AnimationUtils.loadAnimation(context,R.anim.right_in);
+            view.setAnimation(animation);
+        }
         if (item.isDirectory()) {
             holder.type_icon.setImageResource(R.mipmap.ic_type_folder);
             if(properties.selection_type== DialogConfigs.FILE_SELECT)
@@ -119,22 +134,17 @@ public class FileListAdapter extends BaseAdapter{
         holder.fmark.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(properties.selection_mode==DialogConfigs.MULTI_MODE) {
-                    item.setMarked(!item.isMarked());
-                    if (item.isMarked()) {
+                item.setMarked(!item.isMarked());
+                if (item.isMarked()) {
+                    if(properties.selection_mode==DialogConfigs.MULTI_MODE) {
                         MarkedItemList.addSelectedItem(item);
-                    } else {
-                        MarkedItemList.removeSelectedItem(item.getLocation());
+                    }
+                    else {
+                        MarkedItemList.addSingleFile(item);
                     }
                 }
                 else {
-                    item.setMarked(!item.isMarked());
-                    if (item.isMarked()) {
-                        MarkedItemList.addSingleFile(item);
-                    }
-                    else {
-                        MarkedItemList.removeSelectedItem(item.getLocation());
-                    }
+                    MarkedItemList.removeSelectedItem(item.getLocation());
                 }
                 notifyItemChecked.notifyCheckBoxIsClicked();
             }

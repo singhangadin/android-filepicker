@@ -143,8 +143,7 @@ public class FilePickerDialog extends Dialog implements AdapterView.OnItemClickL
             {   currLoc=new File(properties.root.getAbsolutePath());
             }
             else
-            {   currLoc=new File(DialogConfigs.DEFAULT_DIR);
-                Toast.makeText(context,"File/Directory not found. Showing default location",Toast.LENGTH_SHORT).show();
+            {   currLoc=new File(properties.error_dir.getAbsolutePath());
             }
             dname.setText(currLoc.getName());
             dir_path.setText(currLoc.getAbsolutePath());

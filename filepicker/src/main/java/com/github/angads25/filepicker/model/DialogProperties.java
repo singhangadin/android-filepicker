@@ -51,16 +51,28 @@ public class DialogProperties {
      */
     public File root;
 
+
+
+    /*  The Directory is used when Root Directory is not readable or accessable. /
+     *  sdcard is the default location.
+     *
+     *  Eg. /sdcard
+     *  Eg. /mnt
+     */
+    public File error_dir;
+
     /*  An Array of String containing extensions, Files with only that will be shown.
      *  Others will be ignored. Set to null by default.
      *  Eg. String ext={"jpg","jpeg","png","gif"};
      */
+
     public String[] extensions;
 
     public DialogProperties() {
         selection_mode=DialogConfigs.SINGLE_MODE;
         selection_type=DialogConfigs.FILE_SELECT;
         root=new File(DialogConfigs.DEFAULT_DIR);
+        error_dir=new File(DialogConfigs.DEFAULT_DIR);
         extensions=null;
     }
 }
