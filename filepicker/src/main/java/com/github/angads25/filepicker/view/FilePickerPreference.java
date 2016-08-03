@@ -25,30 +25,41 @@ import android.preference.Preference;
 import android.util.AttributeSet;
 import android.view.View;
 
+import com.github.angads25.filepicker.R;
 import com.github.angads25.filepicker.controller.DialogSelectionListener;
+import com.github.angads25.filepicker.model.DialogConfigs;
 import com.github.angads25.filepicker.model.DialogProperties;
+
+import java.io.File;
 
 /**<p>
  * Created by angads25 on 15-07-2016.
  * </p>
  */
 
-public class FilePickerPreference extends Preference implements DialogSelectionListener,Preference.OnPreferenceClickListener
+public class FilePickerPreference extends Preference implements
+        DialogSelectionListener,
+        Preference.OnPreferenceClickListener
 {   private FilePickerDialog mDialog;
-    private String dFiles;
+    private DialogProperties properties;
 
     public FilePickerPreference(Context context) {
         super(context);
+        properties=new DialogProperties();
         setOnPreferenceClickListener(this);
     }
 
     public FilePickerPreference(Context context, AttributeSet attrs) {
         super(context, attrs);
+        properties=new DialogProperties();
+        initProperties(attrs);
         setOnPreferenceClickListener(this);
     }
 
     public FilePickerPreference(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        properties=new DialogProperties();
+        initProperties(attrs);
         setOnPreferenceClickListener(this);
     }
 
@@ -92,6 +103,7 @@ public class FilePickerPreference extends Preference implements DialogSelectionL
 
     private void showDialog(Bundle state) {
         mDialog = new FilePickerDialog(getContext());
+        setProperties(properties);
         mDialog.setDialogSelectionListener(this);
         if (state != null) {
             mDialog.onRestoreInstanceState(state);
@@ -105,7 +117,7 @@ public class FilePickerPreference extends Preference implements DialogSelectionL
         for(String path:files)
         {   buff.append(path).append(":");
         }
-        dFiles=buff.toString();
+        String dFiles = buff.toString();
         if (isPersistent()) {
             persistString(dFiles);
         }
@@ -156,5 +168,38 @@ public class FilePickerPreference extends Preference implements DialogSelectionL
                 return new SavedState[size];
             }
         };
+    }
+
+    private void initProperties(AttributeSet attrs) {
+        TypedArray tarr=getContext().getTheme().obtainStyledAttributes(attrs, R.styleable.FilePickerPreference,0,0);
+        final int N = tarr.getIndexCount();
+        for (int i = 0; i < N; ++i)
+        {   int attr = tarr.getIndex(i);
+            if (attr == R.styleable.FilePickerPreference_selection_mode) {
+                properties.selection_mode=tarr.getInteger(R.styleable.FilePickerPreference_selection_mode, DialogConfigs.SINGLE_MODE);
+            }
+            else if (attr == R.styleable.FilePickerPreference_selection_type) {
+                properties.selection_type=tarr.getInteger(R.styleable.FilePickerPreference_selection_type,DialogConfigs.FILE_SELECT);
+            }
+            else if (attr == R.styleable.FilePickerPreference_root_dir) {
+                String root_dir=tarr.getString(R.styleable.FilePickerPreference_root_dir);
+                if(root_dir!=null&&!root_dir.equals(""))
+                {   properties.root=new File(root_dir);
+                }
+            }
+            else if (attr == R.styleable.FilePickerPreference_error_dir) {
+                String error_dir=tarr.getString(R.styleable.FilePickerPreference_error_dir);
+                if(error_dir!=null&&!error_dir.equals(""))
+                {   properties.error_dir=new File(error_dir);
+                }
+            }
+            else if (attr == R.styleable.FilePickerPreference_extensions) {
+                String extensions=tarr.getString(R.styleable.FilePickerPreference_extensions);
+                if(extensions!=null&&!extensions.equals(""))
+                {   properties.extensions= extensions.split(":");
+                }
+            }
+        }
+        tarr.recycle();
     }
 }

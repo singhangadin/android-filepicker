@@ -1,9 +1,14 @@
 <PreferenceScreen
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <com.github.angads25.filepicker.view.FilePickerPreference
         android:key="directories"
         android:title="Pick a Directory"
         android:summary="Just a Summary"
-        android:defaultValue="/sdfsdf*/sdfjsdfh*"/>
+        android:defaultValue="/sdfsdf:/sdfjsdfh:"
+        app:error_dir="/mnt"
+        app:root_dir="@string/default_dir"
+        app:selection_mode="single_mode"
+        app:selection_type="dir_select"/>
 </PreferenceScreen>
