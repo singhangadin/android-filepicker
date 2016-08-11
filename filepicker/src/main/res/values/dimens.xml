@@ -1,0 +1,4 @@
+<resources>
+    <dimen name="activity_margin">4dp</dimen>
+    <dimen name="toolbar_image_margin">16dp</dimen>
+</resources>

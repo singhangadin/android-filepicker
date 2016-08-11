@@ -6,28 +6,32 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center_horizontal"
     android:layout_alignParentBottom="true"
+    style="?android:attr/background"
     android:id="@+id/linearLayout">
 
     <View
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="1"/>
+        android:layout_weight="1"
+        android:background="@null"/>
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#3F51B5"
+        style="?android:attr/buttonStyle"
         android:background="@null"
-        android:textStyle="bold"
         android:text="@string/cancel_button_label"
-        android:id="@+id/cancel" />
-
-    <Button
+        android:id="@+id/cancel"
+        android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#3F51B5"
+        android:layout_margin="@dimen/activity_margin"/>
+
+    <Button
+        style="?android:attr/buttonStyle"
         android:background="@null"
-        android:textStyle="bold"
         android:text="@string/choose_button_label"
-        android:id="@+id/select"/>
+        android:textStyle="bold"
+        android:id="@+id/select"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/activity_margin"/>
 </LinearLayout>

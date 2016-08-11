@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FAFAFA">
+    style="?android:attr/background">
 
     <include
         layout="@layout/dialog_header"
@@ -17,7 +18,8 @@
         android:id="@+id/fileList"
         android:layout_above="@+id/footer"
         android:dividerHeight="1dp"
-        android:layout_below="@+id/header" />
+        android:layout_below="@+id/header"
+        tools:listitem="@layout/dialog_file_list_item"/>
 
     <include
         layout="@layout/dialog_footer"

@@ -22,5 +22,6 @@
         <attr
             name="extensions"
             format="string"/>
+
     </declare-styleable>
 </resources>

@@ -6,9 +6,9 @@
         android:key="directories"
         android:title="Pick a Directory"
         android:summary="Just a Summary"
-        android:defaultValue="/sdfsdf:/sdfjsdfh:"
+        android:defaultValue="/sdcard:"
         app:error_dir="/mnt"
         app:root_dir="@string/default_dir"
-        app:selection_mode="single_mode"
+        app:selection_mode="multi_mode"
         app:selection_type="dir_select"/>
 </PreferenceScreen>

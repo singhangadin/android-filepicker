@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="#3F51B5"
+    android:background="@color/colorHeader"
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="?android:listPreferredItemHeight">
 
     <ImageView
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginLeft="@dimen/toolbar_image_margin"
+        android:layout_marginStart="@dimen/toolbar_image_margin"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:src="@mipmap/ic_directory_parent"
+        android:scaleType="centerInside"
         android:id="@+id/imageView" />
 
     <LinearLayout
@@ -26,9 +27,10 @@
             android:layout_marginStart="16dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#FFFFFF"
             android:textSize="16sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            style="?android:attr/textViewStyle"
+            android:textColor="@color/textColorPrimary"/>
 
         <TextView
             android:id="@+id/dir_path"
@@ -36,6 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginStart="16dp"
-            android:textColor="#FFFFFF"/>
+            style="?android:attr/textViewStyle"
+            android:textColor="@color/textColorSecondary"/>
     </LinearLayout>
 </LinearLayout>

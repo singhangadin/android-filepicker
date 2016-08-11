@@ -84,11 +84,11 @@ public class FileListAdapter extends BaseAdapter{
         }
         final FileListItem item = listItem.get(i);
         if (MarkedItemList.hasItem(item.getLocation())) {
-            Animation animation = AnimationUtils.loadAnimation(context,R.anim.left_in);
+            Animation animation = AnimationUtils.loadAnimation(context,R.anim.marked_item_animation);
             view.setAnimation(animation);
         }
         else {
-            Animation animation = AnimationUtils.loadAnimation(context,R.anim.right_in);
+            Animation animation = AnimationUtils.loadAnimation(context,R.anim.unmarked_item_animation);
             view.setAnimation(animation);
         }
         if (item.isDirectory()) {
