@@ -10,13 +10,14 @@ Android Library to select files/directories from Device Storage.
 ### Where to Find:
 [ ![Download](https://api.bintray.com/packages/angads25/maven/filepicker/images/download.svg) ](https://bintray.com/angads25/maven/filepicker/_latestVersion) [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.angads25/filepicker/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.angads25/filepicker) [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-FilePicker-blue.svg?style=flat)](http://android-arsenal.com/details/1/3950)
 
+### Read all about internal classes and functions in the [wiki](https://github.com/Angads25/android-filepicker/wiki).
+
 ### Features
 
 * Easy to Implement.
 * No permissions required.
 * Files, Directory Selection.
 * Single or Multiple File selection.
-
 
 ### Installation
 
@@ -146,6 +147,8 @@ eg. /sdcard:/mnt:
 
 ###Note:
 [FilePickerPreference](https://github.com/angads25/android-filepicker/wiki/filepicker-preference) stores selected directories/files as a `String`. It delimits multiple files/directories using ':' `char`.
+
+##Read more on implementation [here](https://github.com/Angads25/android-filepicker/wiki/Implementation).
 
 ### Screenshot
 
