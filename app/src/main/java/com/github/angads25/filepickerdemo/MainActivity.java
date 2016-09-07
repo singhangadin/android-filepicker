@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity
 
         //Instantiate FilePickerDialog with Context and DialogProperties.
         dialog=new FilePickerDialog(MainActivity.this,properties);
+
         RadioGroup modeRadio=(RadioGroup)findViewById(R.id.modeRadio);
         modeRadio.check(R.id.singleRadio);
         modeRadio.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -66,11 +67,11 @@ public class MainActivity extends AppCompatActivity
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch(checkedId)
                 {   case R.id.singleRadio:  //Setting selection mode to single selection.
-                                            properties.selection_mode= DialogConfigs.SINGLE_MODE;
+                                            properties.selection_mode = DialogConfigs.SINGLE_MODE;
                                             break;
 
                     case R.id.multiRadio:   //Setting selection mode to multiple selection.
-                                            properties.selection_mode= DialogConfigs.MULTI_MODE;
+                                            properties.selection_mode = DialogConfigs.MULTI_MODE;
                                             break;
                 }
             }

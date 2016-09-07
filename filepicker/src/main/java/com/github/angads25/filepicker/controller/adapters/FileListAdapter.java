@@ -17,6 +17,7 @@
 package com.github.angads25.filepicker.controller.adapters;
 
 import android.content.Context;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +26,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.github.angads25.filepicker.R;
@@ -44,6 +46,10 @@ import java.util.Locale;
  * </p>
  */
 
+/**
+ * Adapter Class that extends {@link BaseAdapter} that is
+ * used to populate {@link ListView} with file info.
+ */
 public class FileListAdapter extends BaseAdapter{
     private ArrayList<FileListItem> listItem;
     private Context context;
@@ -93,6 +99,12 @@ public class FileListAdapter extends BaseAdapter{
         }
         if (item.isDirectory()) {
             holder.type_icon.setImageResource(R.mipmap.ic_type_folder);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                holder.type_icon.setColorFilter(context.getResources().getColor(R.color.colorPrimary,context.getTheme()));
+            }
+            else
+            {   holder.type_icon.setColorFilter(context.getResources().getColor(R.color.colorPrimary));
+            }
             if(properties.selection_type== DialogConfigs.FILE_SELECT)
             {   holder.fmark.setVisibility(View.INVISIBLE);
             }
@@ -102,6 +114,12 @@ public class FileListAdapter extends BaseAdapter{
         }
         else {
             holder.type_icon.setImageResource(R.mipmap.ic_type_file);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                holder.type_icon.setColorFilter(context.getResources().getColor(R.color.colorAccent,context.getTheme()));
+            }
+            else
+            {   holder.type_icon.setColorFilter(context.getResources().getColor(R.color.colorAccent));
+            }
             if(properties.selection_type==DialogConfigs.DIR_SELECT)
             {   holder.fmark.setVisibility(View.INVISIBLE);
             }
@@ -115,7 +133,7 @@ public class FileListAdapter extends BaseAdapter{
         SimpleDateFormat stime = new SimpleDateFormat("hh:mm aa", Locale.getDefault());
         Date date = new Date(item.getTime());
         if(i==0&&item.getFilename().startsWith("...")) {
-            holder.type.setText("Parent Directory");
+            holder.type.setText(R.string.label_parent_directory);
         }
         else {
             holder.type.setText("Last edited: " + sdate.format(date) + ", " + stime.format(date));

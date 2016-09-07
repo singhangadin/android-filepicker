@@ -24,22 +24,22 @@ import java.io.File;
  */
 
 /*  Descriptor class to define properties of the Dialog. Actions are performed upon
- *  these Attributes
+ *  these Properties
  */
 public class DialogProperties {
     /*  Selection Mode defines whether a single of multiple Files/Directories
      *  have to be selected.
      *
      *  SINGLE_MODE and MULTI_MODE are the two selection modes, See DialogConfigs
-     *  for more info. Set to Single Mode by default.
+     *  for more info. Set to SINGLE_MODE as default value by constructor.
      */
     public int selection_mode;
 
     /*  Selection Type defines that whether a File/Directory or both of these has
-     *  has to be selected.
+     *  to be selected.
      *
      *  FILE_SELECT ,DIR_SELECT, FILE_AND_DIR_SELECT are the three selection modes,
-     *  See DialogConfigs for more info. Set to FILE_SELECT by default.
+     *  See DialogConfigs for more info. Set to FILE_SELECT as default value by constructor.
      */
     public int selection_type;
 
@@ -51,9 +51,7 @@ public class DialogProperties {
      */
     public File root;
 
-
-
-    /*  The Directory is used when Root Directory is not readable or accessable. /
+    /*  The Directory is used when Root Directory is not readable or accessible. /
      *  sdcard is the default location.
      *
      *  Eg. /sdcard
@@ -62,10 +60,9 @@ public class DialogProperties {
     public File error_dir;
 
     /*  An Array of String containing extensions, Files with only that will be shown.
-     *  Others will be ignored. Set to null by default.
+     *  Others will be ignored. Set to null as default value by constructor.
      *  Eg. String ext={"jpg","jpeg","png","gif"};
      */
-
     public String[] extensions;
 
     public DialogProperties() {

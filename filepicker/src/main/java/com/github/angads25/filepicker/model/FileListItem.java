@@ -21,6 +21,9 @@ package com.github.angads25.filepicker.model;
  * </p>
  */
 
+/**
+ * The model/container class holding file list data.
+ */
 public class FileListItem implements Comparable<FileListItem>
 {   private String filename,location;
     private boolean directory,marked;

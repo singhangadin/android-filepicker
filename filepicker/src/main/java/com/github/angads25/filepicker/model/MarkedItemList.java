@@ -23,12 +23,12 @@ import java.util.Set;
  * Created by Angad Singh on 11-07-2016.
  * </p>
  */
-public class MarkedItemList {
-    /*  SingleTon containing <Key,Value> pair of all the selected files.
-     *  Key: Directory/File path.
-     *  Value: Directory/File Name.
-     */
 
+/*  SingleTon containing <Key,Value> pair of all the selected files.
+ *  Key: Directory/File path.
+ *  Value: Directory/File Name.
+ */
+public class MarkedItemList {
     private static HashMap<String,FileListItem> ourInstance = new HashMap<>();
 
     public static void addSelectedItem(FileListItem item)

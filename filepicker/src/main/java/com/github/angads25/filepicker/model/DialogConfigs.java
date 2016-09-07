@@ -39,12 +39,12 @@ public abstract class DialogConfigs {
     /*  SELECTION_TYPES*/
 
     /*  FILE_SELECT specifies that from list of Files/Directories a File has to
-     *  be selected.
+     *  be selected. It is the default Selection Type.
      */
     public static final int FILE_SELECT=0;
 
     /*  DIR_SELECT specifies that from list of Files/Directories a Directory has to
-     *  be selected. It is the default Selection Type.
+     *  be selected.
      */
     public static final int DIR_SELECT=1;
 

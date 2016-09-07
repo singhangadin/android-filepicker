@@ -23,7 +23,9 @@
         android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/activity_margin"/>
+        android:textColor="@color/colorAccent"
+        android:layout_margin="8dp"
+        android:padding="4dp"/>
 
     <Button
         style="?android:attr/buttonStyle"
@@ -33,5 +35,7 @@
         android:id="@+id/select"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/activity_margin"/>
+        android:textColor="@color/colorAccent"
+        android:layout_margin="8dp"
+        android:padding="4dp"/>
 </LinearLayout>

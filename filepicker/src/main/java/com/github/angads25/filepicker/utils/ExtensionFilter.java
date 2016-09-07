@@ -27,8 +27,7 @@ import java.io.FileFilter;
  * </p>
  */
 
-/*  Class to filter the list of files
- *
+/*  Class to filter the list of files.
  */
 public class ExtensionFilter implements FileFilter {
     private final String[] validExtensions;
@@ -44,7 +43,8 @@ public class ExtensionFilter implements FileFilter {
         this.properties=properties;
     }
 
-    //Function to filter files based on defined rules
+    /**Function to filter files based on defined rules.
+     */
     @Override
     public boolean accept(File file) {
         //All directories are added in the least that can be read by the Application

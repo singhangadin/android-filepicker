@@ -29,6 +29,7 @@ import java.util.ArrayList;
  * Created by Angad Singh on 11-07-2016.
  * </p>
  */
+
 public class FileListAdapter extends BaseAdapter{
     private ArrayList<ListItem> listItems;
     private Context context;

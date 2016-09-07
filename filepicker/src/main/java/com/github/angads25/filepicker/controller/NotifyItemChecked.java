@@ -20,6 +20,15 @@ package com.github.angads25.filepicker.controller;
  * Created by Angad Singh on 11-07-2016.
  * </p>
  */
+
+/**
+ * Interface definition for a callback to be invoked
+ * when a checkbox is checked.
+ */
 public interface NotifyItemChecked {
+
+    /**
+     * Called when a checkbox is checked.
+     */
     void notifyCheckBoxIsClicked();
 }

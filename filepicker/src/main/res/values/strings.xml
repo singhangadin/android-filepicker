@@ -3,4 +3,5 @@
     <string name="choose_button_label">Select</string>
     <string name="cancel_button_label">Cancel</string>
     <string name="default_dir">/sdcard</string>
+    <string name="label_parent_directory">Parent Directory</string>
 </resources>
