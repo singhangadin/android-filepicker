@@ -23,5 +23,9 @@
             name="extensions"
             format="string"/>
 
+        <attr
+            name="title"
+            format="string"/>
+
     </declare-styleable>
 </resources>

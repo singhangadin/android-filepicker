@@ -53,13 +53,14 @@ import java.util.List;
 public class FilePickerDialog extends Dialog implements AdapterView.OnItemClickListener
 {   private Context context;
     private ListView listView;
-    private TextView dname,dir_path;
+    private TextView dname, dir_path, title;
     private DialogProperties properties;
     private DialogSelectionListener callbacks;
     private ArrayList<FileListItem> internalList;
     private ExtensionFilter filter;
     private FileListAdapter mFileListAdapter;
     private Button select;
+    private String titleStr=null;
 
     public static final int EXTERNAL_READ_PERMISSION_GRANT=112;
 
@@ -87,6 +88,7 @@ public class FilePickerDialog extends Dialog implements AdapterView.OnItemClickL
         listView=(ListView)findViewById(R.id.fileList);
         select=(Button) findViewById(R.id.select);
         dname=(TextView)findViewById(R.id.dname);
+        title=(TextView)findViewById(R.id.title);
         dir_path=(TextView)findViewById(R.id.dir_path);
         Button cancel = (Button) findViewById(R.id.cancel);
         select.setOnClickListener(new View.OnClickListener() {
@@ -133,6 +135,31 @@ public class FilePickerDialog extends Dialog implements AdapterView.OnItemClickL
             }
         });
         listView.setAdapter(mFileListAdapter);
+
+        //Title logic added in version 1.0.5
+        setTitle();
+    }
+
+    private void setTitle() {
+        if(title==null||dname==null)
+            return;
+        if(titleStr!=null)
+        {   if(title.getVisibility()==View.INVISIBLE)
+            {   title.setVisibility(View.VISIBLE);
+            }
+            title.setText(titleStr);
+            if(dname.getVisibility()==View.VISIBLE)
+            {   dname.setVisibility(View.INVISIBLE);
+            }
+        }
+        else
+        {   if(title.getVisibility()==View.VISIBLE)
+            {   title.setVisibility(View.INVISIBLE);
+            }
+            if(dname.getVisibility()==View.INVISIBLE)
+            {   dname.setVisibility(View.VISIBLE);
+            }
+        }
     }
 
     @Override
@@ -149,6 +176,7 @@ public class FilePickerDialog extends Dialog implements AdapterView.OnItemClickL
             }
             dname.setText(currLoc.getName());
             dir_path.setText(currLoc.getAbsolutePath());
+            setTitle();
             internalList.clear();
             internalList=Utility.prepareFileListEntries(internalList,currLoc,filter);
             mFileListAdapter.notifyDataSetChanged();
@@ -164,6 +192,7 @@ public class FilePickerDialog extends Dialog implements AdapterView.OnItemClickL
                     if(new File(fitem.getLocation()).canRead()) {
                         File currLoc = new File(fitem.getLocation());
                         dname.setText(currLoc.getName());
+                        setTitle();
                         dir_path.setText(currLoc.getAbsolutePath());
                         internalList.clear();
                         if (!currLoc.getName().equals(properties.root.getName())) {
@@ -196,6 +225,17 @@ public class FilePickerDialog extends Dialog implements AdapterView.OnItemClickL
 
     public void setDialogSelectionListener(DialogSelectionListener callbacks) {
         this.callbacks = callbacks;
+    }
+
+    @Override
+    public void setTitle(CharSequence titleStr)
+    {   if(titleStr!=null) {
+            this.titleStr = titleStr.toString();
+        }
+        else
+        {   this.titleStr=null;
+        }
+        setTitle();
     }
 
     //TODO:Make it work.
@@ -304,6 +344,7 @@ public class FilePickerDialog extends Dialog implements AdapterView.OnItemClickL
 
     @Override
     public void onBackPressed() {
+        //currentDirName is dependent on dname
         String currentDirName=dname.getText().toString();
         if(internalList.size()>0) {
             FileListItem fitem = internalList.get(0);
@@ -326,6 +367,7 @@ public class FilePickerDialog extends Dialog implements AdapterView.OnItemClickL
                 internalList = Utility.prepareFileListEntries(internalList, currLoc, filter);
                 mFileListAdapter.notifyDataSetChanged();
             }
+            setTitle();
         }
         else
         {   super.onBackPressed();

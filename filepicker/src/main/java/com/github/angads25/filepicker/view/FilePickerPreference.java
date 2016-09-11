@@ -42,6 +42,7 @@ public class FilePickerPreference extends Preference implements
         Preference.OnPreferenceClickListener
 {   private FilePickerDialog mDialog;
     private DialogProperties properties;
+    private String title=null;
 
     public FilePickerPreference(Context context) {
         super(context);
@@ -108,6 +109,7 @@ public class FilePickerPreference extends Preference implements
         if (state != null) {
             mDialog.onRestoreInstanceState(state);
         }
+        mDialog.setTitle(title);
         mDialog.show();
     }
 
@@ -198,6 +200,9 @@ public class FilePickerPreference extends Preference implements
                 if(extensions!=null&&!extensions.equals(""))
                 {   properties.extensions= extensions.split(":");
                 }
+            }
+            else if (attr == R.styleable.FilePickerPreference_title) {
+                title=tarr.getString(R.styleable.FilePickerPreference_title);
             }
         }
         tarr.recycle();

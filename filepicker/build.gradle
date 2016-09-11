@@ -13,7 +13,7 @@ ext {
     siteUrl = 'https://github.com/angads25/android-filepicker'
     gitUrl = 'https://github.com/angads25/android-filepicker.git'
 
-    libraryVersion = '1.0.4'
+    libraryVersion = '1.0.5'
 
     developerId = 'angads25'
     developerName = 'Angad Singh'
@@ -31,8 +31,8 @@ android {
     defaultConfig {
         minSdkVersion 9
         targetSdkVersion 24
-        versionCode 5
-        versionName "1.0.4"
+        versionCode 6
+        versionName "1.0.5"
     }
     buildTypes {
         release {
