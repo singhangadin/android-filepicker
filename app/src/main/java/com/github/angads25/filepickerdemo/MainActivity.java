@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity
 
         //Instantiate FilePickerDialog with Context and DialogProperties.
         dialog=new FilePickerDialog(MainActivity.this,properties);
+        dialog.setTitle("Select a File");
         RadioGroup modeRadio=(RadioGroup)findViewById(R.id.modeRadio);
         modeRadio.check(R.id.singleRadio);
         modeRadio.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
