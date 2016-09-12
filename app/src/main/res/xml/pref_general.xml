@@ -7,6 +7,7 @@
         android:title="Pick a Directory"
         android:summary="Just a Summary"
         android:defaultValue="/sdcard:"
+        app:title_text="Select a Directory"
         app:error_dir="/mnt"
         app:root_dir="@string/default_dir"
         app:selection_mode="multi_mode"

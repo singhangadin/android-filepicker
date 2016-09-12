@@ -24,7 +24,7 @@
             format="string"/>
 
         <attr
-            name="title"
+            name="title_text"
             format="string"/>
 
     </declare-styleable>
