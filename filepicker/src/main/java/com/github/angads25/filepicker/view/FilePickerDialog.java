@@ -332,8 +332,6 @@ public class FilePickerDialog extends Dialog implements AdapterView.OnItemClickL
     public void show() {
         if(!Utility.checkStorageAccessPermissions(context))
         {   if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                //TODO: Overlay Issue's Cause
-                Toast.makeText(context,"Application needs you permission to access SD Card",Toast.LENGTH_LONG).show();
                 ((Activity)context).requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, EXTERNAL_READ_PERMISSION_GRANT);
             }
         }
