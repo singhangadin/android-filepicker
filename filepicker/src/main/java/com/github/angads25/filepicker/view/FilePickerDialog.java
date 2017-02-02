@@ -22,6 +22,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
@@ -44,6 +45,7 @@ import com.github.angads25.filepicker.utils.Utility;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 /**<p>
  * Created by Angad Singh on 09-07-2016.
@@ -251,105 +253,115 @@ public class FilePickerDialog extends Dialog implements AdapterView.OnItemClickL
         setTitle();
     }
 
-//    TODO:Make it work.
-//    public void markFiles(List<String> paths)
-//    {   if(paths!=null&&paths.size()>0)
-//        {   if(properties.selection_mode==DialogConfigs.SINGLE_MODE)
-//            {   File temp=new File(paths.get(0));
-//                switch (properties.selection_type) {
-//                    case DialogConfigs.DIR_SELECT:
-//                        if (temp.exists() && temp.isDirectory()) {
-//                            FileListItem item = new FileListItem();
-//                            item.setFilename(temp.getName());
-//                            item.setDirectory(true);
-//                            item.setMarked(true);
-//                            item.setTime(temp.lastModified());
-//                            item.setLocation(temp.getAbsolutePath());
-//                            MarkedItemList.addSelectedItem(item);
-//                        }
-//                        break;
-//
-//                    case DialogConfigs.FILE_SELECT:
-//                        if (temp.exists() && temp.isFile()) {
-//                            FileListItem item = new FileListItem();
-//                            item.setFilename(temp.getName());
-//                            item.setDirectory(true);
-//                            item.setMarked(true);
-//                            item.setTime(temp.lastModified());
-//                            item.setLocation(temp.getAbsolutePath());
-//                            MarkedItemList.addSelectedItem(item);
-//                        }
-//                        break;
-//
-//                    case DialogConfigs.FILE_AND_DIR_SELECT:
-//                        if (temp.exists() && (temp.isFile() || temp.isDirectory())) {
-//                            FileListItem item = new FileListItem();
-//                            item.setFilename(temp.getName());
-//                            item.setDirectory(true);
-//                            item.setMarked(true);
-//                            item.setTime(temp.lastModified());
-//                            item.setLocation(temp.getAbsolutePath());
-//                            MarkedItemList.addSelectedItem(item);
-//                        }
-//                        break;
-//                }
-//            }
-//            else
-//            {   for (String path : paths) {
-//                    switch (properties.selection_type) {
-//                        case DialogConfigs.DIR_SELECT:
-//                            File temp = new File(path);
-//                            if (temp.exists() && temp.isDirectory()) {
-//                                FileListItem item = new FileListItem();
-//                                item.setFilename(temp.getName());
-//                                item.setDirectory(true);
-//                                item.setMarked(true);
-//                                item.setTime(temp.lastModified());
-//                                item.setLocation(temp.getAbsolutePath());
-//                                MarkedItemList.addSelectedItem(item);
-//                            }
-//                            break;
-//
-//                        case DialogConfigs.FILE_SELECT:
-//                            temp = new File(path);
-//                            if (temp.exists() && temp.isFile()) {
-//                                FileListItem item = new FileListItem();
-//                                item.setFilename(temp.getName());
-//                                item.setDirectory(true);
-//                                item.setMarked(true);
-//                                item.setTime(temp.lastModified());
-//                                item.setLocation(temp.getAbsolutePath());
-//                                MarkedItemList.addSelectedItem(item);
-//                            }
-//                            break;
-//
-//                        case DialogConfigs.FILE_AND_DIR_SELECT:
-//                            temp = new File(path);
-//                            if (temp.exists() && (temp.isFile() || temp.isDirectory())) {
-//                                FileListItem item = new FileListItem();
-//                                item.setFilename(temp.getName());
-//                                item.setDirectory(true);
-//                                item.setMarked(true);
-//                                item.setTime(temp.lastModified());
-//                                item.setLocation(temp.getAbsolutePath());
-//                                MarkedItemList.addSelectedItem(item);
-//                            }
-//                            break;
-//                    }
-//                }
-//            }
-//        }
-//    }
+    public void markFiles(List<String> paths)
+    {   if(paths!=null&&paths.size()>0)
+        {   Log.e("TAG","Path Bypass "+paths.size());
+            if(properties.selection_mode==DialogConfigs.SINGLE_MODE)
+            {   File temp=new File(paths.get(0));
+                switch (properties.selection_type) {
+                    case DialogConfigs.DIR_SELECT:
+                        if (temp.exists() && temp.isDirectory()) {
+                            FileListItem item = new FileListItem();
+                            item.setFilename(temp.getName());
+                            item.setDirectory(true);
+                            item.setMarked(true);
+                            item.setTime(temp.lastModified());
+                            item.setLocation(temp.getAbsolutePath());
+                            MarkedItemList.addSelectedItem(item);
+                        }
+                        break;
+
+                    case DialogConfigs.FILE_SELECT:
+                        if (temp.exists() && temp.isFile()) {
+                            FileListItem item = new FileListItem();
+                            item.setFilename(temp.getName());
+                            item.setDirectory(true);
+                            item.setMarked(true);
+                            item.setTime(temp.lastModified());
+                            item.setLocation(temp.getAbsolutePath());
+                            MarkedItemList.addSelectedItem(item);
+                        }
+                        break;
+
+                    case DialogConfigs.FILE_AND_DIR_SELECT:
+                        if (temp.exists()) {
+                            FileListItem item = new FileListItem();
+                            item.setFilename(temp.getName());
+                            item.setDirectory(true);
+                            item.setMarked(true);
+                            item.setTime(temp.lastModified());
+                            item.setLocation(temp.getAbsolutePath());
+                            MarkedItemList.addSelectedItem(item);
+                        }
+                        break;
+                }
+            }
+            else
+            {   Log.e("TAG","Multiple Files");
+                for (String path : paths) {
+                    switch (properties.selection_type) {
+                        case DialogConfigs.DIR_SELECT:
+                            File temp = new File(path);
+                            if (temp.exists() && temp.isDirectory()) {
+                                FileListItem item = new FileListItem();
+                                item.setFilename(temp.getName());
+                                item.setDirectory(true);
+                                item.setMarked(true);
+                                item.setTime(temp.lastModified());
+                                item.setLocation(temp.getAbsolutePath());
+                                MarkedItemList.addSelectedItem(item);
+                            }
+                            break;
+
+                        case DialogConfigs.FILE_SELECT:
+                            temp = new File(path);
+                            if (temp.exists() && temp.isFile()) {
+                                FileListItem item = new FileListItem();
+                                item.setFilename(temp.getName());
+                                item.setDirectory(true);
+                                item.setMarked(true);
+                                item.setTime(temp.lastModified());
+                                item.setLocation(temp.getAbsolutePath());
+                                MarkedItemList.addSelectedItem(item);
+                                Log.e("TAG","Path Added");
+                            }
+                            break;
+
+                        case DialogConfigs.FILE_AND_DIR_SELECT:
+                            temp = new File(path);
+                            if (temp.exists() && (temp.isFile() || temp.isDirectory())) {
+                                FileListItem item = new FileListItem();
+                                item.setFilename(temp.getName());
+                                item.setDirectory(true);
+                                item.setMarked(true);
+                                item.setTime(temp.lastModified());
+                                item.setLocation(temp.getAbsolutePath());
+                                MarkedItemList.addSelectedItem(item);
+                            }
+                            break;
+                    }
+                }
+            }
+        }
+    }
 
     @Override
     public void show() {
         if(!Utility.checkStorageAccessPermissions(context))
         {   if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                ((Activity)context).requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, EXTERNAL_READ_PERMISSION_GRANT);
+                ((Activity)context).requestPermissions(new String[]{ Manifest.permission.READ_EXTERNAL_STORAGE }, EXTERNAL_READ_PERMISSION_GRANT);
             }
         }
         else
         {   super.show();
+            int size=MarkedItemList.getFileCount();
+            if(size==0)
+            {   select.setText(context.getResources().getString(R.string.choose_button_label));
+            }
+            else
+            {   String button_label=context.getResources().getString(R.string.choose_button_label)+" ("+size+") ";
+                select.setText(button_label);
+            }
         }
     }
 

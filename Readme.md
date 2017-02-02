@@ -1,5 +1,5 @@
 # FilePicker
-Android Library to select files/directories from Device Storage.
+Sper Lite Android Library to select files/directories from Device Storage.
 
 ### Developed by
 [Angad Singh](https://www.github.com/angads25) ([@angads25](https://www.twitter.com/angads25))
@@ -23,7 +23,7 @@ Android Library to select files/directories from Device Storage.
 
 * Library is also Available in MavenCentral, So just put this in your app dependencies to use it:
 ```gradle
-    compile 'com.github.angads25:filepicker:1.0.7'
+    compile 'com.github.angads25:filepicker:1.0.8'
 ```
 
 ### Usage

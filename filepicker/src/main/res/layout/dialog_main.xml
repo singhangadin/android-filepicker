@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -9,7 +8,8 @@
 
     <include
         layout="@layout/dialog_header"
-        android:id="@+id/header" />
+        android:id="@+id/header"
+        android:elevation="5dp"/>
 
     <include
         layout="@layout/dialog_file_list"
