@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+   <string name="app_name">Dateiauswahl</string>
+   <string name="cancel_button_label">Abbrechen</string>
+   <string name="choose_button_label">Auswählen</string>
+   <string name="label_parent_directory">Verzeichnis hoch</string>
+</resources>
