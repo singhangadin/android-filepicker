@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+   <string name="app_name">Démo gestionnaire de fichiers</string>
+   <string name="choose_button_label">Choisir</string>
+   <string name="show_dialog">Montrer le dialogue</string>
+   <string name="title_activity_settings">Réglages</string>
+</resources>
