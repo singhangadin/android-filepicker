@@ -20,6 +20,10 @@
             format="string"/>
 
         <attr
+            name="offset"
+            format="string"/>
+
+        <attr
             name="extensions"
             format="string"/>
 

@@ -23,7 +23,7 @@ Android Library to select files/directories from Device Storage.
 
 * Library is also Available in MavenCentral, So just put this in your app dependencies to use it:
 ```gradle
-    compile 'com.github.angads25:filepicker:1.0.6   '
+    compile 'com.github.angads25:filepicker:1.0.7'
 ```
 
 ### Usage
@@ -67,7 +67,7 @@ Android Library to select files/directories from Device Storage.
 5. Use ```dialog.show()``` method to show dialog.
 
 ### NOTE:
-Marshmallow and further requests for the permission on runtime. You should override `onRequestPermissionsResult` in Activity/AppCompatActivity class and show the dialog only if permissions have been granted.
+Marshmallow and above requests for the permission on runtime. You should override `onRequestPermissionsResult` in Activity/AppCompatActivity class and show the dialog only if permissions have been granted.
 
 ```java
         //Add this method to show Dialog when the required permission has been granted to the app.

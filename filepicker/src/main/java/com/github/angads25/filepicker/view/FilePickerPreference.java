@@ -39,27 +39,27 @@ import java.io.File;
 
 public class FilePickerPreference extends Preference implements
         DialogSelectionListener,
-        Preference.OnPreferenceClickListener
-{   private FilePickerDialog mDialog;
+        Preference.OnPreferenceClickListener {
+    private FilePickerDialog mDialog;
     private DialogProperties properties;
     private String titleText=null;
 
     public FilePickerPreference(Context context) {
         super(context);
-        properties=new DialogProperties();
+        properties = new DialogProperties();
         setOnPreferenceClickListener(this);
     }
 
     public FilePickerPreference(Context context, AttributeSet attrs) {
         super(context, attrs);
-        properties=new DialogProperties();
+        properties = new DialogProperties();
         initProperties(attrs);
         setOnPreferenceClickListener(this);
     }
 
     public FilePickerPreference(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        properties=new DialogProperties();
+        properties = new DialogProperties();
         initProperties(attrs);
         setOnPreferenceClickListener(this);
     }
@@ -193,6 +193,12 @@ public class FilePickerPreference extends Preference implements
                 String error_dir=tarr.getString(R.styleable.FilePickerPreference_error_dir);
                 if(error_dir!=null&&!error_dir.equals(""))
                 {   properties.error_dir=new File(error_dir);
+                }
+            }
+            else if (attr == R.styleable.FilePickerPreference_offset) {
+                String offset_dir=tarr.getString(R.styleable.FilePickerPreference_offset);
+                if(offset_dir!=null&&!offset_dir.equals(""))
+                {   properties.offset=new File(offset_dir);
                 }
             }
             else if (attr == R.styleable.FilePickerPreference_extensions) {

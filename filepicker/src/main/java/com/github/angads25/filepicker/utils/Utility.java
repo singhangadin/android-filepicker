@@ -68,6 +68,7 @@ public class Utility {
     {   try {
             //Check for each and every directory/file in 'inter' directory.
             //Filter by extension using 'filter' reference.
+
             for (File name : inter.listFiles(filter)) {
                 //If file/directory can be read by the Application
                 if (name.canRead()) {

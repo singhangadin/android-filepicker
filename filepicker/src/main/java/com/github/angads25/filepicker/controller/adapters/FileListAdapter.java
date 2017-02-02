@@ -78,6 +78,7 @@ public class FileListAdapter extends BaseAdapter{
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public View getView(final int i, View view, ViewGroup viewGroup) {
         final ViewHolder holder;
         if (view == null) {
@@ -105,7 +106,7 @@ public class FileListAdapter extends BaseAdapter{
             else
             {   holder.type_icon.setColorFilter(context.getResources().getColor(R.color.colorPrimary));
             }
-            if(properties.selection_type== DialogConfigs.FILE_SELECT)
+            if(properties.selection_type == DialogConfigs.FILE_SELECT)
             {   holder.fmark.setVisibility(View.INVISIBLE);
             }
             else
@@ -154,7 +155,7 @@ public class FileListAdapter extends BaseAdapter{
             public void onClick(View view) {
                 item.setMarked(!item.isMarked());
                 if (item.isMarked()) {
-                    if(properties.selection_mode==DialogConfigs.MULTI_MODE) {
+                    if(properties.selection_mode == DialogConfigs.MULTI_MODE) {
                         MarkedItemList.addSelectedItem(item);
                     }
                     else {
@@ -171,11 +172,11 @@ public class FileListAdapter extends BaseAdapter{
     }
 
     private class ViewHolder
-    {   public ImageView type_icon;
-        public TextView name,type;
-        public CheckBox fmark;
+    {   ImageView type_icon;
+        TextView name,type;
+        CheckBox fmark;
 
-        public ViewHolder(View itemView) {
+        ViewHolder(View itemView) {
             name=(TextView)itemView.findViewById(R.id.fname);
             type=(TextView)itemView.findViewById(R.id.ftype);
             type_icon=(ImageView)itemView.findViewById(R.id.image_type);

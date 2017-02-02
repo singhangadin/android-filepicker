@@ -59,6 +59,15 @@ public class DialogProperties {
      */
     public File error_dir;
 
+    /*  The Directory can be used as an offset. It is the first directory that is
+     *  shown in dialog. Consider making it Root's sub-directory.
+     *
+     *  Eg. Root: /sdcard
+     *  Eg. Offset: /sdcard/Music/Country
+     *
+     */
+    public File offset;
+
     /*  An Array of String containing extensions, Files with only that will be shown.
      *  Others will be ignored. Set to null as default value by constructor.
      *  Eg. String ext={"jpg","jpeg","png","gif"};
@@ -70,6 +79,7 @@ public class DialogProperties {
         selection_type=DialogConfigs.FILE_SELECT;
         root=new File(DialogConfigs.DEFAULT_DIR);
         error_dir=new File(DialogConfigs.DEFAULT_DIR);
+        offset=new File(DialogConfigs.DEFAULT_DIR);
         extensions=null;
     }
 }

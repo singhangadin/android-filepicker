@@ -98,6 +98,7 @@ public class MainActivity extends AppCompatActivity
         });
         final EditText extension=(EditText)findViewById(R.id.extensions);
         final EditText root=(EditText)findViewById(R.id.root);
+        final EditText offset=(EditText)findViewById(R.id.offset);
         Button apply = (Button) findViewById(R.id.apply);
         Button showDialog = (Button) findViewById(R.id.show_dialog);
         apply.setOnClickListener(new View.OnClickListener() {
@@ -138,6 +139,16 @@ public class MainActivity extends AppCompatActivity
                 else
                 {   //Setting Parent Directory to Default SDCARD.
                     properties.root=new File(DialogConfigs.DEFAULT_DIR);
+                }
+
+                String fset=offset.getText().toString();
+                if(fset.length()>0||!fset.equals(""))
+                {   //Setting Offset Directory.
+                    properties.offset=new File(fset);
+                }
+                else
+                {   //Setting Parent Directory to Default SDCARD.
+                    properties.offset=new File(DialogConfigs.DEFAULT_DIR);
                 }
 
                 //Setting Alternative Directory, in case root is not accessible.This will be
