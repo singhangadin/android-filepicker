@@ -13,7 +13,7 @@ ext {
     siteUrl = 'https://github.com/angads25/android-filepicker'
     gitUrl = 'https://github.com/angads25/android-filepicker.git'
 
-    libraryVersion = '1.0.7'
+    libraryVersion = '1.0.8'
 
     developerId = 'angads25'
     developerName = 'Angad Singh'
@@ -42,5 +42,5 @@ android {
     }
 }
 
-//apply from: 'https://raw.githubusercontent.com/angads25/JCenter/master/installv1.gradle'
-//apply from: 'https://raw.githubusercontent.com/angads25/JCenter/master/bintrayv1.gradle'
+apply from: 'https://raw.githubusercontent.com/angads25/JCenter/master/installv1.gradle'
+apply from: 'https://raw.githubusercontent.com/angads25/JCenter/master/bintrayv1.gradle'

@@ -60,5 +60,5 @@ public abstract class DialogConfigs {
     /*  DEFAULT_DIR is the default mount point of the SDCARD. It is the default
      *  mount point.
      */
-    public static final String DEFAULT_DIR=DIRECTORY_SEPERATOR+STORAGE_DIR;
+    public static final String DEFAULT_DIR = DIRECTORY_SEPERATOR+STORAGE_DIR;
 }

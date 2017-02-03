@@ -138,7 +138,7 @@ public class FilePickerDialog extends Dialog implements AdapterView.OnItemClickL
         });
         listView.setAdapter(mFileListAdapter);
 
-        //Title logic added in version 1.0.5
+        //Title method added in version 1.0.5
         setTitle();
     }
 
