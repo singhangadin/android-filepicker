@@ -40,6 +40,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    lintOptions {
+        abortOnError false
+    }
+
+    return null
 }
 
 apply from: 'https://raw.githubusercontent.com/angads25/JCenter/master/installv1.gradle'

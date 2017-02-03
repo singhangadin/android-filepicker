@@ -21,6 +21,7 @@ import com.github.angads25.filepicker.model.DialogProperties;
 
 import java.io.File;
 import java.io.FileFilter;
+import java.util.Locale;
 
 /**<p>
  * Created by Angad Singh on 11-07-2016.
@@ -62,7 +63,7 @@ public class ExtensionFilter implements FileFilter {
         {   /*  Check whether name of the file ends with the extension. Added if it
              *  does.
              */
-            String name = file.getName().toLowerCase();
+            String name = file.getName().toLowerCase(Locale.getDefault());
             for (String ext : validExtensions) {
                 if (name.endsWith(ext)) {
                     return true;

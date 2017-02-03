@@ -8,8 +8,7 @@
 
     <include
         layout="@layout/dialog_header"
-        android:id="@+id/header"
-        android:elevation="5dp"/>
+        android:id="@+id/header"/>
 
     <include
         layout="@layout/dialog_file_list"
