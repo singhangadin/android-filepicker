@@ -47,10 +47,7 @@ Super Lite Android Library to select files/directories from Device Storage.
         properties.extensions=null;
     ```
 
-3. Next create an instance of `FilePickerDialog`, and pass `Context` and `DialogProperties` references as parameters. Optional:
-* You can change the title of dialog. Default is current directory name.
-* Set positive button string. Default is Select.
-* Set negative button string. Defalut is Cancel.
+3. Next create an instance of `FilePickerDialog`, and pass `Context` and `DialogProperties` references as parameters. Optional: You can change the title of dialog. Default is current directory name. Set the positive button string. Default is Select. Set the negative button string. Defalut is Cancel.
 
     ```java
         FilePickerDialog dialog = new FilePickerDialog(MainActivity.this,properties);
