@@ -5,4 +5,5 @@
    <string name="choose_button_label">Select</string>
    <string name="default_dir" translatable="false">/sdcard</string>
    <string name="label_parent_directory">Parent Directory</string>
+   <string name="last_edit">Last edited: </string>
 </resources>

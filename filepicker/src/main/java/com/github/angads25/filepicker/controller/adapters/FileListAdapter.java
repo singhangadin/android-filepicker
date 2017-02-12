@@ -137,7 +137,7 @@ public class FileListAdapter extends BaseAdapter{
             holder.type.setText(R.string.label_parent_directory);
         }
         else {
-            holder.type.setText("Last edited: " + sdate.format(date) + ", " + stime.format(date));
+            holder.type.setText(context.getString(R.string.last_edit) + sdate.format(date) + ", " + stime.format(date));
         }
         if(holder.fmark.getVisibility()==View.VISIBLE) {
             if(i==0&&item.getFilename().startsWith("..."))
