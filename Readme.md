@@ -43,7 +43,7 @@ Super Lite Android Library to select files/directories from Device Storage.
         properties.selection_type=DialogConfigs.FILE_SELECT;
         properties.root=new File(DialogConfigs.DEFAULT_DIR);
         properties.error_dir=new File(DialogConfigs.DEFAULT_DIR);
-        properties.offset_dir=new File(DialogConfigs.DEFAULT_DIR);
+        properties.offset=new File(DialogConfigs.DEFAULT_DIR);
         properties.extensions=null;
     ```
 
