@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-   <string name="app_name">Gestionnaire de fichiers</string>
    <string name="cancel_button_label">Annuler</string>
    <string name="choose_button_label">Choisir</string>
    <string name="label_parent_directory">Répertoire parent</string>
