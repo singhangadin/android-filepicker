@@ -65,6 +65,7 @@ public class FilePickerDialog extends Dialog implements AdapterView.OnItemClickL
     private String titleStr=null;
     private String positiveBtnNameStr=null;
     private String negativeBtnNameStr=null;
+    private String accessingDirectoryErrorStr =null;
 
     public static final int EXTERNAL_READ_PERMISSION_GRANT=112;
 
@@ -208,14 +209,17 @@ public class FilePickerDialog extends Dialog implements AdapterView.OnItemClickL
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         {   if(internalList.size()>i) {
                 FileListItem fitem = internalList.get(i);
-                if (fitem.isDirectory()) {
-                    if(new File(fitem.getLocation()).canRead()) {
-                        File currLoc = new File(fitem.getLocation());
+                if (fitem.isDirectory())
+                {
+                    File currLoc = new File(fitem.getLocation());
+                    if(currLoc.canRead() && currLoc.getParentFile() != null)
+                    {
                         dname.setText(currLoc.getName());
                         setTitle();
                         dir_path.setText(currLoc.getAbsolutePath());
                         internalList.clear();
-                        if (!currLoc.getName().equals(properties.root.getName())) {
+                        if (!currLoc.getName().equals(properties.root.getName()))
+                        {
                             FileListItem parent = new FileListItem();
                             parent.setFilename("...");
                             parent.setDirectory(true);
@@ -227,7 +231,7 @@ public class FilePickerDialog extends Dialog implements AdapterView.OnItemClickL
                         mFileListAdapter.notifyDataSetChanged();
                     }
                     else
-                    {   Toast.makeText(context,"Directory cannot be accessed",Toast.LENGTH_SHORT).show();
+                    {   Toast.makeText(context,accessingDirectoryErrorStr==null?(context.getResources().getString(R.string.accessing_directory_error)):accessingDirectoryErrorStr,Toast.LENGTH_SHORT).show();
                     }
                 }
                 else
@@ -281,6 +285,19 @@ public class FilePickerDialog extends Dialog implements AdapterView.OnItemClickL
         {   this.negativeBtnNameStr=null;
         }
     }
+
+    public void setAccessingDirectoryErrorStr(CharSequence accessingDirectoryErrorStr)
+    {
+        if(accessingDirectoryErrorStr != null) {
+            this.accessingDirectoryErrorStr = accessingDirectoryErrorStr.toString();
+        }
+        else{
+           this.accessingDirectoryErrorStr=null;
+        }
+
+    }
+
+
 
     public void markFiles(List<String> paths)
     {   if(paths!=null&&paths.size()>0)
