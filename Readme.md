@@ -52,8 +52,6 @@ Super Lite Android Library to select files/directories from Device Storage.
     ```java
         FilePickerDialog dialog = new FilePickerDialog(MainActivity.this,properties);
         dialog.setTitle("Select a File");
-        dialog.setPositiveBtnName("Select");
-        dialog.setNegativeBtnName("Cancel");
     ```
 
 4.  Next, Attach `DialogSelectionListener` to `FilePickerDialog` as below,

@@ -180,7 +180,7 @@ public class FilePickerDialog extends Dialog implements AdapterView.OnItemClickL
         if(Utility.checkStorageAccessPermissions(context))
         {   File currLoc;
             internalList.clear();
-            if(properties.offset.isDirectory())
+            if(properties.offset.isDirectory()&&!properties.offset.getAbsolutePath().equals(properties.root.getAbsolutePath()))
             {   currLoc = new File(properties.offset.getAbsolutePath());
                 FileListItem parent = new FileListItem();
                 parent.setFilename("...");
