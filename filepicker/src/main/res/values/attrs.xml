@@ -20,7 +20,7 @@
             format="string"/>
 
         <attr
-            name="offset"
+            name="offset_dir"
             format="string"/>
 
         <attr

@@ -13,7 +13,7 @@ ext {
     siteUrl = 'https://github.com/angads25/android-filepicker'
     gitUrl = 'https://github.com/angads25/android-filepicker.git'
 
-    libraryVersion = '1.0.8'
+    libraryVersion = '1.0.9'
 
     developerId = 'angads25'
     developerName = 'Angad Singh'

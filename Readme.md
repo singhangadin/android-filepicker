@@ -5,7 +5,7 @@ Super Lite Android Library to select files/directories from Device Storage.
 [Angad Singh](https://www.github.com/angads25) ([@angads25](https://www.twitter.com/angads25))
 
 ### Benchmark:
-[![API](https://img.shields.io/badge/API-9%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=9) <a href="http://www.methodscount.com/?lib=com.github.angads25%3Afilepicker%3A1.0.6"><img src="https://img.shields.io/badge/Size-36 KB-e91e63.svg"/></a>
+[![API](https://img.shields.io/badge/API-9%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=9) <a href="http://www.methodscount.com/?lib=com.github.angads25%3Afilepicker%3A1.0.9"><img src="https://img.shields.io/badge/Size-36 KB-e91e63.svg"/></a>
 
 ### Where to Find:
 [ ![Download](https://api.bintray.com/packages/angads25/maven/filepicker/images/download.svg) ](https://bintray.com/angads25/maven/filepicker/_latestVersion) [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.angads25/filepicker/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.angads25/filepicker) [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-FilePicker-blue.svg?style=flat)](http://android-arsenal.com/details/1/3950)
@@ -23,7 +23,7 @@ Super Lite Android Library to select files/directories from Device Storage.
 
 * Library is also Available in MavenCentral, So just put this in your app dependencies to use it:
 ```gradle
-    compile 'com.github.angads25:filepicker:1.0.8'
+    compile 'com.github.angads25:filepicker:1.0.9'
 ```
 
 ### Usage
@@ -31,7 +31,7 @@ Super Lite Android Library to select files/directories from Device Storage.
 1. Start by creating an instance of `DialogProperties`.
 
     ```java
-        DialogProperties properties=new DialogProperties();
+        DialogProperties properties = new DialogProperties();
     ```
 
     Now 'DialogProperties' has certain parameters.
@@ -39,12 +39,12 @@ Super Lite Android Library to select files/directories from Device Storage.
 2. Assign values to each Dialog Property using `DialogConfig` class.
 
     ```java
-        properties.selection_mode=DialogConfigs.SINGLE_MODE;
-        properties.selection_type=DialogConfigs.FILE_SELECT;
-        properties.root=new File(DialogConfigs.DEFAULT_DIR);
-        properties.error_dir=new File(DialogConfigs.DEFAULT_DIR);
-        properties.offset=new File(DialogConfigs.DEFAULT_DIR);
-        properties.extensions=null;
+        properties.selection_mode = DialogConfigs.SINGLE_MODE;
+        properties.selection_type = DialogConfigs.FILE_SELECT;
+        properties.root = new File(DialogConfigs.DEFAULT_DIR);
+        properties.error_dir = new File(DialogConfigs.DEFAULT_DIR);
+        properties.offset = new File(DialogConfigs.DEFAULT_DIR);
+        properties.extensions = null;
     ```
 
 3. Next create an instance of `FilePickerDialog`, and pass `Context` and `DialogProperties` references as parameters. Optional: You can change the title of dialog. Default is current directory name. Set the positive button string. Default is Select. Set the negative button string. Defalut is Cancel.
@@ -91,7 +91,7 @@ Marshmallow and above requests for the permission on runtime. You should overrid
         }
 ```
 
-    That's It. You are good to go further.
+    That's It. You are good to proceed further.
 
 ###FilePickerPreference
 
@@ -141,7 +141,7 @@ Marshmallow and above requests for the permission on runtime. You should overrid
     That's It. You are good to move further.
 
 ###Important:
-* `defaultValue`, `error_dir`, `root_dir` must have valid directory/file paths.
+* `defaultValue`, `error_dir`, `root_dir`, `offset_dir` must have valid directory/file paths.
 * `defaultValue` paths should end with ':'.
 * `defaultValue` can have multiple paths, there should be a ':' between two paths.
 * `extensions` must not have '.'.
