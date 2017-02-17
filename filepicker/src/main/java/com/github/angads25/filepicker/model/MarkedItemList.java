@@ -26,7 +26,7 @@ import java.util.Set;
 
 /*  SingleTon containing <Key,Value> pair of all the selected files.
  *  Key: Directory/File path.
- *  Value: Directory/File Name.
+ *  Value: FileListItem Object.
  */
 public class MarkedItemList {
     private static HashMap<String,FileListItem> ourInstance = new HashMap<>();

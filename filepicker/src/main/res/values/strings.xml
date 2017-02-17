@@ -5,4 +5,6 @@
    <string name="default_dir" translatable="false">/sdcard</string>
    <string name="label_parent_directory">Parent Directory</string>
    <string name="last_edit">Last edited: </string>
+   <string name="error_dir_access">Directory cannot be accessed</string>
+   <string name="label_parent_dir">...</string>
 </resources>
