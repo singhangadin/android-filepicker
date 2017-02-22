@@ -26,6 +26,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RadioGroup;
@@ -53,6 +54,8 @@ public class MainActivity extends AppCompatActivity
         listView = (ListView) findViewById(R.id.listView);
         mFileListAdapter=new FileListAdapter(listItem,MainActivity.this);
         listView.setAdapter(mFileListAdapter);
+        final CheckBox enableAnimation=(CheckBox)findViewById(R.id.enableAnimationCheckBox);
+        enableAnimation.setChecked(true);
 
         //Create a DialogProperties object.
         final DialogProperties properties=new DialogProperties();
@@ -139,6 +142,7 @@ public class MainActivity extends AppCompatActivity
                 {   //Setting Parent Directory to Default SDCARD.
                     properties.root=new File(DialogConfigs.DEFAULT_DIR);
                 }
+                properties.animation_enabled = enableAnimation.isChecked();
 
                 //Setting Alternative Directory, in case root is not accessible.This will be
                 //used.

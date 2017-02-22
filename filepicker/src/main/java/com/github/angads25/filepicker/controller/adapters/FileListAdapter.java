@@ -89,11 +89,11 @@ public class FileListAdapter extends BaseAdapter{
         {   holder = (ViewHolder)view.getTag();
         }
         final FileListItem item = listItem.get(i);
-        if (MarkedItemList.hasItem(item.getLocation())) {
+        if (MarkedItemList.hasItem(item.getLocation()) && properties.animation_enabled) {
             Animation animation = AnimationUtils.loadAnimation(context,R.anim.marked_item_animation);
             view.setAnimation(animation);
         }
-        else {
+        else if(properties.animation_enabled){
             Animation animation = AnimationUtils.loadAnimation(context,R.anim.unmarked_item_animation);
             view.setAnimation(animation);
         }

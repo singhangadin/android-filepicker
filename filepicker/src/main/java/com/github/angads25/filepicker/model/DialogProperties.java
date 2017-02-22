@@ -27,6 +27,11 @@ import java.io.File;
  *  these Properties
  */
 public class DialogProperties {
+
+    /*  Animation enabled defines whether to display the animation
+     *  when scrolling or selecting the item from the list.
+     */
+    public boolean animation_enabled;
     /*  Selection Mode defines whether a single of multiple Files/Directories
      *  have to be selected.
      *
@@ -66,6 +71,7 @@ public class DialogProperties {
     public String[] extensions;
 
     public DialogProperties() {
+        animation_enabled=true;
         selection_mode=DialogConfigs.SINGLE_MODE;
         selection_type=DialogConfigs.FILE_SELECT;
         root=new File(DialogConfigs.DEFAULT_DIR);
