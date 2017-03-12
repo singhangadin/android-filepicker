@@ -195,7 +195,7 @@ public class FilePickerPreference extends Preference implements
                 {   properties.error_dir=new File(error_dir);
                 }
             }
-            else if (attr == R.styleable.FilePickerPreference_offset) {
+            else if (attr == R.styleable.FilePickerPreference_offset_dir) {
                 String offset_dir=tarr.getString(R.styleable.FilePickerPreference_offset_dir);
                 if(offset_dir!=null&&!offset_dir.equals(""))
                 {   properties.offset=new File(offset_dir);

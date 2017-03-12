@@ -23,5 +23,5 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile project(':filepicker')
-    compile 'com.android.support:appcompat-v7:25.1.1'
+    compile 'com.android.support:appcompat-v7:25.2.0'
 }

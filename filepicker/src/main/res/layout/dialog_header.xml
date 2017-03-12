@@ -13,17 +13,20 @@
         android:layout_height="match_parent"
         android:src="@mipmap/ic_directory_parent"
         android:scaleType="centerInside"
+        android:background="@null"
         android:id="@+id/imageView" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:background="@null"
         android:layout_gravity="center_vertical">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@null">
 
             <TextView
                 android:id="@+id/dname"
@@ -34,6 +37,7 @@
                 android:textSize="16sp"
                 android:textStyle="bold"
                 style="?android:attr/textViewStyle"
+                android:background="@null"
                 android:textColor="@color/textColorPrimary"/>
 
             <TextView
@@ -46,6 +50,7 @@
                 android:textSize="16sp"
                 android:textStyle="bold"
                 style="?android:attr/textViewStyle"
+                android:background="@null"
                 android:textColor="@color/textColorPrimary"/>
 
         </RelativeLayout>
@@ -57,6 +62,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginStart="16dp"
             style="?android:attr/textViewStyle"
+            android:background="@null"
             android:textColor="@color/textColorSecondary"/>
     </LinearLayout>
 </LinearLayout>
