@@ -84,6 +84,14 @@ public class FilePickerDialog extends Dialog implements AdapterView.OnItemClickL
         internalList = new ArrayList<>();
     }
 
+    public FilePickerDialog(Context context, DialogProperties properties, int themeResId) {
+        super(context, themeResId);
+        this.context = context;
+        this.properties = properties;
+        filter = new ExtensionFilter(properties);
+        internalList = new ArrayList<>();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
