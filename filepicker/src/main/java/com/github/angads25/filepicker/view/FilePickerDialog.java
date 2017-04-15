@@ -113,6 +113,22 @@ public class FilePickerDialog extends Dialog implements AdapterView.OnItemClickL
                  *  from MarkedItemList singleton.
                  */
                 String paths[] = MarkedItemList.getSelectedPaths();
+                switch (properties.selection_type) {
+                    case DialogConfigs.FILE_AND_DIR_SELECT:
+                    case DialogConfigs.DIR_SELECT:
+                        int selectedSize = MarkedItemList.getFileCount();
+                        if(selectedSize == 0) {
+                            /* If people does not select anything return directory path. */
+                            paths = new String[1];
+                            paths[0] = dir_path.getText().toString();
+                        }
+                        break;
+                    case DialogConfigs.FILE_SELECT:
+                        break;
+                    default:
+                        break;
+                }
+
                 //NullPointerException fixed in v1.0.2
                 if (callbacks != null) {
                     callbacks.onSelectedFilePaths(paths);
