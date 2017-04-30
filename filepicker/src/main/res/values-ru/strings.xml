@@ -2,9 +2,7 @@
 <resources>
    <string name="cancel_button_label">Отмена</string>
    <string name="choose_button_label">Выбрать</string>
-   <string name="default_dir" translatable="false">/sdcard</string>
    <string name="label_parent_directory">Родительская папка</string>
    <string name="last_edit">Изменен: </string>
    <string name="error_dir_access">Нет доступа к папке</string>
-   <string name="label_parent_dir">...</string>
 </resources>
