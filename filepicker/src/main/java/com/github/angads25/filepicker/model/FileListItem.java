@@ -26,8 +26,8 @@ import java.util.Locale;
 /**
  * The model/container class holding file list data.
  */
-public class FileListItem implements Comparable<FileListItem>
-{   private String filename,location;
+public class FileListItem implements Comparable<FileListItem> {
+    private String filename,location;
     private boolean directory,marked;
     private long time;
 

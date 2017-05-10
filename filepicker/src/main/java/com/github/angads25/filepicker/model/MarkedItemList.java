@@ -24,7 +24,7 @@ import java.util.Set;
  * </p>
  */
 
-/*  SingleTon containing <Key,Value> pair of all the selected files.
+/** SingleTon containing <Key,Value> pair of all the selected files.
  *  Key: Directory/File path.
  *  Value: FileListItem Object.
  */

@@ -101,15 +101,17 @@ public class FilePickerDialog extends Dialog implements AdapterView.OnItemClickL
         setContentView(R.layout.dialog_main);
         listView = (ListView) findViewById(R.id.fileList);
         select = (Button) findViewById(R.id.select);
-        select.setEnabled(false);
-        int color;
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-            color = context.getResources().getColor(R.color.colorAccent, context.getTheme());
+        int size = MarkedItemList.getFileCount();
+        if (size == 0) {
+            select.setEnabled(false);
+            int color;
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+                color = context.getResources().getColor(R.color.colorAccent, context.getTheme());
+            } else {
+                color = context.getResources().getColor(R.color.colorAccent);
+            }
+            select.setTextColor(Color.argb(128, Color.red(color), Color.green(color), Color.blue(color)));
         }
-        else {
-            color = context.getResources().getColor(R.color.colorAccent);
-        }
-        select.setTextColor(Color.argb(128, Color.red(color), Color.green(color), Color.blue(color)));
         dname = (TextView) findViewById(R.id.dname);
         title = (TextView) findViewById(R.id.title);
         dir_path = (TextView) findViewById(R.id.dir_path);
@@ -208,8 +210,11 @@ public class FilePickerDialog extends Dialog implements AdapterView.OnItemClickL
     @Override
     protected void onStart() {
         super.onStart();
-        positiveBtnNameStr = positiveBtnNameStr == null ?
-                context.getResources().getString(R.string.choose_button_label) : positiveBtnNameStr;
+        positiveBtnNameStr = (
+                positiveBtnNameStr == null ?
+                context.getResources().getString(R.string.choose_button_label) :
+                positiveBtnNameStr
+        );
         select.setText(positiveBtnNameStr);
         if (Utility.checkStorageAccessPermissions(context)) {
             File currLoc;
@@ -244,32 +249,31 @@ public class FilePickerDialog extends Dialog implements AdapterView.OnItemClickL
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        {   if (internalList.size() > i) {
-                FileListItem fitem = internalList.get(i);
-                if (fitem.isDirectory()) {
-                    if (new File(fitem.getLocation()).canRead()) {
-                        File currLoc = new File(fitem.getLocation());
-                        dname.setText(currLoc.getName());
-                        setTitle();
-                        dir_path.setText(currLoc.getAbsolutePath());
-                        internalList.clear();
-                        if (!currLoc.getName().equals(properties.root.getName())) {
-                            FileListItem parent = new FileListItem();
-                            parent.setFilename(context.getString(R.string.label_parent_dir));
-                            parent.setDirectory(true);
-                            parent.setLocation(currLoc.getParentFile().getAbsolutePath());
-                            parent.setTime(currLoc.lastModified());
-                            internalList.add(parent);
-                        }
-                        internalList = Utility.prepareFileListEntries(internalList, currLoc, filter);
-                        mFileListAdapter.notifyDataSetChanged();
-                    } else {
-                        Toast.makeText(context, R.string.error_dir_access, Toast.LENGTH_SHORT).show();
+        if (internalList.size() > i) {
+            FileListItem fitem = internalList.get(i);
+            if (fitem.isDirectory()) {
+                if (new File(fitem.getLocation()).canRead()) {
+                    File currLoc = new File(fitem.getLocation());
+                    dname.setText(currLoc.getName());
+                    setTitle();
+                    dir_path.setText(currLoc.getAbsolutePath());
+                    internalList.clear();
+                    if (!currLoc.getName().equals(properties.root.getName())) {
+                        FileListItem parent = new FileListItem();
+                        parent.setFilename(context.getString(R.string.label_parent_dir));
+                        parent.setDirectory(true);
+                        parent.setLocation(currLoc.getParentFile().getAbsolutePath());
+                        parent.setTime(currLoc.lastModified());
+                        internalList.add(parent);
                     }
+                    internalList = Utility.prepareFileListEntries(internalList, currLoc, filter);
+                    mFileListAdapter.notifyDataSetChanged();
                 } else {
-                    CheckBox fmark = (CheckBox) view.findViewById(R.id.file_mark);
-                    fmark.performClick();
+                    Toast.makeText(context, R.string.error_dir_access, Toast.LENGTH_SHORT).show();
                 }
+            } else {
+                CheckBox fmark = (CheckBox) view.findViewById(R.id.file_mark);
+                fmark.performClick();
             }
         }
     }
@@ -322,7 +326,7 @@ public class FilePickerDialog extends Dialog implements AdapterView.OnItemClickL
                         if (temp.exists() && temp.isDirectory()) {
                             FileListItem item = new FileListItem();
                             item.setFilename(temp.getName());
-                            item.setDirectory(true);
+                            item.setDirectory(temp.isDirectory());
                             item.setMarked(true);
                             item.setTime(temp.lastModified());
                             item.setLocation(temp.getAbsolutePath());
@@ -334,7 +338,7 @@ public class FilePickerDialog extends Dialog implements AdapterView.OnItemClickL
                         if (temp.exists() && temp.isFile()) {
                             FileListItem item = new FileListItem();
                             item.setFilename(temp.getName());
-                            item.setDirectory(true);
+                            item.setDirectory(temp.isDirectory());
                             item.setMarked(true);
                             item.setTime(temp.lastModified());
                             item.setLocation(temp.getAbsolutePath());
@@ -346,7 +350,7 @@ public class FilePickerDialog extends Dialog implements AdapterView.OnItemClickL
                         if (temp.exists()) {
                             FileListItem item = new FileListItem();
                             item.setFilename(temp.getName());
-                            item.setDirectory(true);
+                            item.setDirectory(temp.isDirectory());
                             item.setMarked(true);
                             item.setTime(temp.lastModified());
                             item.setLocation(temp.getAbsolutePath());
@@ -362,7 +366,7 @@ public class FilePickerDialog extends Dialog implements AdapterView.OnItemClickL
                             if (temp.exists() && temp.isDirectory()) {
                                 FileListItem item = new FileListItem();
                                 item.setFilename(temp.getName());
-                                item.setDirectory(true);
+                                item.setDirectory(temp.isDirectory());
                                 item.setMarked(true);
                                 item.setTime(temp.lastModified());
                                 item.setLocation(temp.getAbsolutePath());
@@ -375,7 +379,7 @@ public class FilePickerDialog extends Dialog implements AdapterView.OnItemClickL
                             if (temp.exists() && temp.isFile()) {
                                 FileListItem item = new FileListItem();
                                 item.setFilename(temp.getName());
-                                item.setDirectory(true);
+                                item.setDirectory(temp.isDirectory());
                                 item.setMarked(true);
                                 item.setTime(temp.lastModified());
                                 item.setLocation(temp.getAbsolutePath());
@@ -388,7 +392,7 @@ public class FilePickerDialog extends Dialog implements AdapterView.OnItemClickL
                             if (temp.exists() && (temp.isFile() || temp.isDirectory())) {
                                 FileListItem item = new FileListItem();
                                 item.setFilename(temp.getName());
-                                item.setDirectory(true);
+                                item.setDirectory(temp.isDirectory());
                                 item.setMarked(true);
                                 item.setTime(temp.lastModified());
                                 item.setLocation(temp.getAbsolutePath());
