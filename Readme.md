@@ -93,7 +93,7 @@ Marshmallow and above requests for the permission on runtime. You should overrid
 
     That's It. You are good to proceed further.
 
-###FilePickerPreference
+### FilePickerPreference
 
 1. Start by declaring [FilePickerPreference](https://github.com/angads25/android-filepicker/wiki/filepicker-preference) in your settings xml file as:
 
@@ -140,7 +140,7 @@ Marshmallow and above requests for the permission on runtime. You should overrid
 
     That's It. You are good to move further.
 
-###Important:
+### Important:
 * `defaultValue`, `error_dir`, `root_dir`, `offset_dir` must have valid directory/file paths.
 * `defaultValue` paths should end with ':'.
 * `defaultValue` can have multiple paths, there should be a ':' between two paths.
@@ -148,40 +148,40 @@ Marshmallow and above requests for the permission on runtime. You should overrid
 * `extensions` should end with ':' , also have ':' between two extensions.
 eg. /sdcard:/mnt:
 
-###Note:
+### Note:
 [FilePickerPreference](https://github.com/angads25/android-filepicker/wiki/filepicker-preference) stores selected directories/files as a `String`. It delimits multiple files/directories using ':' `char`.
 
-##Read more on implementation [here](https://github.com/Angads25/android-filepicker/wiki/Implementation).
+## Read more on implementation [here](https://github.com/Angads25/android-filepicker/wiki/Implementation).
 
 ### Screenshot
 
-####Theme.Black
+#### Theme.Black
 
 ![Screenshot 1](https://raw.githubusercontent.com/Angads25/android-filepicker/master/theme_black.png)
 
-####Theme.Holo
+#### Theme.Holo
 
 ![Screenshot 2](https://raw.githubusercontent.com/Angads25/android-filepicker/master/theme_holo.png)
 
-####Theme.Holo.Light
+#### Theme.Holo.Light
 
 ![Screenshot 3](https://raw.githubusercontent.com/Angads25/android-filepicker/master/theme_holo_light.png)
 
-####Theme.Material
+#### Theme.Material
 
 ![Screenshot 4](https://raw.githubusercontent.com/Angads25/android-filepicker/master/theme_material.png)
 
-####Theme.Device.Default
+#### Theme.Device.Default
 
 ![Screenshot 5](https://raw.githubusercontent.com/Angads25/android-filepicker/master/theme_device_default.png)
 
 ### Performance
 
-####GPU Overdraw
+#### GPU Overdraw
 
 ![Performance 1](https://raw.githubusercontent.com/Angads25/android-filepicker/master/performance_overdraw.png)
 
-####GPU Rendering
+#### GPU Rendering
 
 ![Performance 2](https://raw.githubusercontent.com/Angads25/android-filepicker/master/profile_gpu_rendering.png)
 
