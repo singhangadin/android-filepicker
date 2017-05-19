@@ -4,4 +4,5 @@
    <string name="choose_button_label">選擇</string>
    <string name="label_parent_directory">上層資料夾</string>
    <string name="last_edit">最後修改：</string>
+   <string name="error_dir_access">Directory cannot be accessed</string>
 </resources>

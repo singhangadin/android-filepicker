@@ -24,36 +24,36 @@ import java.util.Set;
  * </p>
  */
 
-/** SingleTon containing <Key,Value> pair of all the selected files.
+/*  SingleTon containing <Key,Value> pair of all the selected files.
  *  Key: Directory/File path.
  *  Value: FileListItem Object.
  */
 public class MarkedItemList {
     private static HashMap<String,FileListItem> ourInstance = new HashMap<>();
 
-    public static void addSelectedItem(FileListItem item)
-    {   ourInstance.put(item.getLocation(),item);
-    }
-
-    public static void removeSelectedItem(String key)
-    {   ourInstance.remove(key);
-    }
-
-    public static boolean hasItem(String key)
-    {   return ourInstance.containsKey(key);
-    }
-
-    public static void clearSelectionList()
-    {   ourInstance.clear();
-    }
-
-    public static void addSingleFile(FileListItem item)
-    {   ourInstance.clear();
+    public static void addSelectedItem(FileListItem item) {
         ourInstance.put(item.getLocation(),item);
     }
 
-    public static String[] getSelectedPaths()
-    {   Set<String> paths=ourInstance.keySet();
+    public static void removeSelectedItem(String key) {
+        ourInstance.remove(key);
+    }
+
+    public static boolean hasItem(String key) {
+        return ourInstance.containsKey(key);
+    }
+
+    public static void clearSelectionList() {
+        ourInstance = new HashMap<>();
+    }
+
+    public static void addSingleFile(FileListItem item) {
+        ourInstance = new HashMap<>();
+        ourInstance.put(item.getLocation(),item);
+    }
+
+    public static String[] getSelectedPaths() {
+        Set<String> paths = ourInstance.keySet();
         String fpaths[]=new String[paths.size()];
         int i=0;
         for(String path:paths)
@@ -62,10 +62,7 @@ public class MarkedItemList {
         return fpaths;
     }
 
-    public static int getFileCount()
-    {   return ourInstance.size();
-    }
-
-    private MarkedItemList() {
+    public static int getFileCount() {
+        return ourInstance.size();
     }
 }

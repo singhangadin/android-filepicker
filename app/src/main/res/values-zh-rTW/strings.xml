@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+   <string name="app_name">FilePickerDemo</string>
+   <string name="choose_button_label">選擇</string>
+   <string name="show_dialog">Show Dialog</string>
+   <string name="title_activity_settings">Settings</string>
+</resources>

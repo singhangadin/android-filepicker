@@ -173,7 +173,8 @@ public class FilePickerDialog extends Dialog implements AdapterView.OnItemClickL
                     String button_label = positiveBtnNameStr + " (" + size + ") ";
                     select.setText(button_label);
                 }
-                if (properties.selection_mode == DialogConfigs.SINGLE_MODE) {   /*  If a single file has to be selected, clear the previously checked
+                if (properties.selection_mode == DialogConfigs.SINGLE_MODE) {
+                    /*  If a single file has to be selected, clear the previously checked
                      *  checkbox from the list.
                      */
                     mFileListAdapter.notifyDataSetChanged();
@@ -187,8 +188,9 @@ public class FilePickerDialog extends Dialog implements AdapterView.OnItemClickL
     }
 
     private void setTitle() {
-        if (title == null || dname == null)
+        if (title == null || dname == null) {
             return;
+        }
         if (titleStr != null) {
             if (title.getVisibility() == View.INVISIBLE) {
                 title.setVisibility(View.VISIBLE);

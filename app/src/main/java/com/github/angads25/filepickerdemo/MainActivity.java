@@ -134,22 +134,22 @@ public class MainActivity extends AppCompatActivity
                     properties.extensions=null;
                 }
                 String foffset=root.getText().toString();
-                if(foffset.length()>0||!foffset.equals(""))
-                {   //Setting Parent Directory.
+                if(foffset.length()>0||!foffset.equals("")) {
+                    //Setting Parent Directory.
                     properties.root=new File(foffset);
                 }
-                else
-                {   //Setting Parent Directory to Default SDCARD.
+                else {
+                    //Setting Parent Directory to Default SDCARD.
                     properties.root=new File(DialogConfigs.DEFAULT_DIR);
                 }
 
                 String fset=offset.getText().toString();
-                if(fset.length()>0||!fset.equals(""))
-                {   //Setting Offset Directory.
+                if(fset.length()>0||!fset.equals("")) {
+                    //Setting Offset Directory.
                     properties.offset=new File(fset);
                 }
-                else
-                {   //Setting Parent Directory to Default SDCARD.
+                else {
+                    //Setting Parent Directory to Default SDCARD.
                     properties.offset=new File(DialogConfigs.DEFAULT_DIR);
                 }
 
@@ -184,8 +184,8 @@ public class MainActivity extends AppCompatActivity
             public void onSelectedFilePaths(String[] files) {
                 //files is the array of paths selected by the App User.
                 listItem.clear();
-                for(String path:files)
-                {   File file=new File(path);
+                for(String path:files) {
+                    File file=new File(path);
                     ListItem item=new ListItem();
                     item.setName(file.getName());
                     item.setPath(file.getAbsolutePath());
