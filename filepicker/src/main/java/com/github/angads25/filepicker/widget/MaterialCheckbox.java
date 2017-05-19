@@ -4,9 +4,13 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.RectF;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.view.View;
+
+import com.github.angads25.filepicker.R;
 
 /**
  * <p>
@@ -15,35 +19,37 @@ import android.view.View;
  */
 
 public class MaterialCheckbox extends View {
+    private Context context;
     private int width, height, minDim;
     private Paint paint;
     private RectF bounds;
     private boolean checked;
-    private View.OnClickListener onClickListener;
     private OnCheckedChangeListener onCheckedChangeListener;
+    private Path tick;
+    private float paintStroke, paintStyle, paintJoint;
 
     public MaterialCheckbox(Context context) {
         super(context);
-        initView();
+        initView(context);
     }
 
     public MaterialCheckbox(Context context, AttributeSet attrs) {
         super(context, attrs);
-        initView();
+        initView(context);
     }
 
     public MaterialCheckbox(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        initView();
+        initView(context);
     }
 
-    public void initView() {
+    public void initView(Context context) {
+        this.context = context;
         checked = false;
+        tick = new Path();
         paint = new Paint();
-        paint.setAntiAlias(true);
         bounds = new RectF();
-
-        onClickListener = new OnClickListener() {
+        OnClickListener onClickListener = new OnClickListener() {
             @Override
             public void onClick(View v) {
                 setChecked(!checked);
@@ -55,15 +61,37 @@ public class MaterialCheckbox extends View {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-//        canvas.drawRoundRect(bounds, 3, 4, paint);
+        if(isChecked()) {
+            paint.reset();
+            paint.setAntiAlias(true);
+            bounds.set(minDim / 10, minDim / 10, minDim - (minDim/10), minDim - (minDim/10));
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                paint.setColor(getResources().getColor(R.color.colorAccent, context.getTheme()));
+            }
+            else {
+                paint.setColor(getResources().getColor(R.color.colorAccent));
+            }
+            canvas.drawRoundRect(bounds, minDim / 8, minDim / 8, paint);
 
-        if(checked) {
-            canvas.drawColor(Color.parseColor("#FF0000"));
+            paint.setColor(Color.parseColor("#FFFFFF"));
+            paint.setStrokeWidth(minDim/10);
+            paint.setStyle(Paint.Style.STROKE);
+            paint.setStrokeJoin(Paint.Join.BEVEL);
+            canvas.drawPath(tick, paint);
         }
         else {
-            canvas.drawColor(Color.parseColor("#FFFFFF"));
+            paint.reset();
+            paint.setAntiAlias(true);
+            bounds.set(minDim / 10, minDim / 10, minDim - (minDim/10), minDim - (minDim/10));
+            paint.setColor(Color.parseColor("#C1C1C1"));
+            canvas.drawRoundRect(bounds, minDim / 8, minDim / 8, paint);
+
+            bounds.set(minDim / 5, minDim / 5, minDim - (minDim/5), minDim - (minDim/5));
+            paint.setColor(Color.parseColor("#FFFFFF"));
+            canvas.drawRect(bounds, paint);
         }
     }
 
@@ -73,6 +101,12 @@ public class MaterialCheckbox extends View {
         height = getMeasuredHeight();
         width = getMeasuredWidth();
         minDim = Math.min(width, height);
+        bounds.set(minDim / 10, minDim / 10, minDim - (minDim/10), minDim - (minDim/10));
+        tick.moveTo(minDim / 4, minDim / 2);
+        tick.lineTo(minDim / 2.5f, minDim - (minDim / 3));
+
+        tick.moveTo(minDim / 2.75f, minDim - (minDim / 3.25f));
+        tick.lineTo(minDim - (minDim / 4), minDim / 3);
         setMeasuredDimension(width, height);
     }
 
@@ -85,7 +119,7 @@ public class MaterialCheckbox extends View {
         invalidate();
     }
 
-    public void addOnCheckedChangedListener(OnCheckedChangeListener onCheckedChangeListener) {
+    public void setOnCheckedChangedListener(OnCheckedChangeListener onCheckedChangeListener) {
         this.onCheckedChangeListener = onCheckedChangeListener;
     }
 }

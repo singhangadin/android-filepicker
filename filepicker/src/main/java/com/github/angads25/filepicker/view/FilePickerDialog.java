@@ -27,7 +27,6 @@ import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,6 +41,7 @@ import com.github.angads25.filepicker.model.FileListItem;
 import com.github.angads25.filepicker.model.MarkedItemList;
 import com.github.angads25.filepicker.utils.ExtensionFilter;
 import com.github.angads25.filepicker.utils.Utility;
+import com.github.angads25.filepicker.widget.MaterialCheckbox;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -274,7 +274,7 @@ public class FilePickerDialog extends Dialog implements AdapterView.OnItemClickL
                     Toast.makeText(context, R.string.error_dir_access, Toast.LENGTH_SHORT).show();
                 }
             } else {
-                CheckBox fmark = (CheckBox) view.findViewById(R.id.file_mark);
+                MaterialCheckbox fmark = (MaterialCheckbox) view.findViewById(R.id.file_mark);
                 fmark.performClick();
             }
         }

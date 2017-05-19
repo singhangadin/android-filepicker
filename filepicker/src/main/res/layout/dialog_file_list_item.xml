@@ -45,11 +45,11 @@
             style="?android:attr/textViewStyle"/>
     </LinearLayout>
 
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <com.github.angads25.filepicker.widget.MaterialCheckbox
+        android:layout_width="@dimen/checkbox_dimens"
+        android:layout_height="@dimen/checkbox_dimens"
         android:layout_gravity="center_vertical"
-        android:layout_margin="@dimen/activity_margin"
-        android:id="@+id/file_mark"
-        style="?android:attr/checkboxStyle" />
+        android:layout_marginEnd="@dimen/checkbox_margin"
+        android:layout_marginRight="@dimen/checkbox_margin"
+        android:id="@+id/file_mark"/>
 </LinearLayout>

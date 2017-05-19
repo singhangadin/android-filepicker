@@ -24,7 +24,6 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.BaseAdapter;
-import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -35,6 +34,8 @@ import com.github.angads25.filepicker.model.DialogConfigs;
 import com.github.angads25.filepicker.model.DialogProperties;
 import com.github.angads25.filepicker.model.FileListItem;
 import com.github.angads25.filepicker.model.MarkedItemList;
+import com.github.angads25.filepicker.widget.MaterialCheckbox;
+import com.github.angads25.filepicker.widget.OnCheckedChangeListener;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -59,7 +60,7 @@ public class FileListAdapter extends BaseAdapter{
     public FileListAdapter(ArrayList<FileListItem> listItem, Context context, DialogProperties properties) {
         this.listItem = listItem;
         this.context = context;
-        this.properties=properties;
+        this.properties = properties;
     }
 
     @Override
@@ -121,7 +122,7 @@ public class FileListAdapter extends BaseAdapter{
             else
             {   holder.type_icon.setColorFilter(context.getResources().getColor(R.color.colorAccent));
             }
-            if(properties.selection_type==DialogConfigs.DIR_SELECT)
+            if(properties.selection_type == DialogConfigs.DIR_SELECT)
             {   holder.fmark.setVisibility(View.INVISIBLE);
             }
             else
@@ -150,10 +151,28 @@ public class FileListAdapter extends BaseAdapter{
                 holder.fmark.setChecked(false);
             }
         }
-        holder.fmark.setOnClickListener(new View.OnClickListener() {
+//        holder.fmark.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                item.setMarked(!item.isMarked());
+//                if (item.isMarked()) {
+//                    if(properties.selection_mode == DialogConfigs.MULTI_MODE) {
+//                        MarkedItemList.addSelectedItem(item);
+//                    }
+//                    else {
+//                        MarkedItemList.addSingleFile(item);
+//                    }
+//                }
+//                else {
+//                    MarkedItemList.removeSelectedItem(item.getLocation());
+//                }
+//                notifyItemChecked.notifyCheckBoxIsClicked();
+//            }
+//        });
+        holder.fmark.setOnCheckedChangedListener(new OnCheckedChangeListener() {
             @Override
-            public void onClick(View view) {
-                item.setMarked(!item.isMarked());
+            public void onCheckedChanged(MaterialCheckbox checkbox, boolean isChecked) {
+                item.setMarked(isChecked);
                 if (item.isMarked()) {
                     if(properties.selection_mode == DialogConfigs.MULTI_MODE) {
                         MarkedItemList.addSelectedItem(item);
@@ -174,13 +193,13 @@ public class FileListAdapter extends BaseAdapter{
     private class ViewHolder
     {   ImageView type_icon;
         TextView name,type;
-        CheckBox fmark;
+        MaterialCheckbox fmark;
 
         ViewHolder(View itemView) {
             name=(TextView)itemView.findViewById(R.id.fname);
             type=(TextView)itemView.findViewById(R.id.ftype);
             type_icon=(ImageView)itemView.findViewById(R.id.image_type);
-            fmark=(CheckBox) itemView.findViewById(R.id.file_mark);
+            fmark=(MaterialCheckbox) itemView.findViewById(R.id.file_mark);
         }
     }
 
