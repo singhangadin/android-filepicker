@@ -1,3 +1,19 @@
+/*
+ * Copyright (C) 2017 Angad Singh
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.github.angads25.filepicker.widget;
 
 import android.content.Context;
@@ -20,13 +36,12 @@ import com.github.angads25.filepicker.R;
 
 public class MaterialCheckbox extends View {
     private Context context;
-    private int width, height, minDim;
+    private int minDim;
     private Paint paint;
     private RectF bounds;
     private boolean checked;
     private OnCheckedChangeListener onCheckedChangeListener;
     private Path tick;
-    private float paintStroke, paintStyle, paintJoint;
 
     public MaterialCheckbox(Context context) {
         super(context);
@@ -98,8 +113,8 @@ public class MaterialCheckbox extends View {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        height = getMeasuredHeight();
-        width = getMeasuredWidth();
+        int height = getMeasuredHeight();
+        int width = getMeasuredWidth();
         minDim = Math.min(width, height);
         bounds.set(minDim / 10, minDim / 10, minDim - (minDim/10), minDim - (minDim/10));
         tick.moveTo(minDim / 4, minDim / 2);

@@ -151,24 +151,7 @@ public class FileListAdapter extends BaseAdapter{
                 holder.fmark.setChecked(false);
             }
         }
-//        holder.fmark.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                item.setMarked(!item.isMarked());
-//                if (item.isMarked()) {
-//                    if(properties.selection_mode == DialogConfigs.MULTI_MODE) {
-//                        MarkedItemList.addSelectedItem(item);
-//                    }
-//                    else {
-//                        MarkedItemList.addSingleFile(item);
-//                    }
-//                }
-//                else {
-//                    MarkedItemList.removeSelectedItem(item.getLocation());
-//                }
-//                notifyItemChecked.notifyCheckBoxIsClicked();
-//            }
-//        });
+        
         holder.fmark.setOnCheckedChangedListener(new OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(MaterialCheckbox checkbox, boolean isChecked) {

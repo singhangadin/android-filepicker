@@ -16,7 +16,7 @@
 
 package com.github.angads25.filepicker.controller;
 
-/**<p>
+/* <p>
  * Created by Angad Singh on 10-07-2016.
  * </p>
  */

@@ -16,7 +16,7 @@
         android:layout_marginStart="8dp"
         android:scaleType="centerInside"
         android:id="@+id/image_type"
-        android:layout_gravity="center" />
+        android:layout_gravity="center"/>
 
     <LinearLayout
         android:orientation="vertical"
@@ -46,10 +46,10 @@
     </LinearLayout>
 
     <com.github.angads25.filepicker.widget.MaterialCheckbox
+        android:id="@+id/file_mark"
         android:layout_width="@dimen/checkbox_dimens"
         android:layout_height="@dimen/checkbox_dimens"
         android:layout_gravity="center_vertical"
         android:layout_marginEnd="@dimen/checkbox_margin"
-        android:layout_marginRight="@dimen/checkbox_margin"
-        android:id="@+id/file_mark"/>
+        android:layout_marginRight="@dimen/checkbox_margin"/>
 </LinearLayout>

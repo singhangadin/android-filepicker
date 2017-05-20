@@ -16,7 +16,7 @@
 
 package com.github.angads25.filepicker.model;
 
-/**<p>
+/* <p>
  * Created by Angad Singh on 09-07-2016.
  * </p>
  */

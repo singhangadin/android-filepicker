@@ -159,14 +159,16 @@ public class MainActivity extends AppCompatActivity
                 properties.error_dir=new File("/mnt");
                 //Set new properties of dialog.
                 dialog.setProperties(properties);
-                ArrayList<String> paths=new ArrayList<>();
-                paths.add("/mnt/sdcard/.VOD");
-                paths.add("/mnt/sdcard/.VOD/100.jpg");
-                paths.add("/mnt/sdcard/.VOD/1000.jpg");
-                paths.add("/mnt/sdcard/.VOD/1010.jpg");
-                paths.add("/mnt/sdcard/.VOD/1020.jpg");
-                paths.add("/mnt/sdcard/.VOD/1070.jpg");
-                dialog.markFiles(paths);
+
+//                Pre marking of files in Dialog
+//                ArrayList<String> paths=new ArrayList<>();
+//                paths.add("/mnt/sdcard/.VOD");
+//                paths.add("/mnt/sdcard/.VOD/100.jpg");
+//                paths.add("/mnt/sdcard/.VOD/1000.jpg");
+//                paths.add("/mnt/sdcard/.VOD/1010.jpg");
+//                paths.add("/mnt/sdcard/.VOD/1020.jpg");
+//                paths.add("/mnt/sdcard/.VOD/1070.jpg");
+//                dialog.markFiles(paths);
             }
         });
 
