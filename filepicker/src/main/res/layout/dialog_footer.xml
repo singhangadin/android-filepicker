@@ -17,7 +17,7 @@
 
     <Button
         style="?android:attr/buttonStyle"
-        android:background="@null"
+        android:background="?android:selectableItemBackground"
         android:text="@string/cancel_button_label"
         android:id="@+id/cancel"
         android:textStyle="bold"
@@ -29,7 +29,7 @@
 
     <Button
         style="?android:attr/buttonStyle"
-        android:background="@null"
+        android:background="?android:selectableItemBackground"
         android:text="@string/choose_button_label"
         android:textStyle="bold"
         android:id="@+id/select"
