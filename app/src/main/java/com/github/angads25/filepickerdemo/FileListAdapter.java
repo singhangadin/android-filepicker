@@ -65,5 +65,4 @@ public class FileListAdapter extends BaseAdapter{
         path.setText(listItems.get(i).getPath());
         return view;
     }
-
 }
