@@ -400,7 +400,8 @@ public class FilePickerDialog extends Dialog implements AdapterView.OnItemClickL
         if (internalList.size() > 0) {
             FileListItem fitem = internalList.get(0);
             File currLoc = new File(fitem.getLocation());
-            if (currentDirName.equals(properties.root.getName())) {
+            if (currentDirName.equals(properties.root.getName()) ||
+                    !currLoc.canRead()) {
                 super.onBackPressed();
             } else {
                 dname.setText(currLoc.getName());
