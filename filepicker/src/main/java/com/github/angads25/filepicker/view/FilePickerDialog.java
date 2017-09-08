@@ -62,7 +62,7 @@ public class FilePickerDialog extends Dialog implements AdapterView.OnItemClickL
     private ArrayList<FileListItem> internalList;
     private ExtensionFilter filter;
     private FileListAdapter mFileListAdapter;
-    private Button select;
+    private Button select, cancel;
     private String titleStr = null;
     private String positiveBtnNameStr = null;
     private String negativeBtnNameStr = null;
@@ -117,7 +117,7 @@ public class FilePickerDialog extends Dialog implements AdapterView.OnItemClickL
         dname = (TextView) findViewById(R.id.dname);
         title = (TextView) findViewById(R.id.title);
         dir_path = (TextView) findViewById(R.id.dir_path);
-        Button cancel = (Button) findViewById(R.id.cancel);
+        final Button cancel = (Button) findViewById(R.id.cancel);
         if (negativeBtnNameStr != null) {
             cancel.setText(negativeBtnNameStr);
         }
@@ -162,6 +162,7 @@ public class FilePickerDialog extends Dialog implements AdapterView.OnItemClickL
                     else {
                         color = context.getResources().getColor(colorInactive);
                     }
+                    cancel.setTextColor(Color.argb(128, Color.red(color), Color.green(color), Color.blue(color)));
                     select.setTextColor(Color.argb(128, Color.red(color), Color.green(color), Color.blue(color)));
                     select.setText(positiveBtnNameStr);
                 } else {
@@ -432,13 +433,6 @@ public class FilePickerDialog extends Dialog implements AdapterView.OnItemClickL
             positiveBtnNameStr = positiveBtnNameStr == null ?
                     context.getResources().getString(R.string.choose_button_label) : positiveBtnNameStr;
             select.setText(positiveBtnNameStr);
-            int size = MarkedItemList.getFileCount();
-            if (size == 0) {
-                select.setText(positiveBtnNameStr);
-            } else {
-                String button_label = positiveBtnNameStr + " (" + size + ") ";
-                select.setText(button_label);
-            }
         }
     }
 
