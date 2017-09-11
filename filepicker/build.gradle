@@ -1,4 +1,15 @@
+buildscript {
+    repositories {
+        jcenter()
+        maven { url 'https://maven.infullmobile.com/public'}
+    }
+    dependencies {
+        classpath 'com.infullmobile.gradle:mavenplugin:1.0.2'
+    }
+}
+
 apply plugin: 'com.android.library'
+apply plugin: 'com.infullmobile.gradle.mavenplugin'
 
 ext {
     bintrayRepo = 'maven'
@@ -47,5 +58,11 @@ android {
     return null
 }
 
-apply from: 'https://raw.githubusercontent.com/angads25/JCenter/master/installv1.gradle'
-apply from: 'https://raw.githubusercontent.com/angads25/JCenter/master/bintrayv1.gradle'
+ifmmaven {
+    artifactID "${artifact}"
+    group "${publishedGroupId}"
+
+    version "${libraryVersion}"
+    description "${libraryDescription}"
+    buildType "release"
+}
