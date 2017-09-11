@@ -56,6 +56,8 @@ public class FileListAdapter extends BaseAdapter{
     private Context context;
     private DialogProperties properties;
     private NotifyItemChecked notifyItemChecked;
+    public int colorActive = R.color.colorAccent;
+    public int colorInactive = R.color.colorAccent;
 
     public FileListAdapter(ArrayList<FileListItem> listItem, Context context, DialogProperties properties) {
         this.listItem = listItem;
@@ -183,6 +185,8 @@ public class FileListAdapter extends BaseAdapter{
             type=(TextView)itemView.findViewById(R.id.ftype);
             type_icon=(ImageView)itemView.findViewById(R.id.image_type);
             fmark=(MaterialCheckbox) itemView.findViewById(R.id.file_mark);
+            fmark.colorActive = colorActive;
+            fmark.colorInactive = colorInactive;
         }
     }
 
