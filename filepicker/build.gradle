@@ -1,4 +1,17 @@
+buildscript {
+    repositories {
+        jcenter()
+        maven { url 'https://maven.infullmobile.com/public'}
+    }
+    dependencies {
+        classpath 'com.infullmobile.gradle:mavenplugin:1.0.2'
+        classpath 'com.infullmobile:toolkit:0.3.24'
+    }
+}
+
 apply plugin: 'com.android.library'
+apply plugin: 'com.infullmobile.toolkit'
+apply plugin: 'com.infullmobile.gradle.mavenplugin'
 
 ext {
     bintrayRepo = 'maven'
@@ -13,8 +26,6 @@ ext {
     siteUrl = 'https://github.com/angads25/android-filepicker'
     gitUrl = 'https://github.com/angads25/android-filepicker.git'
 
-    libraryVersion = '1.1.1'
-
     developerId = 'angads25'
     developerName = 'Angad Singh'
     developerEmail = 'angads25@gmail.com'
@@ -25,27 +36,20 @@ ext {
 }
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.3"
-
-    defaultConfig {
-        minSdkVersion 9
-        targetSdkVersion 25
-        versionCode 12
-        versionName "1.1.1"
-    }
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
     lintOptions {
         abortOnError false
     }
-
-    return null
 }
 
-apply from: 'https://raw.githubusercontent.com/angads25/JCenter/master/installv1.gradle'
-apply from: 'https://raw.githubusercontent.com/angads25/JCenter/master/bintrayv1.gradle'
+ifmmaven {
+    artifactID "${artifact}"
+    group "${publishedGroupId}"
+
+    description "${libraryDescription}"
+    buildType "release"
+}
