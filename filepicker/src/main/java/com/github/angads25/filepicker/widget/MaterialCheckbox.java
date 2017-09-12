@@ -26,8 +26,6 @@ import android.os.Build;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.github.angads25.filepicker.R;
-
 /**
  * <p>
  * Created by Angad on 19-05-2017.
@@ -42,6 +40,9 @@ public class MaterialCheckbox extends View {
     private boolean checked;
     private OnCheckedChangeListener onCheckedChangeListener;
     private Path tick;
+
+    public int colorActive;
+    public int colorInactive;
 
     public MaterialCheckbox(Context context) {
         super(context);
@@ -84,10 +85,10 @@ public class MaterialCheckbox extends View {
             paint.setAntiAlias(true);
             bounds.set(minDim / 10, minDim / 10, minDim - (minDim/10), minDim - (minDim/10));
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                paint.setColor(getResources().getColor(R.color.colorAccent, context.getTheme()));
+                paint.setColor(getResources().getColor(colorActive, context.getTheme()));
             }
             else {
-                paint.setColor(getResources().getColor(R.color.colorAccent));
+                paint.setColor(getResources().getColor(colorActive));
             }
             canvas.drawRoundRect(bounds, minDim / 8, minDim / 8, paint);
 
@@ -101,7 +102,12 @@ public class MaterialCheckbox extends View {
             paint.reset();
             paint.setAntiAlias(true);
             bounds.set(minDim / 10, minDim / 10, minDim - (minDim/10), minDim - (minDim/10));
-            paint.setColor(Color.parseColor("#C1C1C1"));
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                paint.setColor(getResources().getColor(colorInactive, context.getTheme()));
+            }
+            else {
+                paint.setColor(getResources().getColor(colorInactive));
+            }
             canvas.drawRoundRect(bounds, minDim / 8, minDim / 8, paint);
 
             bounds.set(minDim / 5, minDim / 5, minDim - (minDim/5), minDim - (minDim/5));
