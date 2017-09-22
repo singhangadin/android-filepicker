@@ -136,7 +136,7 @@ public class FilePickerDialog extends Dialog implements AdapterView.OnItemClickL
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dismiss();
+                cancel();
             }
         });
         mFileListAdapter = new FileListAdapter(internalList, context, properties);
