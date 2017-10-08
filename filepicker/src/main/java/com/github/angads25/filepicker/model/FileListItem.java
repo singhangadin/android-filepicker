@@ -78,6 +78,14 @@ public class FileListItem implements Comparable<FileListItem> {
 
     @Override
     public int compareTo(FileListItem fileListItem) {
+        /* Let "..." always be the first. */
+        if (this.filename.equals("...")) {
+            return -1;
+        }
+        if (fileListItem.filename.equals("...")) {
+            return 1;
+        }
+
         if (fileListItem.isDirectory() && !isDirectory()) {
             /* If the comparison is between a directory and a file, return the directory. */
             return 1;
