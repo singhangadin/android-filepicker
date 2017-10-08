@@ -61,4 +61,12 @@ public abstract class DialogConfigs {
      *  mount point.
      */
     public static final String DEFAULT_DIR = DIRECTORY_SEPERATOR + STORAGE_DIR;
+
+    /*  FILE_ORDER*/
+
+    /* FILE_ORDER specifies that the order of file list. */
+    public static final int FILE_ORDER_NAME_ASCENDING = 0;
+    public static final int FILE_ORDER_NAME_DESCENDING = 1;
+    public static final int FILE_ORDER_DATE_ASCENDING = 2;
+    public static final int FILE_ORDER_DATE_DESCENDING = 3;
 }

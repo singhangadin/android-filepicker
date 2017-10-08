@@ -237,7 +237,7 @@ public class FilePickerDialog extends Dialog implements AdapterView.OnItemClickL
             dname.setText(currLoc.getName());
             dir_path.setText(currLoc.getAbsolutePath());
             setTitle();
-            internalList = Utility.prepareFileListEntries(internalList, currLoc, filter);
+            internalList = Utility.prepareFileListEntries(internalList, currLoc, filter, properties.file_order);
             mFileListAdapter.notifyDataSetChanged();
             listView.setOnItemClickListener(this);
         }
@@ -268,7 +268,7 @@ public class FilePickerDialog extends Dialog implements AdapterView.OnItemClickL
                         parent.setTime(currLoc.lastModified());
                         internalList.add(parent);
                     }
-                    internalList = Utility.prepareFileListEntries(internalList, currLoc, filter);
+                    internalList = Utility.prepareFileListEntries(internalList, currLoc, filter, properties.file_order);
                     mFileListAdapter.notifyDataSetChanged();
                 } else {
                     Toast.makeText(context, R.string.error_dir_access, Toast.LENGTH_SHORT).show();
@@ -450,7 +450,7 @@ public class FilePickerDialog extends Dialog implements AdapterView.OnItemClickL
                     parent.setTime(currLoc.lastModified());
                     internalList.add(parent);
                 }
-                internalList = Utility.prepareFileListEntries(internalList, currLoc, filter);
+                internalList = Utility.prepareFileListEntries(internalList, currLoc, filter, properties.file_order);
                 mFileListAdapter.notifyDataSetChanged();
             }
             setTitle();

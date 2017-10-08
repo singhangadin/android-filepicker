@@ -64,7 +64,7 @@ public class Utility {
      *
      * @return ArrayList of FileListItem containing file info of current directory.
      */
-    public static ArrayList<FileListItem> prepareFileListEntries(ArrayList<FileListItem> internalList, File inter, ExtensionFilter filter)
+    public static ArrayList<FileListItem> prepareFileListEntries(ArrayList<FileListItem> internalList, File inter, ExtensionFilter filter, int file_order)
     {   try {
             //Check for each and every directory/file in 'inter' directory.
             //Filter by extension using 'filter' reference.
@@ -78,6 +78,7 @@ public class Utility {
                     item.setDirectory(name.isDirectory());
                     item.setLocation(name.getAbsolutePath());
                     item.setTime(name.lastModified());
+                    item.setOrder(file_order);
                     //Add row to the List of directories/files
                     internalList.add(item);
                 }

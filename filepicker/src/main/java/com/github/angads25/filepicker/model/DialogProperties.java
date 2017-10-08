@@ -74,6 +74,13 @@ public class DialogProperties {
      */
     public String[] extensions;
 
+    /** Specifics the file order of file list.
+     *
+     *  FILE_ORDER_NAME_ASCENDING, FILE_ORDER_NAME_DESCENDING, FILE_ORDER_DATE_ASCENDING and
+     *  FILE_ORDER_DATE_DESCENDING are the four types.
+     */
+    public int file_order;
+
     public DialogProperties() {
         selection_mode = DialogConfigs.SINGLE_MODE;
         selection_type = DialogConfigs.FILE_SELECT;
@@ -81,5 +88,6 @@ public class DialogProperties {
         error_dir = new File(DialogConfigs.DEFAULT_DIR);
         offset = new File(DialogConfigs.DEFAULT_DIR);
         extensions = null;
+        file_order = DialogConfigs.FILE_ORDER_NAME_ASCENDING;
     }
 }

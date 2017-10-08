@@ -30,6 +30,7 @@ public class FileListItem implements Comparable<FileListItem> {
     private String filename,location;
     private boolean directory,marked;
     private long time;
+    private int fileOrder;
 
     public String getFilename() {
         return filename;
@@ -71,25 +72,32 @@ public class FileListItem implements Comparable<FileListItem> {
         this.marked = marked;
     }
 
+    public void setOrder(int fileOrder) {
+        this.fileOrder = fileOrder;
+    }
+
     @Override
     public int compareTo(FileListItem fileListItem) {
-        if(fileListItem.isDirectory()&&isDirectory())
-        {   //If the comparison is between two directories, return the directory with
-            //alphabetic order first.
-            return filename.toLowerCase().compareTo(fileListItem.getFilename().toLowerCase(Locale.getDefault()));
-        }
-        else if(!fileListItem.isDirectory()&&!isDirectory())
-        {   //If the comparison is not between two directories, return the file with
-            //alphabetic order first.
-            return filename.toLowerCase().compareTo(fileListItem.getFilename().toLowerCase(Locale.getDefault()));
-        }
-        else if(fileListItem.isDirectory()&&!isDirectory())
-        {   //If the comparison is between a directory and a file, return the directory.
+        if (fileListItem.isDirectory() && !isDirectory()) {
+            /* If the comparison is between a directory and a file, return the directory. */
             return 1;
         }
-        else
-        {   //Same as above but order of occurence is different.
+        if (!fileListItem.isDirectory() && isDirectory()) {
+            /* Same as above but order of occurrence is different. */
             return -1;
+        }
+
+        /* Below is compare between two files or two directories. */
+        switch (this.fileOrder) {
+            default:
+            case DialogConfigs.FILE_ORDER_NAME_ASCENDING:
+                return filename.toLowerCase().compareTo(fileListItem.getFilename().toLowerCase(Locale.getDefault()));
+            case DialogConfigs.FILE_ORDER_NAME_DESCENDING:
+                return -1 * filename.toLowerCase().compareTo(fileListItem.getFilename().toLowerCase(Locale.getDefault()));
+            case DialogConfigs.FILE_ORDER_DATE_ASCENDING:
+                return time - fileListItem.time > 0 ? 1 : -1;
+            case DialogConfigs.FILE_ORDER_DATE_DESCENDING:
+                return time - fileListItem.time <= 0 ? 1 : -1;
         }
     }
 }
