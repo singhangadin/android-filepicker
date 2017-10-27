@@ -25,12 +25,12 @@ ext {
 }
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.3"
+    compileSdkVersion 27
+    buildToolsVersion "27.0.0"
 
     defaultConfig {
         minSdkVersion 9
-        targetSdkVersion 25
+        targetSdkVersion 27
         versionCode 12
         versionName "1.1.1"
     }
@@ -43,8 +43,6 @@ android {
     lintOptions {
         abortOnError false
     }
-
-    return null
 }
 
 apply from: 'https://raw.githubusercontent.com/angads25/JCenter/master/installv1.gradle'

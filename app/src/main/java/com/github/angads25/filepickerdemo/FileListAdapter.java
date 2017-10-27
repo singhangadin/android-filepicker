@@ -17,10 +17,10 @@
 package com.github.angads25.filepickerdemo;
 
 import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -30,23 +30,25 @@ import java.util.ArrayList;
  * </p>
  */
 
-public class FileListAdapter extends BaseAdapter{
+class FileListAdapter extends RecyclerView.Adapter<FileListAdapter.FileListViewHolder> {
     private ArrayList<ListItem> listItems;
     private Context context;
 
-    public FileListAdapter(ArrayList<ListItem> listItems, Context context) {
+    FileListAdapter(ArrayList<ListItem> listItems, Context context) {
         this.listItems = listItems;
         this.context = context;
     }
 
     @Override
-    public int getCount() {
-        return listItems.size();
+    public FileListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.file_list_item, parent, false);
+        return new FileListViewHolder(view);
     }
 
     @Override
-    public ListItem getItem(int i) {
-        return listItems.get(i);
+    public void onBindViewHolder(FileListViewHolder holder, int position) {
+        holder.name.setText(listItems.get(position).getName());
+        holder.path.setText(listItems.get(position).getPath());
     }
 
     @Override
@@ -55,14 +57,18 @@ public class FileListAdapter extends BaseAdapter{
     }
 
     @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
-        if(view==null)
-        {   view=LayoutInflater.from(context).inflate(R.layout.file_list_item,viewGroup,false);
+    public int getItemCount() {
+        return listItems.size();
+    }
+
+    class FileListViewHolder extends RecyclerView.ViewHolder {
+        private TextView name;
+        private TextView path;
+
+        FileListViewHolder(View itemView) {
+            super(itemView);
+            name = itemView.findViewById(R.id.name);
+            path = itemView.findViewById(R.id.path);
         }
-        TextView name=(TextView)view.findViewById(R.id.name);
-        TextView path=(TextView)view.findViewById(R.id.path);
-        name.setText(listItems.get(i).getName());
-        path.setText(listItems.get(i).getPath());
-        return view;
     }
 }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,60 +8,62 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.github.angads25.filepickerdemo.MainActivity">
+    android:orientation="vertical"
+    tools:listitem="@layout/file_list_item">
 
-    <ListView
-        android:layout_width="wrap_content"
-        android:layout_height="200dp"
-        android:id="@+id/listView"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-
-    <ScrollView
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/scrollView"
-        android:layout_above="@+id/linearlayout"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/listView" >
+        android:layout_weight="1">
 
-        <LinearLayout
-            android:orientation="vertical"
+        <android.support.v7.widget.LinearLayoutCompat
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp">
+            android:layout_height="match_parent"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            android:orientation="vertical"
+            tools:listitem="@layout/file_list_item">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/listView"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Selection Mode"
-                android:textStyle="bold" />
+                android:layout_marginBottom="@dimen/activity_vertical_margin" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="@string/label_selection_mode"/>
 
             <RadioGroup
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/modeRadio">
 
-                <RadioButton
+                <android.support.v7.widget.AppCompatRadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Single"
+                    android:text="@string/label_single"
                     android:textColor="#000000"
                     android:id="@+id/singleRadio" />
 
-                <RadioButton
+                <android.support.v7.widget.AppCompatRadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Multiple"
+                    android:text="@string/label_multiple"
                     android:textColor="#000000"
                     android:id="@+id/multiRadio" />
             </RadioGroup>
 
-            <TextView
+            <android.support.v7.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:text="Selection Type"
+                android:text="@string/label_selection_type"
                 android:textStyle="bold" />
 
             <RadioGroup
@@ -68,73 +71,73 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/typeRadio">
 
-                <RadioButton
+                <android.support.v7.widget.AppCompatRadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="File"
+                    android:text="@string/label_file"
                     android:textColor="#000000"
                     android:id="@+id/selFile" />
 
-                <RadioButton
+                <android.support.v7.widget.AppCompatRadioButton
+                    android:id="@+id/selDir"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Directory"
-                    android:textColor="#000000"
-                    android:id="@+id/selDir" />
+                    android:text="@string/label_directory"
+                    android:textColor="#000000"/>
 
-                <RadioButton
+                <android.support.v7.widget.AppCompatRadioButton
+                    android:id="@+id/selfilenddir"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Files and Directories"
                     android:textColor="#000000"
-                    android:id="@+id/selfilenddir" />
+                    android:text="@string/label_files_and_directories"/>
             </RadioGroup>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:text="Filter Extensions(Seperate with Commas, Don't use dots)"
-                android:textStyle="bold" />
-
-            <EditText
+            <android.support.v7.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:hint="eg. jpg,zip,rar or leave empty"
-                android:id="@+id/extensions" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:text="Root Directory"
+                android:text="@string/label_extensions"
                 android:textStyle="bold" />
 
-            <EditText
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/extensions"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:hint="eg. /mnt/sdcard or leave empty"
+                android:hint="@string/hint_extensions" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:text="@string/label_root_directory"
+                android:textStyle="bold" />
+
+            <android.support.v7.widget.AppCompatEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:hint="@string/hint_root_dir"
                 android:id="@+id/root" />
 
-            <TextView
+            <android.support.v7.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:text="Offset Directory"
+                android:text="@string/label_offset_directory"
                 android:textStyle="bold" />
 
-            <EditText
+            <android.support.v7.widget.AppCompatEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:hint="eg. /mnt/sdcard/Music or leave empty"
+                android:hint="@string/hint_offset"
                 android:id="@+id/offset" />
-        </LinearLayout>
-    </ScrollView>
+        </android.support.v7.widget.LinearLayoutCompat>
+    </android.support.v4.widget.NestedScrollView>
 
-    <LinearLayout
+    <android.support.v7.widget.LinearLayoutCompat
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -142,18 +145,18 @@
         android:layout_centerHorizontal="true"
         android:id="@+id/linearlayout">
 
-        <Button
+        <android.support.v7.widget.AppCompatButton
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Apply"
+            android:text="@string/label_apply"
             android:id="@+id/apply" />
 
-        <Button
+        <android.support.v7.widget.AppCompatButton
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/show_dialog"
             android:id="@+id/show_dialog"/>
-    </LinearLayout>
-</RelativeLayout>
+    </android.support.v7.widget.LinearLayoutCompat>
+</android.support.v7.widget.LinearLayoutCompat>

@@ -4,4 +4,18 @@
    <string name="choose_button_label">Select</string>
    <string name="show_dialog">Show Dialog</string>
    <string name="title_activity_settings">Settings</string>
+    <string name="label_apply">Apply</string>
+    <string name="hint_offset">eg. /mnt/sdcard/Music or leave empty</string>
+    <string name="label_offset_directory">Offset Directory</string>
+    <string name="hint_root_dir">eg. /mnt/sdcard or leave empty</string>
+    <string name="label_root_directory">Root Directory</string>
+    <string name="hint_extensions">eg. jpg, zip, rar or leave empty</string>
+    <string name="label_single">Single</string>
+    <string name="label_multiple">Multiple</string>
+    <string name="label_selection_mode">Selection Mode</string>
+    <string name="label_selection_type">Selection Type</string>
+    <string name="label_file">File</string>
+    <string name="label_directory">Directory</string>
+    <string name="label_files_and_directories">Files and Directories</string>
+    <string name="label_extensions">Filter Extensions(Seperate with Commas, Don\'t use dots)</string>
 </resources>

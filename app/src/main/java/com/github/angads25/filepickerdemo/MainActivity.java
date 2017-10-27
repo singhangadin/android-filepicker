@@ -21,13 +21,14 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
@@ -43,16 +44,18 @@ public class MainActivity extends AppCompatActivity
 {   private FilePickerDialog dialog;
     private ArrayList<ListItem> listItem;
     private FileListAdapter mFileListAdapter;
-    private ListView listView;
+    private RecyclerView fileList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {   super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        listItem=new ArrayList<>();
-        listView = (ListView) findViewById(R.id.listView);
-        mFileListAdapter=new FileListAdapter(listItem,MainActivity.this);
-        listView.setAdapter(mFileListAdapter);
+        listItem = new ArrayList<>();
+        fileList = findViewById(R.id.listView);
+        mFileListAdapter = new FileListAdapter(listItem, MainActivity.this);
+        fileList.setAdapter(mFileListAdapter);
+        fileList.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+        fileList.setNestedScrollingEnabled(false);
 
         //Create a DialogProperties object.
         final DialogProperties properties=new DialogProperties();
@@ -98,15 +101,15 @@ public class MainActivity extends AppCompatActivity
                 }
             }
         });
-        final EditText extension=(EditText)findViewById(R.id.extensions);
-        final EditText root=(EditText)findViewById(R.id.root);
-        final EditText offset=(EditText)findViewById(R.id.offset);
-        Button apply = (Button) findViewById(R.id.apply);
-        Button showDialog = (Button) findViewById(R.id.show_dialog);
+        final EditText extension = findViewById(R.id.extensions);
+        final EditText root = findViewById(R.id.root);
+        final EditText offset = findViewById(R.id.offset);
+        Button apply = findViewById(R.id.apply);
+        Button showDialog = findViewById(R.id.show_dialog);
         apply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String fextension=extension.getText().toString();
+                String fextension = extension.getText().toString();
                 if(fextension.length()>0) {
                     //Add extensions to be sorted from the EditText input to the array of String.
                     int commas = countCommas(fextension);
@@ -185,7 +188,9 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onSelectedFilePaths(String[] files) {
                 //files is the array of paths selected by the App User.
+                int size = listItem.size();
                 listItem.clear();
+                mFileListAdapter.notifyItemRangeRemoved(0, size);
                 for(String path:files) {
                     File file=new File(path);
                     ListItem item=new ListItem();
@@ -193,14 +198,13 @@ public class MainActivity extends AppCompatActivity
                     item.setPath(file.getAbsolutePath());
                     listItem.add(item);
                 }
-                mFileListAdapter=new FileListAdapter(listItem,MainActivity.this);
-                listView.setAdapter(mFileListAdapter);
+                mFileListAdapter.notifyItemRangeInserted(0, listItem.size());
             }
         });
     }
 
     private int countCommas(String fextension) {
-        int count=0;
+        int count = 0;
         for(char ch:fextension.toCharArray())
         {   if(ch==',') {
                 count++;
