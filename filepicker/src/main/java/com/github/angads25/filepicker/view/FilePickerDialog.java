@@ -150,7 +150,7 @@ public class FilePickerDialog extends Dialog implements AdapterView.OnItemClickL
 				public void onClick(View p1){
 					
 					PopupMenu popup = new PopupMenu(context, storage);  
-					popup.getMenuInflater().inflate(R.menu.main, popup.getMenu());
+					popup.getMenuInflater().inflate(R.menu.storage_button, popup.getMenu());
 					popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {  
 							public boolean onMenuItemClick(MenuItem items) { 
 								
