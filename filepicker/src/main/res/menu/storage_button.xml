@@ -1,0 +1,9 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+	  
+	<item android:id="@+id/sd"
+		android:title="Internal Storage"/>
+	
+	<item android:id="@+id/extsd"
+		android:title="External Storage"/>
+	
+</menu>
