@@ -73,6 +73,8 @@ public class DialogProperties {
      *  Eg. String ext={"jpg","jpeg","png","gif"};
      */
     public String[] extensions;
+    
+    public boolean hasStorageButton;
 
     public DialogProperties() {
         selection_mode = DialogConfigs.SINGLE_MODE;
@@ -81,5 +83,6 @@ public class DialogProperties {
         error_dir = new File(DialogConfigs.DEFAULT_DIR);
         offset = new File(DialogConfigs.DEFAULT_DIR);
         extensions = null;
+        hasStorageButton = false;
     }
 }
