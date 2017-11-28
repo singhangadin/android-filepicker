@@ -27,6 +27,19 @@
         android:layout_margin="8dp"
         android:padding="4dp"/>
 
+    
+	<Button
+		style="?android:attr/buttonStyle"
+		android:background="?android:selectableItemBackground"
+        android:layout_height="wrap_content"
+		android:layout_width="wrap_content"
+		android:textColor="@color/colorAccent"
+		android:text="Select Storage"
+		android:textStyle="bold"
+		android:id="@+id/storage"
+		android:layout_margin="8dp"
+		android:padding="4dp"/>
+    
     <Button
         style="?android:attr/buttonStyle"
         android:background="?android:selectableItemBackground"
