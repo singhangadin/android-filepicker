@@ -139,6 +139,75 @@ public class FilePickerDialog extends Dialog implements AdapterView.OnItemClickL
                 cancel();
             }
         });
+        
+        
+		storage=(Button)findViewById(R.id.storage);
+		
+		if(getExternalSdCard() == null || !properties.hasStorageButton)
+			storage.setVisibility(View.GONE);
+		storage.setOnClickListener(new ViewGroup.OnClickListener(){
+				@Override
+				public void onClick(View p1){
+					
+					PopupMenu popup = new PopupMenu(context, storage);  
+					popup.getMenuInflater().inflate(R.menu.main, popup.getMenu());
+					popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {  
+							public boolean onMenuItemClick(MenuItem items) { 
+								
+								if(items.getItemId()==R.id.extsd)
+									{
+	
+										if (getExternalSdCard().canRead()) {
+											File currLoc = getExternalSdCard();
+											properties.root=currLoc;
+											dname.setText(currLoc.getName());
+											setTitle();
+											dir_path.setText(currLoc.getAbsolutePath());
+											internalList.clear();
+											if (!currLoc.getName().equals(properties.root.getName())) {
+												FileListItem parent = new FileListItem();
+												parent.setFilename(context.getString(R.string.label_parent_dir));
+												parent.setDirectory(true);
+												parent.setLocation(currLoc.getParentFile().getAbsolutePath());
+												parent.setTime(currLoc.lastModified());
+												internalList.add(parent);
+											}
+											internalList = Utility.prepareFileListEntries(internalList, currLoc, filter);
+											mFileListAdapter.notifyDataSetChanged();
+										} else {
+											Toast.makeText(context, R.string.error_dir_access, Toast.LENGTH_SHORT).show();
+										}
+								}else{
+										if (Environment.getExternalStorageDirectory().canRead()) {
+											File currLoc = Environment.getExternalStorageDirectory();
+											properties.root=currLoc;
+											dname.setText(currLoc.getName());
+											setTitle();
+											dir_path.setText(currLoc.getAbsolutePath());
+											internalList.clear();
+											if (!currLoc.getName().equals(properties.root.getName())) {
+												FileListItem parent = new FileListItem();
+												parent.setFilename(context.getString(R.string.label_parent_dir));
+												parent.setDirectory(true);
+												parent.setLocation(currLoc.getParentFile().getAbsolutePath());
+												parent.setTime(currLoc.lastModified());
+												internalList.add(parent);
+											}
+											internalList = Utility.prepareFileListEntries(internalList, currLoc, filter);
+											mFileListAdapter.notifyDataSetChanged();
+										} else {
+											Toast.makeText(context, R.string.error_dir_access, Toast.LENGTH_SHORT).show();
+										}
+									
+								}
+								return true;  
+							}  
+						});
+					popup.show();  
+				}
+			});
+	
+        
         mFileListAdapter = new FileListAdapter(internalList, context, properties);
         mFileListAdapter.setNotifyItemCheckedListener(new NotifyItemChecked() {
             @Override
@@ -465,4 +534,29 @@ public class FilePickerDialog extends Dialog implements AdapterView.OnItemClickL
         internalList.clear();
         super.dismiss();
     }
+    	public File getExternalSdCard() {
+		File externalStorage = null;
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+			File storage = new File("/storage");
+
+			if(storage.exists()) {
+				try{
+					File[] files = storage.listFiles();
+					for (File file : files) {
+						if (file.exists() && file.canRead()) {
+							if (Environment.isExternalStorageRemovable(file)) {
+								externalStorage = file;
+								break;
+							} 
+						}
+					}
+				}catch (Exception e) {
+					Log.e("TAG", e.toString());
+				}
+			}
+		} else {
+          // Other methods- pre lolipop
+		}
+		return externalStorage;
+	}
 }
