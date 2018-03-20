@@ -40,18 +40,17 @@ import com.github.angads25.filepicker.view.FilePickerDialog;
 import java.io.File;
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity
-{   private FilePickerDialog dialog;
+public class MainActivity extends AppCompatActivity {
+    private FilePickerDialog dialog;
     private ArrayList<ListItem> listItem;
     private FileListAdapter mFileListAdapter;
-    private RecyclerView fileList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {   super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         listItem = new ArrayList<>();
-        fileList = findViewById(R.id.listView);
+        RecyclerView fileList = findViewById(R.id.listView);
         mFileListAdapter = new FileListAdapter(listItem, MainActivity.this);
         fileList.setAdapter(mFileListAdapter);
         fileList.setLayoutManager(new LinearLayoutManager(MainActivity.this));
@@ -61,11 +60,11 @@ public class MainActivity extends AppCompatActivity
         final DialogProperties properties=new DialogProperties();
 
         //Instantiate FilePickerDialog with Context and DialogProperties.
-        dialog=new FilePickerDialog(MainActivity.this,properties);
+        dialog=new FilePickerDialog(MainActivity.this, properties);
         dialog.setTitle("Select a File");
         dialog.setPositiveBtnName("Select");
         dialog.setNegativeBtnName("Cancel");
-        RadioGroup modeRadio=(RadioGroup)findViewById(R.id.modeRadio);
+        RadioGroup modeRadio = findViewById(R.id.modeRadio);
         modeRadio.check(R.id.singleRadio);
         modeRadio.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -81,7 +80,7 @@ public class MainActivity extends AppCompatActivity
                 }
             }
         });
-        RadioGroup typeRadio=(RadioGroup)findViewById(R.id.typeRadio);
+        RadioGroup typeRadio = findViewById(R.id.typeRadio);
         typeRadio.check(R.id.selFile);
         typeRadio.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override

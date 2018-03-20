@@ -23,10 +23,15 @@ import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -53,7 +58,9 @@ import java.util.List;
  * </p>
  */
 
-public class FilePickerDialog extends Dialog implements AdapterView.OnItemClickListener {
+public class FilePickerDialog extends Dialog implements
+        AdapterView.OnItemClickListener,
+        View.OnClickListener {
     private Context context;
     private ListView listView;
     private TextView dname, dir_path, title;
@@ -66,6 +73,11 @@ public class FilePickerDialog extends Dialog implements AdapterView.OnItemClickL
     private String titleStr = null;
     private String positiveBtnNameStr = null;
     private String negativeBtnNameStr = null;
+
+    private LinearLayout layoutHeader;
+    private LinearLayout layoutSearch;
+
+    private EditText searchEdt;
 
     public static final int EXTERNAL_READ_PERMISSION_GRANT = 112;
 
@@ -99,8 +111,17 @@ public class FilePickerDialog extends Dialog implements AdapterView.OnItemClickL
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.dialog_main);
-        listView = (ListView) findViewById(R.id.fileList);
-        select = (Button) findViewById(R.id.select);
+        layoutHeader = findViewById(R.id.header_layout);
+        layoutSearch = findViewById(R.id.search_layout);
+        listView = findViewById(R.id.fileList);
+        select = findViewById(R.id.select);
+        dname = findViewById(R.id.dname);
+        title = findViewById(R.id.title);
+        dir_path = findViewById(R.id.dir_path);
+        searchEdt = findViewById(R.id.input_search);
+        Button cancel = findViewById(R.id.cancel);
+        ImageButton back = findViewById(R.id.action_back);
+        ImageButton search = findViewById(R.id.action_search);
         int size = MarkedItemList.getFileCount();
         if (size == 0) {
             select.setEnabled(false);
@@ -112,33 +133,13 @@ public class FilePickerDialog extends Dialog implements AdapterView.OnItemClickL
             }
             select.setTextColor(Color.argb(128, Color.red(color), Color.green(color), Color.blue(color)));
         }
-        dname = (TextView) findViewById(R.id.dname);
-        title = (TextView) findViewById(R.id.title);
-        dir_path = (TextView) findViewById(R.id.dir_path);
-        Button cancel = (Button) findViewById(R.id.cancel);
         if (negativeBtnNameStr != null) {
             cancel.setText(negativeBtnNameStr);
         }
-        select.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                /*  Select Button is clicked. Get the array of all selected items
-                 *  from MarkedItemList singleton.
-                 */
-                String paths[] = MarkedItemList.getSelectedPaths();
-                //NullPointerException fixed in v1.0.2
-                if (callbacks != null) {
-                    callbacks.onSelectedFilePaths(paths);
-                }
-                dismiss();
-            }
-        });
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                cancel();
-            }
-        });
+        select.setOnClickListener(this);
+        cancel.setOnClickListener(this);
+        back.setOnClickListener(this);
+        search.setOnClickListener(this);
         mFileListAdapter = new FileListAdapter(internalList, context, properties);
         mFileListAdapter.setNotifyItemCheckedListener(new NotifyItemChecked() {
             @Override
@@ -185,6 +186,20 @@ public class FilePickerDialog extends Dialog implements AdapterView.OnItemClickL
 
         //Title method added in version 1.0.5
         setTitle();
+
+        // Search Implemented in version 1.1.0
+        searchEdt.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                mFileListAdapter.getFilter().filter(charSequence);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {}
+        });
     }
 
     private void setTitle() {
@@ -251,6 +266,7 @@ public class FilePickerDialog extends Dialog implements AdapterView.OnItemClickL
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        searchEdt.setText("");
         if (internalList.size() > i) {
             FileListItem fitem = internalList.get(i);
             if (fitem.isDirectory()) {
@@ -274,7 +290,7 @@ public class FilePickerDialog extends Dialog implements AdapterView.OnItemClickL
                     Toast.makeText(context, R.string.error_dir_access, Toast.LENGTH_SHORT).show();
                 }
             } else {
-                MaterialCheckbox fmark = (MaterialCheckbox) view.findViewById(R.id.file_mark);
+                MaterialCheckbox fmark = view.findViewById(R.id.file_mark);
                 fmark.performClick();
             }
         }
@@ -464,5 +480,29 @@ public class FilePickerDialog extends Dialog implements AdapterView.OnItemClickL
         MarkedItemList.clearSelectionList();
         internalList.clear();
         super.dismiss();
+    }
+
+    @Override
+    public void onClick(View view) {
+        int i = view.getId();
+        if (i == R.id.cancel) {
+            cancel();
+        } else if(i == R.id.select) {
+            /*  Select Button is clicked. Get the array of all selected items
+             *  from MarkedItemList singleton.
+             */
+            String paths[] = MarkedItemList.getSelectedPaths();
+            //NullPointerException fixed in v1.0.2
+            if (callbacks != null) {
+                callbacks.onSelectedFilePaths(paths);
+            }
+            dismiss();
+        } else if(i == R.id.action_back) {
+            layoutSearch.setVisibility(View.INVISIBLE);
+            layoutHeader.setVisibility(View.VISIBLE);
+        } else if(i == R.id.action_search) {
+            layoutSearch.setVisibility(View.VISIBLE);
+            layoutHeader.setVisibility(View.INVISIBLE);
+        }
     }
 }

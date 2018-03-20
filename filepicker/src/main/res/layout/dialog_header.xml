@@ -1,68 +1,132 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@color/colorHeader"
-    android:orientation="horizontal"
-    android:layout_width="match_parent"
-    android:layout_height="?android:listPreferredItemHeight">
-
-    <ImageView
-        android:layout_marginLeft="@dimen/toolbar_image_margin"
-        android:layout_marginStart="@dimen/toolbar_image_margin"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:src="@mipmap/ic_directory_parent"
-        android:scaleType="centerInside"
-        android:background="@null"
-        android:id="@+id/imageView" />
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="?android:listPreferredItemHeight"
+    android:layout_width="match_parent">
 
     <LinearLayout
+        android:id="@+id/header_layout"
+        android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@null"
-        android:layout_gravity="center_vertical">
+        android:background="@color/colorHeader"
+        android:orientation="horizontal">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@null">
-
-            <TextView
-                android:id="@+id/dname"
-                android:layout_marginLeft="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                style="?android:attr/textViewStyle"
-                android:background="@null"
-                android:textColor="@color/textColorPrimary"/>
-
-            <TextView
-                android:id="@+id/title"
-                android:visibility="invisible"
-                android:layout_marginLeft="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                style="?android:attr/textViewStyle"
-                android:background="@null"
-                android:textColor="@color/textColorPrimary"/>
-
-        </RelativeLayout>
-
-        <TextView
-            android:id="@+id/dir_path"
+        <ImageView
+            android:layout_marginLeft="@dimen/toolbar_image_margin"
+            android:layout_marginStart="@dimen/toolbar_image_margin"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginStart="16dp"
-            style="?android:attr/textViewStyle"
+            android:layout_height="match_parent"
+            android:src="@mipmap/ic_directory_parent"
+            android:scaleType="centerInside"
             android:background="@null"
-            android:textColor="@color/textColorSecondary"/>
+            android:id="@+id/imageView" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@null"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null">
+
+                <TextView
+                    style="?android:attr/textViewStyle"
+                    android:id="@+id/dname"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:background="@null"
+                    android:textColor="@color/textColorPrimary"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    tools:text="Filename"/>
+
+                <TextView
+                    style="?android:attr/textViewStyle"
+                    android:id="@+id/title"
+                    android:visibility="invisible"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:background="@null"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:textColor="@color/textColorPrimary"/>
+            </FrameLayout>
+
+            <TextView
+                style="?android:attr/textViewStyle"
+                android:id="@+id/dir_path"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:background="@null"
+                android:textColor="@color/textColorSecondary"
+                android:maxLines="1"
+                android:ellipsize="end"
+                tools:text="File Path"/>
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/action_search"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_action_search"
+            android:paddingLeft="@dimen/checkbox_margin"
+            android:paddingStart="@dimen/checkbox_margin"
+            android:paddingRight="@dimen/toolbar_image_margin"
+            android:paddingEnd="@dimen/toolbar_image_margin"
+            android:contentDescription="@string/action_search"
+            android:background="@null"/>
     </LinearLayout>
-</LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/search_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:background="#FFFFFF"
+        android:visibility="invisible">
+
+        <ImageButton
+            android:id="@+id/action_back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_action_back"
+            android:paddingLeft="@dimen/toolbar_image_margin"
+            android:paddingStart="@dimen/toolbar_image_margin"
+            android:paddingRight="@dimen/toolbar_image_margin"
+            android:paddingEnd="@dimen/toolbar_image_margin"
+            android:contentDescription="@string/action_back"
+            android:background="@null"/>
+
+        <EditText
+            android:id="@+id/input_search"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:hint="@string/hint_search"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
+            android:background="@null"
+            android:maxLines="1"
+            android:inputType="text"
+            android:layout_marginTop="@dimen/checkbox_margin"
+            android:layout_marginBottom="@dimen/checkbox_margin"
+            android:layout_marginEnd="@dimen/toolbar_image_margin"
+            android:layout_marginRight="@dimen/toolbar_image_margin"
+            tools:text="Search Item"/>
+    </LinearLayout>
+</FrameLayout>
