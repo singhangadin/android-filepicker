@@ -74,6 +74,11 @@ public class DialogProperties {
      */
     public String[] extensions;
 
+    /** Max Selections limits the maximum number of selections when in MULTI_MODE
+     *
+     */
+    public int max_selections;
+
     public DialogProperties() {
         selection_mode = DialogConfigs.SINGLE_MODE;
         selection_type = DialogConfigs.FILE_SELECT;
@@ -81,5 +86,6 @@ public class DialogProperties {
         error_dir = new File(DialogConfigs.DEFAULT_DIR);
         offset = new File(DialogConfigs.DEFAULT_DIR);
         extensions = null;
+        max_selections = 1;
     }
 }
