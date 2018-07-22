@@ -157,33 +157,33 @@ eg. /sdcard:/mnt:
 
 #### Theme.Black
 
-![Screenshot 1](https://raw.githubusercontent.com/Angads25/android-filepicker/master/screenshots/theme_black.png)
+![Screenshot 1](https://raw.githubusercontent.com/Angads25/android-filepicker/release/screenshots/theme_black.png)
 
 #### Theme.Holo
 
-![Screenshot 2](https://raw.githubusercontent.com/Angads25/android-filepicker/master/screenshots/theme_holo.png)
+![Screenshot 2](https://raw.githubusercontent.com/Angads25/android-filepicker/release/screenshots/theme_holo.png)
 
 #### Theme.Holo.Light
 
-![Screenshot 3](https://raw.githubusercontent.com/Angads25/android-filepicker/master/screenshots/theme_holo_light.png)
+![Screenshot 3](https://raw.githubusercontent.com/Angads25/android-filepicker/release/screenshots/theme_holo_light.png)
 
 #### Theme.Material
 
-![Screenshot 4](https://raw.githubusercontent.com/Angads25/android-filepicker/master/screenshots/theme_material.png)
+![Screenshot 4](https://raw.githubusercontent.com/Angads25/android-filepicker/release/screenshots/theme_material.png)
 
 #### Theme.DeviceDefault
 
-![Screenshot 5](https://raw.githubusercontent.com/Angads25/android-filepicker/master/screenshots/theme_device_default.png)
+![Screenshot 5](https://raw.githubusercontent.com/Angads25/android-filepicker/release/screenshots/theme_device_default.png)
 
 ### Performance
 
 #### GPU Overdraw
 
-![Performance 1](https://raw.githubusercontent.com/Angads25/android-filepicker/master/screenshots/performance_overdraw.png)
+![Performance 1](https://raw.githubusercontent.com/Angads25/android-filepicker/release/screenshots/performance_overdraw.png)
 
 #### GPU Rendering
 
-![Performance 2](https://raw.githubusercontent.com/Angads25/android-filepicker/master/screenshots/profile_gpu_rendering.png)
+![Performance 2](https://raw.githubusercontent.com/Angads25/android-filepicker/release/screenshots/profile_gpu_rendering.png)
 
 ### License
     Copyright (C) 2016 Angad Singh

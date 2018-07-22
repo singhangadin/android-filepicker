@@ -16,7 +16,7 @@
 
 package com.github.angads25.filepicker.model;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Set;
 
 /**<p>
@@ -29,7 +29,7 @@ import java.util.Set;
  *  Value: FileListItem Object.
  */
 public class MarkedItemList {
-    private static HashMap<String,FileListItem> ourInstance = new HashMap<>();
+    private static LinkedHashMap<String,FileListItem> ourInstance = new LinkedHashMap<>();
 
     public static void addSelectedItem(FileListItem item) {
         ourInstance.put(item.getLocation(),item);
@@ -44,11 +44,11 @@ public class MarkedItemList {
     }
 
     public static void clearSelectionList() {
-        ourInstance = new HashMap<>();
+        ourInstance = new LinkedHashMap<>();
     }
 
     public static void addSingleFile(FileListItem item) {
-        ourInstance = new HashMap<>();
+        ourInstance = new LinkedHashMap<>();
         ourInstance.put(item.getLocation(),item);
     }
 
