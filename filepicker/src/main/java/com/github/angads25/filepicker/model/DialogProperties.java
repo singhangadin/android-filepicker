@@ -42,6 +42,11 @@ public class DialogProperties {
      *  See DialogConfigs for more info. Set to FILE_SELECT as default value by constructor.
      */
     public int selection_type;
+    
+    /**
+     *  add property max_count
+     */
+    public int max_count;
 
     /**  The Parent/Root Directory. List of Files are populated from here. Can be set
      *  to any readable directory. /sdcard is the default location.
@@ -78,6 +83,7 @@ public class DialogProperties {
         selection_mode = DialogConfigs.SINGLE_MODE;
         selection_type = DialogConfigs.FILE_SELECT;
         root = new File(DialogConfigs.DEFAULT_DIR);
+        max_count = DialogConfigs.MAX_COUNT;
         error_dir = new File(DialogConfigs.DEFAULT_DIR);
         offset = new File(DialogConfigs.DEFAULT_DIR);
         extensions = null;
