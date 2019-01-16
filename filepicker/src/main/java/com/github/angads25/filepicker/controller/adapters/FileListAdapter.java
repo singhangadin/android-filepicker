@@ -40,8 +40,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
+import androidx.recyclerview.widget.RecyclerView;
 
 /* <p>
  * Created by Angad Singh on 09-07-2016.
@@ -52,7 +54,7 @@ import androidx.appcompat.widget.AppCompatTextView;
  * Adapter Class that extends {@link BaseAdapter} that is
  * used to populate {@link ListView} with file info.
  */
-public class FileListAdapter extends BaseAdapter {
+public class FileListAdapter extends RecyclerView.Adapter<FileListAdapter.ViewHolder> {
     private ArrayList<FileListItem> listItem;
     private Context context;
     private DialogProperties properties;
@@ -64,39 +66,22 @@ public class FileListAdapter extends BaseAdapter {
         this.properties = properties;
     }
 
+    @NonNull
     @Override
-    public int getCount() {
-        return listItem.size();
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.dialog_file_list_item, parent, false);
+        return new ViewHolder(view);
     }
 
     @Override
-    public FileListItem getItem(int i) {
-        return listItem.get(i);
-    }
-
-    @Override
-    public long getItemId(int i) {
-        return i;
-    }
-
-    @Override
-    @SuppressWarnings("deprecation")
-    public View getView(final int i, View view, ViewGroup viewGroup) {
-        final ViewHolder holder;
-        if (view == null) {
-            view = LayoutInflater.from(context).inflate(R.layout.dialog_file_list_item, viewGroup, false);
-            holder = new ViewHolder(view);
-            view.setTag(holder);
-        } else {
-            holder = (ViewHolder) view.getTag();
-        }
-        final FileListItem item = listItem.get(i);
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        final FileListItem item = listItem.get(position);
         if (MarkedItemList.hasItem(item.getLocation())) {
             Animation animation = AnimationUtils.loadAnimation(context, R.anim.marked_item_animation);
-            view.setAnimation(animation);
+            holder.rootView.setAnimation(animation);
         } else {
             Animation animation = AnimationUtils.loadAnimation(context, R.anim.unmarked_item_animation);
-            view.setAnimation(animation);
+            holder.rootView.setAnimation(animation);
         }
         if (item.isDirectory()) {
             holder.type_icon.setImageResource(R.mipmap.ic_type_folder);
@@ -128,13 +113,13 @@ public class FileListAdapter extends BaseAdapter {
         SimpleDateFormat sdate = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
         SimpleDateFormat stime = new SimpleDateFormat("hh:mm aa", Locale.getDefault());
         Date date = new Date(item.getTime());
-        if (i == 0 && item.getFilename().startsWith(context.getString(R.string.label_parent_dir))) {
+        if (position == 0 && item.getFilename().startsWith(context.getString(R.string.label_parent_dir))) {
             holder.type.setText(R.string.label_parent_directory);
         } else {
             holder.type.setText(context.getString(R.string.last_edit) + sdate.format(date) + ", " + stime.format(date));
         }
         if (holder.fmark.getVisibility() == View.VISIBLE) {
-            if (i == 0 && item.getFilename().startsWith(context.getString(R.string.label_parent_dir))) {
+            if (position == 0 && item.getFilename().startsWith(context.getString(R.string.label_parent_dir))) {
                 holder.fmark.setVisibility(View.INVISIBLE);
             }
             if (MarkedItemList.hasItem(item.getLocation())) {
@@ -160,15 +145,28 @@ public class FileListAdapter extends BaseAdapter {
                 notifyItemChecked.notifyCheckBoxIsClicked();
             }
         });
-        return view;
     }
 
-    private class ViewHolder {
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public int getItemCount() {
+        return listItem.size();
+    }
+
+    class ViewHolder extends RecyclerView.ViewHolder {
         AppCompatImageView type_icon;
         AppCompatTextView name, type;
         MaterialCheckbox fmark;
 
+        View rootView;
+
         ViewHolder(View itemView) {
+            super(itemView);
+            rootView = itemView;
             name = itemView.findViewById(R.id.fname);
             type = itemView.findViewById(R.id.ftype);
             type_icon = itemView.findViewById(R.id.image_type);

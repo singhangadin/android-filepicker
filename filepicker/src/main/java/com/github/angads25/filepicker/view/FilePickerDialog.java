@@ -25,20 +25,20 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
-import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import com.github.angads25.filepicker.R;
 import com.github.angads25.filepicker.controller.DialogSelectionListener;
 import com.github.angads25.filepicker.controller.NotifyItemChecked;
 import com.github.angads25.filepicker.controller.adapters.FileListAdapter;
+import com.github.angads25.filepicker.controller.interfaces.OnItemClickListener;
 import com.github.angads25.filepicker.model.DialogConfigs;
 import com.github.angads25.filepicker.model.DialogProperties;
 import com.github.angads25.filepicker.model.FileListItem;
 import com.github.angads25.filepicker.model.MarkedItemList;
 import com.github.angads25.filepicker.utils.ExtensionFilter;
+import com.github.angads25.filepicker.utils.RecyclerViewTouchHandler;
 import com.github.angads25.filepicker.utils.Utility;
 import com.github.angads25.filepicker.widget.MaterialCheckbox;
 
@@ -48,6 +48,8 @@ import java.util.List;
 
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatTextView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * <p>
@@ -55,10 +57,10 @@ import androidx.appcompat.widget.AppCompatTextView;
  * </p>
  */
 
-public class FilePickerDialog extends Dialog implements AdapterView.OnItemClickListener {
+public class FilePickerDialog extends Dialog implements OnItemClickListener {
     public static final int EXTERNAL_READ_PERMISSION_GRANT = 112;
     private Context context;
-    private ListView listView;
+    private RecyclerView listView;
     private AppCompatTextView dname, dir_path, title;
     private DialogProperties properties;
     private DialogSelectionListener callbacks;
@@ -101,6 +103,8 @@ public class FilePickerDialog extends Dialog implements AdapterView.OnItemClickL
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.dialog_main);
         listView = findViewById(R.id.fileList);
+        listView.setLayoutManager(new LinearLayoutManager(getContext()));
+
         select = findViewById(R.id.select);
         int size = MarkedItemList.getFileCount();
         if (size == 0) {
@@ -240,7 +244,8 @@ public class FilePickerDialog extends Dialog implements AdapterView.OnItemClickL
             setTitle();
             internalList = Utility.prepareFileListEntries(internalList, currLoc, filter);
             mFileListAdapter.notifyDataSetChanged();
-            listView.setOnItemClickListener(this);
+            RecyclerViewTouchHandler handler = new RecyclerViewTouchHandler(context, listView);
+            handler.setOnClickListener(this);
         }
     }
 
@@ -251,9 +256,9 @@ public class FilePickerDialog extends Dialog implements AdapterView.OnItemClickL
     }
 
     @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        if (internalList.size() > i) {
-            FileListItem fitem = internalList.get(i);
+    public void onClick(RecyclerView parent1, View view, int position) {
+        if (internalList.size() > position) {
+            FileListItem fitem = internalList.get(position);
             if (fitem.isDirectory()) {
                 if (new File(fitem.getLocation()).canRead()) {
                     File currLoc = new File(fitem.getLocation());
