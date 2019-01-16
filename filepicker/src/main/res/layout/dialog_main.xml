@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -11,16 +12,14 @@
         android:id="@+id/header"/>
 
     <include
+        android:id="@+id/fileList"
         layout="@layout/dialog_file_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/fileList"
-        android:layout_above="@+id/footer"
-        android:dividerHeight="1dp"
-        android:layout_below="@+id/header"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         tools:listitem="@layout/dialog_file_list_item"/>
 
     <include
         layout="@layout/dialog_footer"
         android:id="@+id/footer" />
-</RelativeLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>

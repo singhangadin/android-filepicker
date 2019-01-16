@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="?android:listPreferredItemHeight"
+    android:layout_height="?attr/listPreferredItemHeight"
     android:gravity="center_vertical">
 
-    <android.support.v7.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -15,11 +16,11 @@
         android:textSize="16sp"
         tools:text="File Name"/>
 
-    <android.support.v7.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/path"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="#808080"
         android:textSize="12sp"
         tools:text="File Path" />
-</android.support.v7.widget.LinearLayoutCompat>
+</androidx.appcompat.widget.LinearLayoutCompat>

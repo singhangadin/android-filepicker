@@ -25,12 +25,12 @@ ext {
 }
 
 android {
-    compileSdkVersion 27
-    buildToolsVersion "27.0.0"
+    compileSdkVersion 28
+    buildToolsVersion "28.0.3"
 
     defaultConfig {
-        minSdkVersion 9
-        targetSdkVersion 27
+        minSdkVersion 14
+        targetSdkVersion 28
         versionCode 12
         versionName "1.1.1"
     }
@@ -40,9 +40,22 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    allprojects {
+        repositories {
+            jcenter()
+            google()
+        }
+    }
     lintOptions {
         abortOnError false
     }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.6.1'
 }
 
 apply from: 'https://raw.githubusercontent.com/angads25/JCenter/master/installv1.gradle'

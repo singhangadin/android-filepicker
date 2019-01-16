@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 27
-    buildToolsVersion "27.0.0"
+    compileSdkVersion 28
+    buildToolsVersion "28.0.3"
 
     defaultConfig {
         applicationId "com.github.angads25.filepickerdemo"
         minSdkVersion 14
-        targetSdkVersion 27
+        targetSdkVersion 28
         versionCode 4
         versionName "1.0.3"
     }
@@ -21,18 +21,16 @@ android {
     allprojects {
         repositories {
             jcenter()
-            maven {
-                url "https://maven.google.com"
-            }
+            google()
         }
     }
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile project(':filepicker')
-    compile 'com.android.support:appcompat-v7:27.0.0'
-    compile 'com.android.support:recyclerview-v7:27.0.0'
-    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5.4'
-    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation project(':filepicker')
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.6.1'
+    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.1'
 }

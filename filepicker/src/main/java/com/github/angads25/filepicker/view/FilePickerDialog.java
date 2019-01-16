@@ -28,7 +28,6 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.angads25.filepicker.R;
@@ -47,6 +46,9 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.appcompat.widget.AppCompatButton;
+import androidx.appcompat.widget.AppCompatTextView;
+
 /**
  * <p>
  * Created by Angad Singh on 09-07-2016.
@@ -54,20 +56,19 @@ import java.util.List;
  */
 
 public class FilePickerDialog extends Dialog implements AdapterView.OnItemClickListener {
+    public static final int EXTERNAL_READ_PERMISSION_GRANT = 112;
     private Context context;
     private ListView listView;
-    private TextView dname, dir_path, title;
+    private AppCompatTextView dname, dir_path, title;
     private DialogProperties properties;
     private DialogSelectionListener callbacks;
     private ArrayList<FileListItem> internalList;
     private ExtensionFilter filter;
     private FileListAdapter mFileListAdapter;
-    private Button select;
+    private AppCompatButton select;
     private String titleStr = null;
     private String positiveBtnNameStr = null;
     private String negativeBtnNameStr = null;
-
-    public static final int EXTERNAL_READ_PERMISSION_GRANT = 112;
 
     public FilePickerDialog(Context context) {
         super(context);
@@ -99,8 +100,8 @@ public class FilePickerDialog extends Dialog implements AdapterView.OnItemClickL
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.dialog_main);
-        listView = (ListView) findViewById(R.id.fileList);
-        select = (Button) findViewById(R.id.select);
+        listView = findViewById(R.id.fileList);
+        select = findViewById(R.id.select);
         int size = MarkedItemList.getFileCount();
         if (size == 0) {
             select.setEnabled(false);
@@ -112,10 +113,10 @@ public class FilePickerDialog extends Dialog implements AdapterView.OnItemClickL
             }
             select.setTextColor(Color.argb(128, Color.red(color), Color.green(color), Color.blue(color)));
         }
-        dname = (TextView) findViewById(R.id.dname);
-        title = (TextView) findViewById(R.id.title);
-        dir_path = (TextView) findViewById(R.id.dir_path);
-        Button cancel = (Button) findViewById(R.id.cancel);
+        dname = findViewById(R.id.dname);
+        title = findViewById(R.id.title);
+        dir_path = findViewById(R.id.dir_path);
+        Button cancel = findViewById(R.id.cancel);
         if (negativeBtnNameStr != null) {
             cancel.setText(negativeBtnNameStr);
         }
@@ -274,7 +275,7 @@ public class FilePickerDialog extends Dialog implements AdapterView.OnItemClickL
                     Toast.makeText(context, R.string.error_dir_access, Toast.LENGTH_SHORT).show();
                 }
             } else {
-                MaterialCheckbox fmark = (MaterialCheckbox) view.findViewById(R.id.file_mark);
+                MaterialCheckbox fmark = view.findViewById(R.id.file_mark);
                 fmark.performClick();
             }
         }

@@ -19,10 +19,6 @@ package com.github.angads25.filepickerdemo;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -40,15 +36,20 @@ import com.github.angads25.filepicker.view.FilePickerDialog;
 import java.io.File;
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity
-{   private FilePickerDialog dialog;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+public class MainActivity extends AppCompatActivity {
+    private FilePickerDialog dialog;
     private ArrayList<ListItem> listItem;
     private FileListAdapter mFileListAdapter;
     private RecyclerView fileList;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {   super.onCreate(savedInstanceState);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         listItem = new ArrayList<>();
         fileList = findViewById(R.id.listView);
@@ -58,46 +59,46 @@ public class MainActivity extends AppCompatActivity
         fileList.setNestedScrollingEnabled(false);
 
         //Create a DialogProperties object.
-        final DialogProperties properties=new DialogProperties();
+        final DialogProperties properties = new DialogProperties();
 
         //Instantiate FilePickerDialog with Context and DialogProperties.
-        dialog=new FilePickerDialog(MainActivity.this,properties);
+        dialog = new FilePickerDialog(MainActivity.this, properties);
         dialog.setTitle("Select a File");
         dialog.setPositiveBtnName("Select");
         dialog.setNegativeBtnName("Cancel");
-        RadioGroup modeRadio=(RadioGroup)findViewById(R.id.modeRadio);
+        RadioGroup modeRadio = (RadioGroup) findViewById(R.id.modeRadio);
         modeRadio.check(R.id.singleRadio);
         modeRadio.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                switch(checkedId)
-                {   case R.id.singleRadio:  //Setting selection mode to single selection.
-                                            properties.selection_mode = DialogConfigs.SINGLE_MODE;
-                                            break;
+                switch (checkedId) {
+                    case R.id.singleRadio:  //Setting selection mode to single selection.
+                        properties.selection_mode = DialogConfigs.SINGLE_MODE;
+                        break;
 
                     case R.id.multiRadio:   //Setting selection mode to multiple selection.
-                                            properties.selection_mode = DialogConfigs.MULTI_MODE;
-                                            break;
+                        properties.selection_mode = DialogConfigs.MULTI_MODE;
+                        break;
                 }
             }
         });
-        RadioGroup typeRadio=(RadioGroup)findViewById(R.id.typeRadio);
+        RadioGroup typeRadio = (RadioGroup) findViewById(R.id.typeRadio);
         typeRadio.check(R.id.selFile);
         typeRadio.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                switch(checkedId)
-                {   case R.id.selFile:  //Setting selection type to files.
-                                        properties.selection_type=DialogConfigs.FILE_SELECT;
-                                        break;
+                switch (checkedId) {
+                    case R.id.selFile:  //Setting selection type to files.
+                        properties.selection_type = DialogConfigs.FILE_SELECT;
+                        break;
 
                     case R.id.selDir:   //Setting selection type to directories.
-                                        properties.selection_type=DialogConfigs.DIR_SELECT;
-                                        break;
+                        properties.selection_type = DialogConfigs.DIR_SELECT;
+                        break;
 
                     case R.id.selfilenddir: //Setting selection type to files and directories.
-                                            properties.selection_type=DialogConfigs.FILE_AND_DIR_SELECT;
-                                            break;
+                        properties.selection_type = DialogConfigs.FILE_AND_DIR_SELECT;
+                        break;
                 }
             }
         });
@@ -110,7 +111,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 String fextension = extension.getText().toString();
-                if(fextension.length()>0) {
+                if (fextension.length() > 0) {
                     //Add extensions to be sorted from the EditText input to the array of String.
                     int commas = countCommas(fextension);
 
@@ -130,36 +131,32 @@ public class MainActivity extends AppCompatActivity
                     exts[i] = buff.toString();
 
                     //Set String Array of extensions.
-                    properties.extensions=exts;
+                    properties.extensions = exts;
+                } else {   //If EditText is empty, Initialise with null reference.
+                    properties.extensions = null;
                 }
-                else
-                {   //If EditText is empty, Initialise with null reference.
-                    properties.extensions=null;
-                }
-                String foffset=root.getText().toString();
-                if(foffset.length()>0||!foffset.equals("")) {
+                String foffset = root.getText().toString();
+                if (foffset.length() > 0 || !foffset.equals("")) {
                     //Setting Parent Directory.
-                    properties.root=new File(foffset);
-                }
-                else {
+                    properties.root = new File(foffset);
+                } else {
                     //Setting Parent Directory to Default SDCARD.
-                    properties.root=new File(DialogConfigs.DEFAULT_DIR);
+                    properties.root = new File(DialogConfigs.DEFAULT_DIR);
                 }
 
-                String fset=offset.getText().toString();
-                if(fset.length()>0||!fset.equals("")) {
+                String fset = offset.getText().toString();
+                if (fset.length() > 0 || !fset.equals("")) {
                     //Setting Offset Directory.
-                    properties.offset=new File(fset);
-                }
-                else {
+                    properties.offset = new File(fset);
+                } else {
                     //Setting Parent Directory to Default SDCARD.
-                    properties.offset=new File(DialogConfigs.DEFAULT_DIR);
+                    properties.offset = new File(DialogConfigs.DEFAULT_DIR);
                 }
 
                 //Setting Alternative Directory, in case root is not accessible.This will be
                 //used.
 
-                properties.error_dir=new File("/mnt");
+                properties.error_dir = new File("/mnt");
                 //Set new properties of dialog.
                 dialog.setProperties(properties);
 
@@ -191,9 +188,9 @@ public class MainActivity extends AppCompatActivity
                 int size = listItem.size();
                 listItem.clear();
                 mFileListAdapter.notifyItemRangeRemoved(0, size);
-                for(String path:files) {
-                    File file=new File(path);
-                    ListItem item=new ListItem();
+                for (String path : files) {
+                    File file = new File(path);
+                    ListItem item = new ListItem();
                     item.setName(file.getName());
                     item.setPath(file.getAbsolutePath());
                     listItem.add(item);
@@ -205,8 +202,8 @@ public class MainActivity extends AppCompatActivity
 
     private int countCommas(String fextension) {
         int count = 0;
-        for(char ch:fextension.toCharArray())
-        {   if(ch==',') {
+        for (char ch : fextension.toCharArray()) {
+            if (ch == ',') {
                 count++;
             }
         }
@@ -215,18 +212,17 @@ public class MainActivity extends AppCompatActivity
 
     //Add this method to show Dialog when the required permission has been granted to the app.
     @Override
-    public void onRequestPermissionsResult(int requestCode,@NonNull String permissions[],@NonNull int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
         switch (requestCode) {
             case FilePickerDialog.EXTERNAL_READ_PERMISSION_GRANT: {
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    if(dialog!=null) {
+                    if (dialog != null) {
                         //Show dialog if the read permission has been granted.
                         dialog.show();
                     }
-                }
-                else {
+                } else {
                     //Permission has not been granted. Notify the user.
-                    Toast.makeText(MainActivity.this,"Permission is Required for getting list of files",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Permission is Required for getting list of files", Toast.LENGTH_SHORT).show();
                 }
             }
         }

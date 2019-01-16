@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.appcompat.widget.LinearLayoutCompat
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:focusable="false"
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:minHeight="?android:listPreferredItemHeight"
+    android:minHeight="?attr/listPreferredItemHeight"
     android:descendantFocusability="blocksDescendants"
     style="?android:attr/background">
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:scaleType="centerInside"
         android:id="@+id/image_type"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center" />
 
-    <LinearLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:orientation="vertical"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_weight="1"
         android:focusable="false"
         android:gravity="center_vertical"
         style="?android:attr/background">
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/fname"
@@ -37,13 +37,13 @@
             android:textSize="16sp"
             style="?android:attr/textAppearanceLarge"/>
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/ftype"
             android:textSize="12sp"
             style="?android:attr/textViewStyle"/>
-    </LinearLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
     <com.github.angads25.filepicker.widget.MaterialCheckbox
         android:id="@+id/file_mark"
@@ -51,5 +51,6 @@
         android:layout_height="@dimen/checkbox_dimens"
         android:layout_gravity="center_vertical"
         android:layout_marginEnd="@dimen/checkbox_margin"
-        android:layout_marginRight="@dimen/checkbox_margin"/>
-</LinearLayout>
+        android:layout_marginRight="@dimen/checkbox_margin"
+        android:background="?attr/selectableItemBackgroundBorderless"/>
+</androidx.appcompat.widget.LinearLayoutCompat>

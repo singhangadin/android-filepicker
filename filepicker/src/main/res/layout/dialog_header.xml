@@ -1,34 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.appcompat.widget.LinearLayoutCompat
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/colorHeader"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="?android:listPreferredItemHeight">
+    android:layout_height="?attr/listPreferredItemHeight">
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:layout_marginLeft="@dimen/toolbar_image_margin"
         android:layout_marginStart="@dimen/toolbar_image_margin"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:src="@mipmap/ic_directory_parent"
+        app:srcCompat="@mipmap/ic_directory_parent"
         android:scaleType="centerInside"
         android:background="@null"
         android:id="@+id/imageView" />
 
-    <LinearLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:background="@null"
         android:layout_gravity="center_vertical">
 
-        <RelativeLayout
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@null">
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/dname"
                 android:layout_marginLeft="16dp"
                 android:layout_marginStart="16dp"
@@ -40,7 +41,7 @@
                 android:background="@null"
                 android:textColor="@color/textColorPrimary"/>
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/title"
                 android:visibility="invisible"
                 android:layout_marginLeft="16dp"
@@ -53,9 +54,9 @@
                 android:background="@null"
                 android:textColor="@color/textColorPrimary"/>
 
-        </RelativeLayout>
+        </FrameLayout>
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/dir_path"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -64,5 +65,5 @@
             style="?android:attr/textViewStyle"
             android:background="@null"
             android:textColor="@color/textColorSecondary"/>
-    </LinearLayout>
-</LinearLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</androidx.appcompat.widget.LinearLayoutCompat>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.appcompat.widget.LinearLayoutCompat
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
@@ -9,15 +9,15 @@
     style="?android:attr/background"
     android:id="@+id/linearLayout">
 
-    <View
+    <FrameLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:background="@null"/>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         style="?android:attr/buttonStyle"
-        android:background="@null"
+        android:background="?attr/selectableItemBackground"
         android:text="@string/cancel_button_label"
         android:id="@+id/cancel"
         android:textStyle="bold"
@@ -27,9 +27,9 @@
         android:layout_margin="8dp"
         android:padding="4dp"/>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         style="?android:attr/buttonStyle"
-        android:background="@null"
+        android:background="?attr/selectableItemBackground"
         android:text="@string/choose_button_label"
         android:textStyle="bold"
         android:id="@+id/select"
@@ -38,4 +38,4 @@
         android:textColor="@color/colorAccent"
         android:layout_margin="8dp"
         android:padding="4dp"/>
-</LinearLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>
