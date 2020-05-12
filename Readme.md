@@ -1,3 +1,5 @@
+## The project is no longer being maintained.
+
 # FilePicker
 Super Lite Android Library to select files/directories from Device Storage.
 
