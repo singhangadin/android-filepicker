@@ -187,6 +187,12 @@ eg. /sdcard:/mnt:
 
 ![Performance 2](https://raw.githubusercontent.com/Angads25/android-filepicker/release/screenshots/profile_gpu_rendering.png)
 
+### Buy me a Coffee
+
+If this project helped you reduce the development time, please consider donating :D
+
+[![Buy me a Coffee](https://raw.githubusercontent.com/Angads25/android-filepicker/release/screenshots/bmc-button.webp)](https://www.buymeacoffee.com/singhangad.in)
+
 ### License
     Copyright (C) 2016 Angad Singh
 
