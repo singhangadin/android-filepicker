@@ -52,6 +52,11 @@ public abstract class DialogConfigs {
      *  can be selected.
      */
     public static final int FILE_AND_DIR_SELECT = 2;
+    
+    /*
+     *  Max Select Count , defalut 9
+     */
+    public static final int MAX_COUNT = 9;
 
     /*  PARENT_DIRECTORY*/
     public static final String DIRECTORY_SEPERATOR = "/";

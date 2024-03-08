@@ -155,7 +155,13 @@ public class FileListAdapter extends BaseAdapter{
         holder.fmark.setOnCheckedChangedListener(new OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(MaterialCheckbox checkbox, boolean isChecked) {
-                item.setMarked(isChecked);
+                //限制最大选择数量
+                if (MarkedItemList.getFileCount() < properties.max_count){
+                    item.setMarked(isChecked);
+                } else {
+                    item.setMarked(false);
+                    holder.fmark.setChecked(false);
+                }
                 if (item.isMarked()) {
                     if(properties.selection_mode == DialogConfigs.MULTI_MODE) {
                         MarkedItemList.addSelectedItem(item);
